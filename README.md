@@ -28,3 +28,27 @@ npm.cmd run dev
 ```
 
 Visit the Vite local URL printed in the terminal.
+
+## Vercel Auto Deploy
+
+This repo includes GitHub Actions workflows for Vercel:
+
+- Preview deploys on every push to branches other than `main`
+- Production deploys on every push to `main`
+
+One-time setup:
+
+1. In Vercel, create or link a project for this GitHub repository.
+2. In your local terminal, run `vercel link` once for this project.
+3. Open `.vercel/project.json` and copy the `projectId` and `orgId` values.
+4. In GitHub, add these repository secrets:
+   - `VERCEL_TOKEN`
+   - `VERCEL_ORG_ID`
+   - `VERCEL_PROJECT_ID`
+
+The workflows live in:
+
+- `.github/workflows/vercel-preview.yml`
+- `.github/workflows/vercel-production.yml`
+
+`vercel.json` disables Vercel's built-in Git auto-deploy so GitHub Actions stays the single deployment path.
