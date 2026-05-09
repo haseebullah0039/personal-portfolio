@@ -8,6 +8,7 @@ export default function Footer() {
           Creating premium design, video, photo, and storytelling content for brands
           that want to look confident and connect clearly.
         </p>
+        <p>Available for freelance projects, retainers, and remote collaborations.</p>
         <div className="subscribe">
           <input placeholder="Enter your email" />
           <button type="button">Send</button>
