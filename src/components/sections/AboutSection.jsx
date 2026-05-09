@@ -1,0 +1,71 @@
+import SkillBar from "@/components/SkillBar";
+import aboutImage from "@/assets/about.png";
+import { skillBars } from "@/data/portfolio";
+
+export default function AboutSection() {
+  return (
+    <section id="about" className="section about-section">
+      <div className="section-heading">
+        <p className="pill">About Me</p>
+        <h2>
+          Creating Visual Content That <span>Connects</span>
+        </h2>
+        <p>
+          A multi-disciplinary creative focused on design, editing, photography,
+          and videography for brands that want clear, premium visual communication.
+        </p>
+      </div>
+
+      <div className="about-grid">
+        <div className="about-photo">
+          <div className="desk-scene">
+            <img
+              className="about-image"
+              src={aboutImage}
+              alt="Haseeb Ullah working on creative visual projects"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="experience-card">
+              <b>5+</b>
+              Years Experience
+            </div>
+          </div>
+          <div className="mini-card email-card">haseebullah03168778804@gmail.com</div>
+          <div className="mini-card location-card">Thana Batkhela, Malakand, Pakistan</div>
+        </div>
+
+        <div className="about-copy">
+          <h3>Graphic Designer, Video Editor, Photographer &amp; Videographer</h3>
+          <p>
+            I help brands and individuals communicate with clarity through graphic
+            design, video editing, photography, and videography. My work covers
+            branding, social media posts, reels, ads, product visuals, lifestyle
+            shoots, and story-led video content.
+          </p>
+          <p>
+            Every project is handled with a client-focused process, clean creative
+            direction, and attention to detail so the final result looks polished,
+            feels purposeful, and supports real business goals.
+          </p>
+
+          <h4>Professional Skills</h4>
+          {skillBars.map(([label, value]) => (
+            <SkillBar key={label} label={label} value={value} />
+          ))}
+
+          <div className="button-row">
+            <a
+              className="ghost-btn"
+              href="mailto:haseebullah03168778804@gmail.com?subject=Profile%20Request"
+            >
+              Request Profile
+            </a>
+            <a className="primary-btn" href="#contact">Hire Me</a>
+          </div>
+        </div>
+      </div>
+      <div className="section-flow-line" aria-hidden="true" />
+    </section>
+  );
+}
