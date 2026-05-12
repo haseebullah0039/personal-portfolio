@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
 
+function getCurrentHash() {
+  return typeof window === "undefined" ? "#home" : window.location.hash || "#home";
+}
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState(window.location.hash || "#home");
+  const [activeHash, setActiveHash] = useState(getCurrentHash);
   const closeMenu = () => setIsMenuOpen(false);
 
   useEffect(() => {
@@ -15,8 +19,12 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return undefined;
+    }
+
     const updateActiveHash = () => {
-      setActiveHash(window.location.hash || "#home");
+      setActiveHash(getCurrentHash());
     };
 
     window.addEventListener("hashchange", updateActiveHash);

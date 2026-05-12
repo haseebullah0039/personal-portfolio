@@ -27,7 +27,11 @@ Install dependencies, then run:
 npm.cmd run dev
 ```
 
-Visit the Vite local URL printed in the terminal.
+The browser should open automatically at:
+
+`http://localhost:4173/`
+
+If it does not, keep the terminal running and open that exact URL manually.
 
 ## Vercel Auto Deploy
 
