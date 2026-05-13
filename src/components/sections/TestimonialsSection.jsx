@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
           <article className={`testimonial-card is-single direction-${direction}`} key={`${review.name}-${activeReview}`}>
             <div className="testimonial-stars" aria-label={`${review.rating ?? 5} star rating`}>
               {Array.from({ length: review.rating ?? 5 }, (_, index) => (
-                <span key={`${review.name}-star-${index}`}>★</span>
+                <span key={`${review.name}-star-${index}`}>{"\u2605"}</span>
               ))}
             </div>
             <p>&ldquo;{review.text}&rdquo;</p>

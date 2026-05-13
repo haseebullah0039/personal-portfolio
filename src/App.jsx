@@ -10,6 +10,7 @@ import PortfolioMorePage from "@/components/sections/PortfolioMorePage";
 import PortfolioSection from "@/components/sections/PortfolioSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import ToolsMarqueeSection from "@/components/sections/ToolsMarqueeSection";
 
 function getCurrentHash() {
   return typeof window === "undefined" ? "" : window.location.hash;
@@ -60,6 +61,7 @@ export default function App() {
       ) : (
         <main id="home">
           <HeroSection />
+          <ToolsMarqueeSection />
           <AboutSection />
           <ServicesSection />
           <PortfolioSection />

@@ -1,6 +1,25 @@
 import HeroCounter from "@/components/HeroCounter";
 import HeroTyping from "@/components/HeroTyping";
-import profilePicture from "@/assets/profile-picture.png";
+import profilePicture from "@/assets/hero-portrait-dds-01.png";
+
+const heroHighlights = [
+  {
+    title: "Top Ranking",
+    position: "top"
+  },
+  {
+    title: "100% Successful Rate",
+    position: "right"
+  },
+  {
+    title: "Skill Creator",
+    position: "left"
+  },
+  {
+    title: "Trusted By Clients",
+    position: "bottom"
+  }
+];
 
 export default function HeroSection() {
   return (
@@ -38,27 +57,34 @@ export default function HeroSection() {
           <a className="primary-btn" href="#portfolio">View My Work</a>
           <a className="ghost-btn" href="#contact">Start a Project</a>
         </div>
-        <div className="hero-stats">
-          <span>
+        <div className="hero-stats" aria-label="Professional highlights">
+          <span className="hero-stat-item">
             <HeroCounter value={200} suffix="+" />
-            Projects Completed
+            <small>Projects Completed</small>
           </span>
-          <span>
+          <span className="hero-stat-separator" aria-hidden="true">{"\u2022"}</span>
+          <span className="hero-stat-item">
             <HeroCounter value={150} suffix="+" />
-            Happy Clients
+            <small>Happy Clients</small>
           </span>
-          <span>
+          <span className="hero-stat-separator" aria-hidden="true">{"\u2022"}</span>
+          <span className="hero-stat-item">
             <HeroCounter value={5} suffix="+" />
-            Years Experience
+            <small>Years Experience</small>
           </span>
         </div>
       </div>
 
       <div className="hero-visual" aria-label="Haseeb Ullah creative professional profile">
-        <span className="floating-badge badge-top">Creative Visual Expert</span>
-        <span className="floating-badge badge-right">100% Success Rate</span>
-        <span className="floating-badge badge-left">Multi-Skill Creator</span>
-        <span className="floating-badge badge-bottom">Trusted by Clients</span>
+        {heroHighlights.map((highlight) => (
+          <article
+            className={`floating-badge badge-${highlight.position}`}
+            key={highlight.title}
+            aria-label={highlight.title}
+          >
+            <strong>{highlight.title}</strong>
+          </article>
+        ))}
         <figure className="hero-image-wrap">
           <img
             className="hero-personal-image"

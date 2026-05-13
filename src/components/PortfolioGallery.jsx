@@ -2,11 +2,36 @@ import { useEffect, useMemo, useState } from "react";
 import ProjectShowcaseModal from "@/components/ProjectShowcaseModal";
 
 const filters = ["All Work", "Graphic Design", "Video Editing", "Photography", "Videography"];
+const portfolioStats = [
+  { likes: 245, views: 1200 },
+  { likes: 318, views: 2400 },
+  { likes: 189, views: 980 },
+  { likes: 427, views: 3100 },
+  { likes: 276, views: 1700 },
+  { likes: 354, views: 2800 }
+];
+const PORTFOLIO_REACTIONS_STORAGE_KEY = "portfolio-card-reactions";
 
 function getFilterHash(filter) {
   return filter === "All Work"
     ? "#portfolio"
     : `#portfolio-${filter.toLowerCase().replace(/\s+/g, "-")}`;
+}
+
+function getProjectStats(index) {
+  return portfolioStats[index % portfolioStats.length];
+}
+
+function formatMetric(value) {
+  if (value >= 1000) {
+    const shortValue = value >= 10000
+      ? Math.round(value / 1000)
+      : Math.round((value / 1000) * 10) / 10;
+
+    return `${shortValue}K`;
+  }
+
+  return String(value);
 }
 
 export default function PortfolioGallery({
@@ -17,6 +42,7 @@ export default function PortfolioGallery({
 }) {
   const [activeFilter, setActiveFilter] = useState(defaultFilter);
   const [activeProject, setActiveProject] = useState(null);
+  const [cardReactions, setCardReactions] = useState({});
 
   const visibleProjects = useMemo(
     () => activeFilter === "All Work"
@@ -41,9 +67,75 @@ export default function PortfolioGallery({
     return () => window.removeEventListener("hashchange", syncFilterFromHash);
   }, [defaultFilter, enableHashSync]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    try {
+      const savedReactions = window.localStorage.getItem(PORTFOLIO_REACTIONS_STORAGE_KEY);
+      if (savedReactions) {
+        setCardReactions(JSON.parse(savedReactions));
+      }
+    } catch {
+      // Ignore invalid local data and keep defaults.
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.setItem(PORTFOLIO_REACTIONS_STORAGE_KEY, JSON.stringify(cardReactions));
+  }, [cardReactions]);
+
   const getCount = (filter) => filter === "All Work"
     ? projects.length
     : projects.filter((project) => project.category === filter).length;
+
+  const openProject = (project) => {
+    setActiveProject(project);
+    setCardReactions((current) => {
+      const next = {
+        ...current,
+        [project.slug]: {
+          liked: current[project.slug]?.liked ?? false,
+          likes: current[project.slug]?.likes,
+          views: (current[project.slug]?.views ?? 0) + 1
+        }
+      };
+
+      return next;
+    });
+  };
+
+  const handleProjectCardKeyDown = (event, project) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProject(project);
+    }
+  };
+
+  const handleProjectLike = (event, project, defaultLikes) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    setCardReactions((current) => {
+      const existing = current[project.slug];
+      const isLiked = existing?.liked ?? false;
+      const currentLikes = existing?.likes ?? defaultLikes;
+
+      return {
+        ...current,
+        [project.slug]: {
+          liked: !isLiked,
+          likes: isLiked ? Math.max(defaultLikes, currentLikes - 1) : currentLikes + 1,
+          views: existing?.views ?? 0
+        }
+      };
+    });
+  };
 
   const handleFilter = (filter) => {
     setActiveFilter(filter);
@@ -69,33 +161,69 @@ export default function PortfolioGallery({
       </div>
 
       <div className={`project-grid ${gridClassName}`.trim()}>
-        {visibleProjects.map((project) => (
-          <article className="project-card" key={project.slug}>
-            <button
-              type="button"
-              className="project-card-button"
-              aria-label={`Open ${project.title} project showcase`}
-              onClick={() => setActiveProject(project)}
-            >
-              {project.featured ? <div className="featured-ribbon">Featured</div> : null}
-              <div className="project-image">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(max-width: 700px) 100vw, (max-width: 1180px) 50vw, 33vw"
-                />
-                <div className="project-overlay">
-                  <small>{project.category} / {project.year}</small>
+        {visibleProjects.map((project, index) => {
+          const stats = getProjectStats(index);
+          const savedReactions = cardReactions[project.slug];
+          const likes = savedReactions?.likes ?? stats.likes;
+          const views = stats.views + (savedReactions?.views ?? 0);
+          const isLiked = savedReactions?.liked ?? false;
+
+          return (
+            <article className="project-card" key={project.slug}>
+              <div
+                className="project-card-button"
+                role="button"
+                tabIndex={0}
+                aria-label={`Open ${project.title} case study`}
+                onClick={() => openProject(project)}
+                onKeyDown={(event) => handleProjectCardKeyDown(event, project)}
+              >
+                <div className="project-image">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(max-width: 700px) 100vw, (max-width: 1180px) 50vw, 33vw"
+                  />
+                  <div className="project-overlay">
+                    <div className="project-overlay-bar">
+                      <div className="project-overlay-copy">
+                        <h3>{project.title}</h3>
+                        <p>Haseeb Ullah</p>
+                      </div>
+                      <div className="project-overlay-meta" aria-label={`${formatMetric(likes)} likes and ${formatMetric(views)} views`}>
+                        <button
+                          type="button"
+                          className={`project-overlay-stat project-like-button ${isLiked ? "is-active" : ""}`}
+                          aria-label={isLiked ? `Unlike ${project.title}` : `Like ${project.title}`}
+                          onClick={(event) => handleProjectLike(event, project, stats.likes)}
+                        >
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 21.35 10.55 20C5.4 15.24 2 12.09 2 8.5A4.5 4.5 0 0 1 6.5 4 5 5 0 0 1 12 7.09 5 5 0 0 1 17.5 4 4.5 4.5 0 0 1 22 8.5c0 3.59-3.4 6.74-8.55 11.54Z" />
+                          </svg>
+                          <strong>{formatMetric(likes)}</strong>
+                        </button>
+                        <span className="project-overlay-stat project-view-stat">
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M1.6 12s3.8-6.4 10.4-6.4S22.4 12 22.4 12s-3.8 6.4-10.4 6.4S1.6 12 1.6 12Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                            <circle cx="12" cy="12" r="3.1" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                          </svg>
+                          <strong>{formatMetric(views)}</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="project-card-copy">
+                  <small>{project.typeLabel}</small>
                   <h3>{project.title}</h3>
-                  <p>{project.accent}</p>
-                  <span className="project-overlay-cta">View Case Study</span>
+                  <p>{project.description}</p>
                 </div>
               </div>
-            </button>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
 
       <ProjectShowcaseModal project={activeProject} onClose={() => setActiveProject(null)} />

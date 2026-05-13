@@ -59,27 +59,46 @@ function createCertificateImage({ title, issuer, accentA, accentB, code }) {
           <stop offset="0%" stop-color="${accentA}" />
           <stop offset="100%" stop-color="${accentB}" />
         </linearGradient>
-        <radialGradient id="glow" cx="78%" cy="18%" r="52%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.38)" />
+        <linearGradient id="paper" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#fff9f0" />
+          <stop offset="100%" stop-color="#f0dfca" />
+        </linearGradient>
+        <radialGradient id="halo" cx="84%" cy="16%" r="60%">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.88)" />
           <stop offset="100%" stop-color="rgba(255,255,255,0)" />
         </radialGradient>
+        <radialGradient id="corner" cx="10%" cy="12%" r="48%">
+          <stop offset="0%" stop-color="rgba(243,114,33,0.24)" />
+          <stop offset="100%" stop-color="rgba(243,114,33,0)" />
+        </radialGradient>
       </defs>
-      <rect width="1200" height="900" rx="42" fill="#1d0f1f"/>
-      <rect x="28" y="28" width="1144" height="844" rx="34" fill="url(#bg)" opacity="0.18"/>
-      <rect x="52" y="52" width="1096" height="796" rx="28" fill="#28152a" stroke="rgba(243,114,33,0.32)" stroke-width="2"/>
-      <rect x="72" y="72" width="1056" height="756" rx="24" fill="url(#glow)" opacity="0.8"/>
-      <text x="100" y="180" fill="#f37221" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="8">CERTIFICATE</text>
-      <text x="100" y="280" fill="#fff7ee" font-family="Segoe UI, Arial, sans-serif" font-size="74" font-weight="800">${title}</text>
-      <text x="100" y="360" fill="#c7aebe" font-family="Segoe UI, Arial, sans-serif" font-size="34">Issued by ${issuer}</text>
-      <text x="100" y="430" fill="#c7aebe" font-family="Segoe UI, Arial, sans-serif" font-size="28">Credential focus: creative strategy, delivery quality, and digital execution.</text>
-      <rect x="100" y="540" width="360" height="150" rx="24" fill="rgba(243,114,33,0.12)" stroke="rgba(243,114,33,0.36)"/>
-      <text x="132" y="598" fill="#fff7ee" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700">Credential ID</text>
-      <text x="132" y="650" fill="#f37221" font-family="Consolas, monospace" font-size="38" font-weight="700">${code}</text>
-      <circle cx="978" cy="262" r="126" fill="rgba(243,114,33,0.14)" stroke="rgba(243,114,33,0.4)" stroke-width="2"/>
-      <circle cx="978" cy="262" r="74" fill="none" stroke="#fff7ee" stroke-width="12"/>
-      <path d="M944 260l22 22 48-54" fill="none" stroke="#f37221" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="100" y="766" fill="#fff7ee" font-family="Segoe UI, Arial, sans-serif" font-size="24">Portfolio credentials curated by Haseeb Ullah</text>
-      <text x="890" y="766" fill="#c7aebe" font-family="Segoe UI, Arial, sans-serif" font-size="24">Creative Portfolio</text>
+      <rect width="1200" height="900" rx="44" fill="#140c18"/>
+      <rect x="28" y="28" width="1144" height="844" rx="36" fill="url(#bg)" opacity="0.3"/>
+      <rect x="58" y="58" width="1084" height="784" rx="30" fill="url(#paper)"/>
+      <rect x="58" y="58" width="1084" height="784" rx="30" fill="url(#halo)" opacity="0.9"/>
+      <rect x="58" y="58" width="1084" height="784" rx="30" fill="url(#corner)" opacity="1"/>
+      <rect x="84" y="84" width="1032" height="732" rx="24" fill="none" stroke="rgba(78,44,55,0.18)" stroke-width="2"/>
+      <path d="M126 148h182" stroke="${accentA}" stroke-width="8" stroke-linecap="round"/>
+      <text x="126" y="126" fill="#9b4e26" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="8">CERTIFIED CREATIVE</text>
+      <text x="126" y="220" fill="#2d1d1f" font-family="Georgia, Times New Roman, serif" font-size="74" font-weight="700">${title}</text>
+      <text x="126" y="282" fill="#715d59" font-family="Segoe UI, Arial, sans-serif" font-size="28">Awarded to recognize strong creative execution, presentation quality, and modern digital craft.</text>
+      <text x="126" y="372" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6">ISSUED BY</text>
+      <text x="126" y="414" fill="#2d1d1f" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700">${issuer}</text>
+      <rect x="126" y="498" width="398" height="164" rx="28" fill="#fff5e8" stroke="rgba(243,114,33,0.32)" stroke-width="2"/>
+      <text x="158" y="552" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="4">CREDENTIAL ID</text>
+      <text x="158" y="612" fill="#2d1d1f" font-family="Consolas, monospace" font-size="38" font-weight="700">${code}</text>
+      <text x="158" y="644" fill="#9b4e26" font-family="Segoe UI, Arial, sans-serif" font-size="18">Verified portfolio training record</text>
+      <circle cx="916" cy="336" r="122" fill="rgba(243,114,33,0.08)" stroke="rgba(243,114,33,0.24)" stroke-width="2"/>
+      <circle cx="916" cy="336" r="92" fill="none" stroke="${accentA}" stroke-opacity="0.48" stroke-width="3"/>
+      <circle cx="916" cy="336" r="70" fill="#fffaf2" stroke="rgba(45,29,31,0.08)" stroke-width="4"/>
+      <path d="M875 336l28 28 58-66" fill="none" stroke="${accentA}" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="852" y="470" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="4">CERTIFIED</text>
+      <path d="M788 594c56-46 125-62 206-48" fill="none" stroke="rgba(45,29,31,0.14)" stroke-width="2"/>
+      <text x="770" y="654" fill="#2d1d1f" font-family="'Brush Script MT', cursive" font-size="58">Haseeb Ullah</text>
+      <text x="772" y="686" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="18" letter-spacing="4">CREATIVE PORTFOLIO DIRECTOR</text>
+      <text x="126" y="754" fill="#715d59" font-family="Segoe UI, Arial, sans-serif" font-size="22">Date of recognition</text>
+      <text x="126" y="788" fill="#2d1d1f" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">${code.split("-")[1]}</text>
+      <text x="850" y="788" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="22">Creative Portfolio Certification</text>
     </svg>
   `;
 
@@ -116,6 +135,7 @@ function buildProject({
   slug,
   title,
   category,
+  typeLabel,
   year,
   accent,
   featured = false,
@@ -135,6 +155,7 @@ function buildProject({
     slug,
     title,
     category,
+    typeLabel: typeLabel ?? accent ?? category,
     year,
     accent,
     featured,

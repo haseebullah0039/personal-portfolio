@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { certificates } from "@/data/portfolio";
 
+const certificateHighlights = [
+  { value: `${certificates.length}+`, label: "Verified certificates" },
+  { value: "2024-2025", label: "Latest learning window" },
+  { value: "4", label: "Creative disciplines covered" }
+];
+
 export default function CertificatesSection() {
   const [activeCertificate, setActiveCertificate] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -17,12 +23,12 @@ export default function CertificatesSection() {
         return;
       }
 
-      if (window.innerWidth < 1100) {
+      if (window.innerWidth < 1180) {
         setCardsPerView(2);
         return;
       }
 
-      setCardsPerView(3);
+      setCardsPerView(2);
     };
 
     syncCardsPerView();
@@ -83,27 +89,46 @@ export default function CertificatesSection() {
 
   return (
     <section id="certificates" className="section certificates-section">
-      <div className="section-heading">
-        <p className="pill">Certificates</p>
-        <h2>
-          Creative <span>Credentials</span>
-        </h2>
-        <p>
-          Verified training across design, editing, photography, and videography that supports
-          a polished and professional delivery standard.
-        </p>
+      <div className="certificate-showcase">
+        <div className="section-heading certificate-heading">
+          <p className="pill">Certificates</p>
+          <h2>
+            Creative <span>Credentials</span>
+          </h2>
+          <p>
+            Verified training across design, editing, photography, and videography that supports
+            polished delivery, dependable execution, and a stronger professional standard.
+          </p>
+        </div>
+
+        <div className="certificate-summary-card">
+          <p className="certificate-summary-eyebrow">Professional profile</p>
+          <h3>Recognized learning that strengthens every client deliverable.</h3>
+          <p className="certificate-summary-text">
+            Each certificate reflects hands-on development in visual communication, post-production,
+            and brand storytelling, helping the work stay both creative and commercially polished.
+          </p>
+          <div className="certificate-summary-metrics" aria-label="Certificate highlights">
+            {certificateHighlights.map((item) => (
+              <div className="certificate-summary-metric" key={item.label}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="certificate-carousel">
         <div className="certificate-carousel-head">
           <span>Professional learning and verified creative development</span>
+        </div>
+
+        <div className="certificate-viewport">
           <div className="certificate-controls">
             <button type="button" aria-label="Previous certificate" onClick={showPrevious}>&lsaquo;</button>
             <button type="button" aria-label="Next certificate" onClick={showNext}>&rsaquo;</button>
           </div>
-        </div>
-
-        <div className="certificate-viewport">
           <div
             className="certificate-track"
             style={{ transform: `translateX(-${activeIndex * (100 / cardsPerView)}%)` }}
@@ -119,6 +144,7 @@ export default function CertificatesSection() {
                     <img src={certificate.image} alt={certificate.title} loading="lazy" decoding="async" />
                   </div>
                   <div className="certificate-copy">
+                    <small>Certified credential</small>
                     <h3>{certificate.title}</h3>
                     <p>{certificate.issuer}</p>
                     <span>{certificate.date}</span>
@@ -150,7 +176,7 @@ export default function CertificatesSection() {
             </button>
             <div className="certificate-lightbox-header">
               <h3 id="certificate-title">{activeCertificate.title}</h3>
-              <p>{activeCertificate.issuer} • {activeCertificate.date}</p>
+              <p>{activeCertificate.issuer} {"\u2022"} {activeCertificate.date}</p>
             </div>
             <div className="certificate-lightbox-media">
               <img src={activeCertificate.image} alt={activeCertificate.title} />
