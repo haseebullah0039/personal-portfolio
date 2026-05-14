@@ -11,6 +11,7 @@ export default function CertificatesSection() {
   const [activeCertificate, setActiveCertificate] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
+  const isMobileCarousel = cardsPerView === 1;
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -125,16 +126,22 @@ export default function CertificatesSection() {
         </div>
 
         <div className="certificate-viewport">
-          <div className="certificate-controls">
-            <button type="button" aria-label="Previous certificate" onClick={showPrevious}>&lsaquo;</button>
-            <button type="button" aria-label="Next certificate" onClick={showNext}>&rsaquo;</button>
-          </div>
+          {isMobileCarousel ? null : (
+            <div className="certificate-controls">
+              <button type="button" aria-label="Previous certificate" onClick={showPrevious}>&lsaquo;</button>
+              <button type="button" aria-label="Next certificate" onClick={showNext}>&rsaquo;</button>
+            </div>
+          )}
           <div
             className="certificate-track"
-            style={{ transform: `translateX(-${activeIndex * (100 / cardsPerView)}%)` }}
+            style={isMobileCarousel ? undefined : { transform: `translateX(-${activeIndex * (100 / cardsPerView)}%)` }}
           >
             {certificates.map((certificate) => (
-              <article className="certificate-card" key={certificate.title} style={{ width: `${100 / cardsPerView}%` }}>
+              <article
+                className="certificate-card"
+                key={certificate.title}
+                style={isMobileCarousel ? undefined : { width: `${100 / cardsPerView}%` }}
+              >
                 <button
                   type="button"
                   className="certificate-card-button"
