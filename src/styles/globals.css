@@ -7274,3 +7274,406 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+.section,
+.portfolio-page .section {
+  width: min(1180px, calc(100% - 40px));
+}
+
+.hero,
+.about-grid,
+.service-grid,
+.contact-grid,
+.portfolio-stats-grid,
+.review-strip,
+.trusted-panel > div,
+.footer,
+.wide-cta,
+.portfolio-page-grid,
+.project-grid {
+  min-width: 0;
+}
+
+.hero-copy,
+.about-copy,
+.contact-form,
+.contact-cards,
+.wide-cta-copy,
+.wide-cta-panel,
+.wide-cta-action,
+.portfolio-stat-card,
+.project-card,
+.project-card-copy {
+  min-width: 0;
+}
+
+.button-row,
+.portfolio-actions,
+.wide-cta-action,
+.social-row {
+  flex-wrap: wrap;
+}
+
+.button-row > a,
+.portfolio-actions > a,
+.wide-cta-action > a {
+  max-width: 100%;
+}
+
+.project-card-copy p,
+.service-content p,
+.section-heading p,
+.contact-cards span,
+.wide-cta-action span {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1180px) {
+  .section,
+  .portfolio-page .section {
+    width: min(100%, calc(100% - 32px));
+  }
+
+  .hero {
+    gap: clamp(28px, 4vw, 40px);
+    min-height: auto;
+    padding-top: 36px;
+  }
+
+  .hero-copy {
+    min-height: auto;
+    padding-block: 18px 8px;
+  }
+
+  .hero-visual {
+    min-height: clamp(480px, 54vw, 620px);
+  }
+
+  .hero-image-wrap {
+    width: min(100%, 440px);
+  }
+
+  .about-grid,
+  .contact-grid,
+  .wide-cta,
+  .footer,
+  .case-study-sections,
+  .portfolio-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-grid,
+  .project-grid,
+  .portfolio-page-grid,
+  .case-study-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wide-cta-action {
+    align-items: flex-start;
+  }
+
+  .footer {
+    gap: 32px;
+    padding: 72px clamp(18px, 4vw, 36px);
+  }
+}
+
+@media (max-width: 920px) {
+  .site-header {
+    min-height: 78px;
+    padding-inline: 18px;
+  }
+
+  .section,
+  .portfolio-page .section {
+    width: min(100%, calc(100% - 24px));
+    padding-block: 88px;
+  }
+
+  .section-heading {
+    max-width: 100%;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    line-height: 1;
+  }
+
+  .hero,
+  .about-grid,
+  .contact-grid,
+  .footer,
+  .case-study-content,
+  .case-study-hero,
+  .case-study-sections,
+  .case-study-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 18px;
+  }
+
+  .hero-copy {
+    order: 2;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-copy > p:not(.intro),
+  .hero-copy h1,
+  .hero-copy h2 {
+    max-width: 100%;
+  }
+
+  .hero-visual {
+    order: 1;
+    min-height: clamp(420px, 78vw, 560px);
+  }
+
+  .hero-stats {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-image-wrap {
+    width: min(100%, 380px);
+  }
+
+  .service-grid,
+  .project-grid,
+  .portfolio-page-grid,
+  .case-study-gallery-grid,
+  .case-study-thumbs {
+    grid-template-columns: 1fr;
+  }
+
+  .wide-cta {
+    margin-top: 56px;
+    padding: 28px 20px;
+  }
+
+  .wide-cta h2 {
+    max-width: none;
+  }
+
+  .wide-cta-panel span,
+  .contact-cards article,
+  .portfolio-stat-card,
+  .project-card-copy {
+    min-height: auto;
+  }
+
+  .portfolio-page-grid .project-card,
+  .portfolio-page-grid .project-image {
+    width: 100%;
+  }
+
+  .case-study-copy {
+    padding: 24px 20px 28px;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    padding-inline: 14px;
+  }
+
+  .section,
+  .portfolio-page .section {
+    width: min(100%, calc(100% - 18px));
+    padding-block: 72px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand-logo-frame {
+    width: 58px;
+    height: 58px;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-name {
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    gap: 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 16vw, 4.4rem);
+  }
+
+  .hero h2 {
+    font-size: clamp(1.3rem, 5.8vw, 1.95rem);
+  }
+
+  .hero-copy > p:not(.intro),
+  .section-heading p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-top: 20px;
+  }
+
+  .hero-stat-separator {
+    display: none;
+  }
+
+  .hero-stat-item {
+    width: 100%;
+    justify-items: center;
+    padding: 18px 14px;
+    border: 1px solid rgba(243, 114, 33, 0.14);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .filter-row {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .filter-row button {
+    flex: 1 1 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .button-row,
+  .portfolio-actions {
+    gap: 12px;
+  }
+
+  .button-row > a,
+  .portfolio-actions > a,
+  .wide-cta-action > a,
+  .contact-form button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .service-card,
+  .project-card,
+  .portfolio-stat-card,
+  .contact-form,
+  .contact-cards article,
+  .wide-cta,
+  .case-study-shell {
+    border-radius: 20px;
+  }
+
+  .project-card-copy,
+  .service-content,
+  .contact-cards article {
+    padding: 18px;
+  }
+
+  .contact-cards {
+    gap: 14px;
+  }
+
+  .contact-form,
+  .case-study-copy,
+  .case-study-hero,
+  .wide-cta-action {
+    padding-inline: 18px;
+  }
+
+  .subscribe {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .subscribe button {
+    min-height: 48px;
+    border-radius: 14px;
+  }
+
+  .footer {
+    gap: 26px;
+    padding: 56px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section,
+  .portfolio-page .section {
+    width: min(100%, calc(100% - 14px));
+    padding-block: 64px;
+  }
+
+  .site-header {
+    min-height: 72px;
+    padding-inline: 10px;
+  }
+
+  .brand-role {
+    display: none;
+  }
+
+  .menu-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero-visual {
+    min-height: 360px;
+  }
+
+  .hero-image-wrap {
+    width: min(100%, 300px);
+  }
+
+  .section-heading h2 {
+    font-size: clamp(2rem, 11vw, 2.9rem);
+  }
+
+  .wide-cta,
+  .contact-form,
+  .project-card-copy,
+  .service-content,
+  .case-study-copy,
+  .case-study-hero {
+    padding: 16px;
+  }
+
+  .wide-cta-action {
+    padding: 16px;
+  }
+
+  .portfolio-stat-icon,
+  .portfolio-stat-card .counter-number {
+    align-self: center;
+  }
+
+  .contact-form label,
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+  }
+}
