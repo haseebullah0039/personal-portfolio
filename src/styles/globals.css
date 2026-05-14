@@ -43,6 +43,12 @@ body {
   background-size: 120px 120px, 120px 120px, auto, auto, auto;
 }
 
+body.lightbox-open .site-header {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 #root {
   min-height: 100vh;
   max-width: 100%;
@@ -995,7 +1001,7 @@ h1 span {
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 26px;
-  background: rgba(24, 18, 32, 0.92);
+  background: transparent;
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.22),
     0 8px 22px rgba(0, 0, 0, 0.16);
@@ -1009,8 +1015,7 @@ h1 span {
   inset: 0;
   z-index: 0;
   border-radius: inherit;
-  background:
-    linear-gradient(160deg, rgba(44, 27, 48, 0.2), rgba(18, 16, 27, 0.08));
+  background: transparent;
   content: "";
   pointer-events: none;
 }
@@ -1021,8 +1026,7 @@ h1 span {
   z-index: 1;
   height: 28%;
   border-radius: 0;
-  background:
-    linear-gradient(180deg, rgba(10, 10, 14, 0), rgba(10, 10, 14, 0.12) 24%, rgba(10, 10, 14, 0.3));
+  background: transparent;
   content: "";
   pointer-events: none;
 }
@@ -1111,6 +1115,13 @@ h1 span {
 }
 
 .floating-badge {
+  --badge-float-x: 0px;
+  --badge-float-y: -8px;
+  --badge-mid-x: 4px;
+  --badge-mid-y: -14px;
+  --badge-rotate-start: -1.4deg;
+  --badge-rotate-mid: 1.2deg;
+  --badge-duration: 8.2s;
   position: absolute;
   z-index: 4;
   display: inline-flex;
@@ -1128,9 +1139,9 @@ h1 span {
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(8px);
   animation:
-    badgeReveal 620ms var(--ease-smooth) both,
-    badgePremiumFloat 5.8s var(--ease-smooth) 700ms infinite,
-    badgeSoftGlow 5.8s var(--ease-smooth) 700ms infinite;
+    badgeReveal 720ms var(--ease-smooth) both,
+    badgePremiumFloat var(--badge-duration) cubic-bezier(0.37, 0, 0.2, 1) 700ms infinite,
+    badgeSoftGlow var(--badge-duration) cubic-bezier(0.37, 0, 0.2, 1) 700ms infinite;
 }
 
 .floating-badge strong {
@@ -1143,11 +1154,24 @@ h1 span {
 }
 
 .badge-top {
+  --badge-float-x: 3px;
+  --badge-float-y: -10px;
+  --badge-mid-x: 8px;
+  --badge-mid-y: -16px;
+  --badge-rotate-start: -1.8deg;
+  --badge-rotate-mid: 1deg;
   top: 78px;
   left: 10px;
 }
 
 .badge-right {
+  --badge-float-x: -6px;
+  --badge-float-y: -9px;
+  --badge-mid-x: -10px;
+  --badge-mid-y: -15px;
+  --badge-rotate-start: 1.6deg;
+  --badge-rotate-mid: -1deg;
+  --badge-duration: 8.8s;
   top: 230px;
   right: 0;
   color: var(--badge-premium-soft);
@@ -1155,12 +1179,26 @@ h1 span {
 }
 
 .badge-left {
+  --badge-float-x: 6px;
+  --badge-float-y: -7px;
+  --badge-mid-x: 10px;
+  --badge-mid-y: -13px;
+  --badge-rotate-start: -1.6deg;
+  --badge-rotate-mid: 1.4deg;
+  --badge-duration: 9.4s;
   top: 392px;
   left: 0;
   animation-delay: 260ms, 1100ms, 1100ms;
 }
 
 .badge-bottom {
+  --badge-float-x: -4px;
+  --badge-float-y: -11px;
+  --badge-mid-x: -8px;
+  --badge-mid-y: -17px;
+  --badge-rotate-start: 1.2deg;
+  --badge-rotate-mid: -1.4deg;
+  --badge-duration: 8.5s;
   right: 8px;
   bottom: 92px;
   animation-delay: 360ms, 1280ms, 1280ms;
@@ -3935,24 +3973,45 @@ h1 span {
 @keyframes badgePremiumFloat {
   0%,
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform:
+      translate3d(calc(var(--badge-float-x) * 0.45), calc(var(--badge-float-y) * 0.5), 0)
+      rotate(var(--badge-rotate-start))
+      scale(1.012);
   }
 
   50% {
-    transform: translate3d(0, -5px, 0);
+    transform:
+      translate3d(var(--badge-mid-x), var(--badge-mid-y), 0)
+      rotate(var(--badge-rotate-mid))
+      scale(1.02);
+  }
+
+  75% {
+    transform:
+      translate3d(var(--badge-float-x), calc(var(--badge-float-y) * 0.75), 0)
+      rotate(calc(var(--badge-rotate-start) * -0.7))
+      scale(1.01);
   }
 }
 
 @keyframes badgeSoftGlow {
   0%,
   100% {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   50% {
     box-shadow:
-      0 14px 24px rgba(0, 0, 0, 0.18),
-      0 0 0 1px rgba(243, 114, 33, 0.1);
+      0 18px 30px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(243, 114, 33, 0.08),
+      0 0 18px rgba(243, 114, 33, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 }
 
@@ -5754,7 +5813,9 @@ h1 span {
   min-height: auto;
   aspect-ratio: 4 / 3;
   border-radius: inherit;
-  background: rgba(15, 8, 19, 0.96);
+  background:
+    radial-gradient(circle at 50% 12%, rgba(243, 114, 33, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 240, 232, 0.98));
   overflow: hidden;
   isolation: isolate;
 }
@@ -5763,9 +5824,10 @@ h1 span {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  padding: clamp(14px, 1.6vw, 18px);
+  object-fit: contain;
   object-position: center;
-  filter: saturate(1.03) contrast(1.02);
+  filter: saturate(1.04) contrast(1.04);
   transition:
     filter 420ms ease;
 }
@@ -5775,9 +5837,9 @@ h1 span {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(8, 5, 10, 0.04) 0%, rgba(8, 5, 10, 0.1) 46%, rgba(8, 5, 10, 0.84) 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(16, 9, 19, 0.04) 42%, rgba(16, 9, 19, 0.38) 100%);
   content: "";
-  opacity: 1;
+  opacity: 0.78;
   transition: opacity 320ms ease;
 }
 
@@ -5795,8 +5857,8 @@ h1 span {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   background:
-    linear-gradient(180deg, rgba(18, 12, 24, 0.34), rgba(18, 12, 24, 0.88)),
-    rgba(9, 7, 12, 0.56);
+    linear-gradient(180deg, rgba(18, 12, 24, 0.18), rgba(18, 12, 24, 0.72)),
+    rgba(9, 7, 12, 0.42);
   backdrop-filter: blur(14px);
   box-shadow:
     0 18px 34px rgba(0, 0, 0, 0.24),
@@ -6107,7 +6169,8 @@ h1 span {
 .project-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  padding: clamp(12px, 1.4vw, 18px);
+  object-fit: contain;
   object-position: center;
   transform: scale(1);
   transition:
@@ -6116,7 +6179,7 @@ h1 span {
 }
 
 .project-image::before {
-  background: linear-gradient(180deg, rgba(6, 4, 8, 0.04) 8%, rgba(6, 4, 8, 0.08) 48%, rgba(6, 4, 8, 0.62) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 8%, rgba(6, 4, 8, 0.06) 48%, rgba(6, 4, 8, 0.4) 100%);
 }
 
 .project-image::after {
@@ -6132,7 +6195,7 @@ h1 span {
   padding: 48px 18px 16px;
   border: 0;
   border-radius: 0;
-  background: linear-gradient(180deg, rgba(8, 6, 10, 0), rgba(8, 6, 10, 0.16) 34%, rgba(8, 6, 10, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(8, 6, 10, 0), rgba(8, 6, 10, 0.1) 34%, rgba(8, 6, 10, 0.72) 100%);
   backdrop-filter: none;
   box-shadow: none;
   opacity: 0;
@@ -6861,8 +6924,8 @@ img {
   }
 
   .hero-image-wrap {
-    inset: 6px 0 auto auto;
-    width: min(100%, 300px);
+    inset: 0 0 auto auto;
+    width: min(100%, 360px);
     padding: 0;
   }
 
@@ -7118,19 +7181,19 @@ img {
   }
 
   .hero-image-wrap {
-    width: min(calc(100% - 10px), 280px);
+    width: min(calc(100% - 8px), 328px);
     border-radius: 18px;
   }
 
   .badge-top {
-    top: 16px;
+    top: 10px;
     left: 8px;
   }
 
   .badge-right {
     display: inline-flex;
-    top: 96px;
-    right: 6px;
+    top: 18px;
+    right: 8px;
   }
 
   .badge-bottom {

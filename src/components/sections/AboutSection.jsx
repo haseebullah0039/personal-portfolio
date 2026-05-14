@@ -1,5 +1,5 @@
 import SkillBar from "@/components/SkillBar";
-import aboutImage from "@/assets/about.png";
+import aboutImage from "@/assets/about.webp";
 import { skillBars } from "@/data/portfolio";
 
 export default function AboutSection() {

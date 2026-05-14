@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import ProjectShowcaseModal from "@/components/ProjectShowcaseModal";
 
 const filters = ["All Work", "Graphic Design", "Video Editing", "Photography", "Videography"];
 const portfolioStats = [
@@ -22,6 +21,10 @@ function getProjectStats(index) {
   return portfolioStats[index % portfolioStats.length];
 }
 
+function getCaseStudyHash(slug) {
+  return `#case-study-${slug}`;
+}
+
 function formatMetric(value) {
   if (value >= 1000) {
     const shortValue = value >= 10000
@@ -41,8 +44,15 @@ export default function PortfolioGallery({
   gridClassName = ""
 }) {
   const [activeFilter, setActiveFilter] = useState(defaultFilter);
-  const [activeProject, setActiveProject] = useState(null);
   const [cardReactions, setCardReactions] = useState({});
+
+  const persistReactions = (nextReactions) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.setItem(PORTFOLIO_REACTIONS_STORAGE_KEY, JSON.stringify(nextReactions));
+  };
 
   const visibleProjects = useMemo(
     () => activeFilter === "All Work"
@@ -95,7 +105,6 @@ export default function PortfolioGallery({
     : projects.filter((project) => project.category === filter).length;
 
   const openProject = (project) => {
-    setActiveProject(project);
     setCardReactions((current) => {
       const next = {
         ...current,
@@ -106,8 +115,13 @@ export default function PortfolioGallery({
         }
       };
 
+      persistReactions(next);
       return next;
     });
+
+    if (typeof window !== "undefined") {
+      window.location.hash = getCaseStudyHash(project.slug);
+    }
   };
 
   const handleProjectCardKeyDown = (event, project) => {
@@ -225,8 +239,6 @@ export default function PortfolioGallery({
           );
         })}
       </div>
-
-      <ProjectShowcaseModal project={activeProject} onClose={() => setActiveProject(null)} />
     </>
   );
 }

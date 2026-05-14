@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 import HeroCounter from "@/components/HeroCounter";
 import PortfolioGallery from "@/components/PortfolioGallery";
 import { portfolioStats, projects } from "@/data/portfolio";

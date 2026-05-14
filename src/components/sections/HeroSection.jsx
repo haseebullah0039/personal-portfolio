@@ -1,6 +1,6 @@
 import HeroCounter from "@/components/HeroCounter";
 import HeroTyping from "@/components/HeroTyping";
-import profilePicture from "@/assets/hero-portrait-dds-01.png";
+import profilePicture from "@/assets/hero-portrait-haseeb.webp";
 
 const heroHighlights = [
   {

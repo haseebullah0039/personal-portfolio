@@ -1,55 +1,16 @@
-import graphicDesignImage from "@/assets/service-graphic-design-3d.png";
-import videoEditingImage from "@/assets/service-video-editing-3d.png";
-import photographyImage from "@/assets/service-photography-3d.png";
-import videographyImage from "@/assets/service-videography-3d.png";
-import aboutImage from "@/assets/about.png";
-import heroProfileImage from "@/assets/hero-profile.png";
-import profilePicture from "@/assets/profile-picture.png";
-
-const restaurantCarousel1 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Carousels/1.png",
-  import.meta.url
-).href;
-const restaurantCarousel2 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Carousels/2.png",
-  import.meta.url
-).href;
-const restaurantCarousel3 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Carousels/3.png",
-  import.meta.url
-).href;
-const restaurantCarousel4 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Carousels/4.png",
-  import.meta.url
-).href;
-const restaurantCarousel5 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Carousels/5.png",
-  import.meta.url
-).href;
-const restaurantPost1 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Posts/Red And White Modern Pizza Promotion Instagram Post (1).png",
-  import.meta.url
-).href;
-const restaurantPost2 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Posts/Red Modern Minimal Pizza Delivery Facebook Post.png",
-  import.meta.url
-).href;
-const restaurantPost3 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Posts/Red Pizza Package Instagram Post.png",
-  import.meta.url
-).href;
-const restaurantPost4 = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Posts/Red Yellow Simple Pizza Instagram Post (1).png",
-  import.meta.url
-).href;
-const restaurantMenu = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Menu/Red and Yellow Modern Seafood Menu Instagram Post (1).png",
-  import.meta.url
-).href;
-const restaurantFlayer = new URL(
-  "../../Graphic Design/Branding Kit/Resturent Branding Kit/Flayer/Red and Yellow Modern Seafood Menu Instagram Post (2).png",
-  import.meta.url
-).href;
+import graphicDesignImage from "@/assets/service-graphic-design-3d.webp";
+import videoEditingImage from "@/assets/service-video-editing-3d.webp";
+import photographyImage from "@/assets/service-photography-3d.webp";
+import videographyImage from "@/assets/service-videography-3d.webp";
+import alAnsarAbayaLogo from "@/assets/al-ansar-abaya-logo.webp";
+import alAnsarAbayaShowcase01 from "@/assets/al-ansar-abaya-showcase-01.png";
+import alAnsarAbayaShowcase02 from "@/assets/al-ansar-abaya-showcase-02.png";
+import alAnsarAbayaShowcase03 from "@/assets/al-ansar-abaya-showcase-03.png";
+import alAnsarAbayaShowcase04 from "@/assets/al-ansar-abaya-showcase-04.png";
+import brandIdentityDesignPackages from "@/assets/brand-identity-design-packages.webp";
+import aboutImage from "@/assets/about.webp";
+import heroProfileImage from "@/assets/hero-profile.webp";
+import profilePicture from "@/assets/profile-picture.webp";
 
 function createCertificateImage({ title, issuer, accentA, accentB, code }) {
   const svg = `
@@ -149,7 +110,8 @@ function buildProject({
   client,
   deliverables,
   metrics,
-  layout = "standard"
+  layout = "standard",
+  ...rest
 }) {
   return {
     slug,
@@ -169,7 +131,8 @@ function buildProject({
     client,
     deliverables,
     metrics,
-    layout
+    layout,
+    ...rest
   };
 }
 
@@ -210,50 +173,110 @@ export const services = [
 
 export const projects = [
   buildProject({
-    slug: "restaurant-branding-system",
-    title: "Restaurant Branding System",
+    slug: "al-ansar-abaya-logo-design",
+    title: "Al Ansar Abaya Store Logo Design",
     category: "Graphic Design",
-    year: "2025",
-    accent: "Branding",
+    typeLabel: "Logo Design",
+    year: "2026",
+    accent: "Logo Design",
     featured: true,
-    image: restaurantPost1,
-    gallery: [restaurantPost1, restaurantCarousel1, restaurantCarousel2, restaurantMenu],
-    description: "A bold restaurant identity pack that unified menu design, promotional posts, and story-led campaign assets into one premium visual system.",
-    summary: "Built for a fast-growing food brand that needed a consistent and appetizing presence across social media and in-store touchpoints.",
-    purpose: "Create a high-recognition visual identity that makes offers, menu items, and seasonal promotions instantly memorable.",
-    process: [
-      "Researched competing food brands and mapped which visual cues drove appetite appeal and quick offer comprehension.",
-      "Designed a warm orange-red palette, confident typography, and a modular social layout that could flex across posts, menus, and story assets.",
-      "Prepared a reusable system so future campaign visuals can stay on-brand without slowing content production."
+    image: alAnsarAbayaLogo,
+    gallery: [
+      alAnsarAbayaLogo,
+      alAnsarAbayaShowcase01,
+      alAnsarAbayaShowcase02,
+      alAnsarAbayaShowcase03,
+      alAnsarAbayaShowcase04
     ],
-    tools: ["Adobe Photoshop", "Adobe Illustrator", "Brand Strategy", "Social Media Design"],
-    client: "Seafood and Pizza Restaurant Brand",
-    deliverables: ["Instagram posts", "Carousel slides", "Story assets", "Menu creatives"],
-    metrics: ["Unified 10+ branded assets", "Improved campaign consistency", "Built for repeatable launches"],
-    layout: "tall"
+    description: "A refined logo concept for Al Ansar Abaya Store, designed to express modest fashion, elegance, and a premium retail identity through a distinctive monogram mark.",
+    summary: "Created as a signature brand mark for an abaya store that needed a graceful, memorable identity balancing luxury styling with clear cultural relevance.",
+    purpose: "Develop a logo system that feels sophisticated and trustworthy for fashion packaging, storefront branding, social media, and digital promotions.",
+    problemStatement: "Al Ansar Abaya Store needed a logo that could feel modest, premium, and culturally aligned while still being clear enough to scale across packaging, signage, and digital branding.",
+    finalSolution: "The final identity combines an elegant AA monogram, a graceful abaya silhouette, and a gold-framed composition that gives the store a premium and memorable retail presence.",
+    process: [
+      "Explored logo directions built around the initials, abaya silhouette, and ornamental circular framing to create an instantly recognizable fashion mark.",
+      "Combined deep green and gold tones to communicate elegance, trust, and a premium boutique feel that suits the target audience.",
+      "Refined the composition so the logo remains clear across signage, packaging, profile images, and promotional layouts."
+    ],
+    tools: ["Adobe Illustrator", "Adobe Photoshop", "Logo Design", "Brand Identity"],
+    client: "Al Ansar Abaya Store",
+    deliverables: ["Primary logo", "Monogram mark", "Retail-ready brand asset", "Social profile visual"],
+    metrics: ["Luxury-inspired visual tone", "High logo clarity", "Built for multi-platform branding"],
+    layout: "standard",
+    colorPalette: [
+      { name: "Abaya Green", hex: "#0f5130", use: "Primary identity tone" },
+      { name: "Luxury Gold", hex: "#dca43a", use: "Premium highlight and framing" },
+      { name: "Soft Ivory", hex: "#f6f1e8", use: "Clean brand presentation background" }
+    ],
+    typography: [
+      { label: "Wordmark", family: "Classic Serif", detail: "Used to create elegance and retail sophistication." },
+      { label: "Support", family: "Refined Sans", detail: "Supports clean captions, packaging notes, and brand collateral." }
+    ],
+    beforeAfter: {
+      before: "The brand lacked a clear identity that could instantly communicate modest fashion with a premium retail feel.",
+      after: "The finished mark gives the store a polished boutique presence that feels trustworthy, elegant, and easy to recognize."
+    },
+    mockups: [
+      alAnsarAbayaShowcase01,
+      alAnsarAbayaShowcase02,
+      alAnsarAbayaShowcase03,
+      alAnsarAbayaShowcase04,
+      alAnsarAbayaLogo
+    ],
+    testimonial: {
+      quote: "Haseeb translated our vision into a logo that feels elegant, premium, and perfectly suited to our abaya brand.",
+      name: "Noor Fatima",
+      company: "Al Ansar Abaya Store",
+      rating: 5,
+      avatar: createAvatar("Noor Fatima", "#dca43a", "#0f5130")
+    }
   }),
   buildProject({
-    slug: "social-ad-edit",
-    title: "Social Media Ad Edit",
-    category: "Video Editing",
-    year: "2025",
-    accent: "Editing",
+    slug: "brand-identity-design-packages",
+    title: "Brand Identity Design Packages",
+    category: "Graphic Design",
+    typeLabel: "Brand Identity",
+    year: "2026",
+    accent: "Brand Identity",
     featured: true,
-    image: videoEditingImage,
-    gallery: [videoEditingImage, heroProfileImage, profilePicture],
-    description: "Fast, retention-first ad edits crafted for mobile viewers with bold pacing, kinetic captions, and clean sound polish.",
-    summary: "Short-form social campaign edit designed to hook quickly and move viewers toward a direct response action.",
-    purpose: "Transform raw campaign clips into an ad sequence that feels premium while preserving clarity in the offer and brand voice.",
+    image: brandIdentityDesignPackages,
+    gallery: [brandIdentityDesignPackages],
+    description: "A full pricing and package presentation for Digital Hujra that clearly explains starter, standard, and premium brand identity offers in one polished visual.",
+    summary: "Designed as a conversion-focused brand services poster that helps clients instantly understand package options, value, and positioning.",
+    purpose: "Present brand identity packages in a way that feels premium, trustworthy, and easy to scan for potential clients.",
+    problemStatement: "Digital Hujra needed a single sales visual that could explain multiple service tiers clearly without feeling crowded or generic.",
+    finalSolution: "The final poster organizes pricing, deliverables, and package differentiation into a neon-styled premium layout that is instantly scannable and highly promotional.",
     process: [
-      "Selected the strongest opening frames and structured the edit around quick-impact visual hooks.",
-      "Added type hierarchy, sound design accents, and pacing adjustments to maintain attention through the full runtime.",
-      "Exported platform-ready variations for reels, stories, and feed placements."
+      "Structured the package tiers to create a clear visual hierarchy from headline to pricing, features, and call-to-action buttons.",
+      "Used a neon-inspired dark theme to make the service categories feel modern, bold, and highly visible on social platforms.",
+      "Balanced detail and readability so the full package sheet stays understandable without sacrificing visual appeal."
     ],
-    tools: ["Adobe Premiere Pro", "After Effects", "Sound Cleanup", "Motion Typography"],
-    client: "Direct Response Content Campaign",
-    deliverables: ["Ad master edit", "Vertical cutdowns", "Captioned exports"],
-    metrics: ["Optimized for 9:16", "Retention-focused pacing", "Multi-platform delivery"],
-    layout: "wide"
+    tools: ["Adobe Photoshop", "Adobe Illustrator", "Layout Design", "Brand Communication"],
+    client: "Digital Hujra",
+    deliverables: ["Package pricing poster", "Service tier layout", "Promotional design asset"],
+    metrics: ["Full offer visibility", "Clear service comparison", "Client-friendly visual hierarchy"],
+    layout: "wide",
+    colorPalette: [
+      { name: "Signal Blue", hex: "#149dff", use: "Headlines, icons, and visual guidance" },
+      { name: "Neon Orange", hex: "#ff9c13", use: "CTA emphasis and premium tier highlight" },
+      { name: "Midnight Navy", hex: "#07142a", use: "Main background and contrast base" }
+    ],
+    typography: [
+      { label: "Display", family: "Bold Modern Sans", detail: "Large pricing and offer hierarchy built for fast scanning." },
+      { label: "Support", family: "Readable UI Sans", detail: "Clean package details and comparison points." }
+    ],
+    beforeAfter: {
+      before: "Package information felt difficult to compare quickly, which reduced clarity for first-time clients evaluating services.",
+      after: "The new layout turns service tiers into an eye-catching, premium comparison sheet that explains the offer in seconds."
+    },
+    mockups: [brandIdentityDesignPackages],
+    testimonial: {
+      quote: "The package design made our services look far more premium and helped clients understand the value of each tier immediately.",
+      name: "Tariq Ahmad",
+      company: "Digital Hujra",
+      rating: 5,
+      avatar: createAvatar("Tariq Ahmad", "#149dff", "#ff9c13")
+    }
   }),
   buildProject({
     slug: "product-photography-set",
@@ -305,8 +328,8 @@ export const projects = [
     category: "Graphic Design",
     year: "2025",
     accent: "Campaign",
-    image: restaurantCarousel3,
-    gallery: [restaurantCarousel3, restaurantCarousel4, restaurantCarousel5, restaurantFlayer],
+    image: graphicDesignImage,
+    gallery: [graphicDesignImage, alAnsarAbayaLogo, aboutImage, heroProfileImage],
     description: "A launch-ready campaign toolkit with promotional layouts, social variations, and repeatable creative templates.",
     summary: "Designed for brands that need fast campaign rollout without sacrificing visual consistency or polish.",
     purpose: "Create a flexible set of marketing assets that support repeated promotions while keeping the brand presentation cohesive.",
@@ -353,8 +376,8 @@ export const allProjects = [
     category: "Graphic Design",
     year: "2025",
     accent: "Menu",
-    image: restaurantMenu,
-    gallery: [restaurantMenu, restaurantFlayer, restaurantPost2],
+    image: alAnsarAbayaLogo,
+    gallery: [alAnsarAbayaLogo, graphicDesignImage, aboutImage],
     description: "A menu-centered campaign system designed to make pricing, featured dishes, and promotional offers easy to scan and visually appealing.",
     summary: "Focused on turning menu communication into a branded campaign experience instead of a plain information layout.",
     purpose: "Help restaurant promotions stand out with a cleaner visual hierarchy and stronger appetite appeal.",
@@ -441,8 +464,8 @@ export const allProjects = [
     category: "Graphic Design",
     year: "2025",
     accent: "Social",
-    image: restaurantPost3,
-    gallery: [restaurantPost3, restaurantPost4, restaurantPost2],
+    image: graphicDesignImage,
+    gallery: [graphicDesignImage, aboutImage, alAnsarAbayaLogo],
     description: "A repeatable social design toolkit that helps brands publish faster while preserving a premium identity.",
     summary: "Ideal for businesses that need a dependable content system for announcements, promos, and everyday brand communication.",
     purpose: "Reduce inconsistency across posts while keeping social design expressive, clean, and adaptable.",

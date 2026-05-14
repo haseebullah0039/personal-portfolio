@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 
 function getCurrentHash() {
   return typeof window === "undefined" ? "#home" : window.location.hash || "#home";
@@ -35,7 +35,7 @@ export default function Navbar() {
 
   const isActive = (hash) => {
     if (hash === "#portfolio") {
-      return activeHash.startsWith("#portfolio");
+      return activeHash.startsWith("#portfolio") || activeHash.startsWith("#case-study-");
     }
 
     return activeHash === hash;
