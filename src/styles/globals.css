@@ -5,6 +5,8 @@
   --panel-soft: #3b1f3b;
   --orange: #F37221;
   --orange-hot: #F37221;
+  --brand-plum: #7b3f98;
+  --brand-champagne: #f2d3ba;
   --text: #fff7ee;
   --muted: #c7aebe;
   --badge-premium: #d9c8bb;
@@ -43,6 +45,10 @@ body {
   background-size: 120px 120px, 120px 120px, auto, auto, auto;
 }
 
+body.intro-active {
+  overflow: hidden;
+}
+
 body.lightbox-open .site-header {
   opacity: 0;
   visibility: hidden;
@@ -53,6 +59,262 @@ body.lightbox-open .site-header {
   min-height: 100vh;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+.page-shell {
+  min-height: 100vh;
+  transform-origin: center top;
+}
+
+.brand-intro,
+.page-transition-loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: auto;
+  isolation: isolate;
+}
+
+.brand-intro {
+  z-index: 80;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(123, 63, 152, 0.16), transparent 28rem),
+    radial-gradient(circle at 80% 75%, rgba(243, 114, 33, 0.18), transparent 32rem),
+    linear-gradient(180deg, rgba(8, 8, 12, 0.74), rgba(8, 8, 12, 0.9));
+  backdrop-filter: blur(28px);
+}
+
+.brand-intro__veil,
+.page-transition-loader__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.brand-intro__veil {
+  background:
+    radial-gradient(circle at 24% 22%, rgba(123, 63, 152, 0.38), transparent 26rem),
+    radial-gradient(circle at 78% 68%, rgba(243, 114, 33, 0.34), transparent 30rem),
+    radial-gradient(circle at 50% 50%, rgba(242, 211, 186, 0.08), transparent 38rem),
+    linear-gradient(135deg, rgba(11, 10, 16, 0.92), rgba(21, 13, 26, 0.97), rgba(10, 10, 14, 0.94));
+  background-size: 140% 140%;
+  opacity: 0.96;
+}
+
+.brand-intro__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: clamp(50px, 6vw, 82px) clamp(50px, 6vw, 82px);
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.94), transparent 82%);
+}
+
+.brand-intro__orb {
+  position: absolute;
+  width: clamp(18rem, 30vw, 34rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(26px);
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.brand-intro__orb--plum {
+  top: 12%;
+  left: 10%;
+  background: radial-gradient(circle, rgba(123, 63, 152, 0.68), rgba(123, 63, 152, 0));
+}
+
+.brand-intro__orb--orange {
+  right: 8%;
+  bottom: 10%;
+  background: radial-gradient(circle, rgba(243, 114, 33, 0.66), rgba(243, 114, 33, 0));
+}
+
+.brand-intro__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 50rem);
+  text-align: center;
+}
+
+.brand-intro__eyebrow {
+  margin: 0 0 1.25rem;
+  color: rgba(242, 211, 186, 0.76);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.48em;
+}
+
+.brand-intro__mark-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(13rem, 34vw, 20rem);
+  aspect-ratio: 1;
+  margin-bottom: 1.6rem;
+}
+
+.brand-intro__halo,
+.brand-intro__ring,
+.page-transition-loader__ring,
+.page-transition-loader__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.brand-intro__halo {
+  inset: 14%;
+  background: radial-gradient(circle, rgba(243, 114, 33, 0.32), rgba(123, 63, 152, 0.12) 48%, rgba(0, 0, 0, 0) 72%);
+  filter: blur(10px);
+}
+
+.brand-intro__ring {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brand-intro__ring--outer {
+  inset: 0;
+  border-top-color: rgba(243, 114, 33, 0.9);
+  border-right-color: rgba(242, 211, 186, 0.48);
+  box-shadow:
+    0 0 40px rgba(243, 114, 33, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.brand-intro__ring--inner {
+  inset: 12%;
+  border-left-color: rgba(123, 63, 152, 0.84);
+  border-bottom-color: rgba(242, 211, 186, 0.4);
+}
+
+.brand-intro__logo-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 56%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.38),
+    0 0 44px rgba(243, 114, 33, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.brand-intro__logo {
+  width: 68%;
+  height: auto;
+  object-fit: contain;
+}
+
+.brand-intro__title {
+  margin: 0;
+  color: #fff8f2;
+  font-size: clamp(2rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.brand-intro__tagline {
+  margin: 0.95rem 0 0;
+  color: rgba(255, 247, 238, 0.72);
+  font-size: clamp(0.98rem, 2vw, 1.3rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-transition-loader {
+  z-index: 70;
+  pointer-events: none;
+  padding: 24px;
+}
+
+.page-transition-loader__backdrop {
+  background:
+    radial-gradient(circle at center, rgba(123, 63, 152, 0.16), transparent 24rem),
+    linear-gradient(180deg, rgba(10, 10, 14, 0.32), rgba(10, 10, 14, 0.64));
+  backdrop-filter: blur(12px);
+}
+
+.page-transition-loader__panel {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 11rem);
+  padding: 1.25rem 1rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2rem;
+  background:
+    linear-gradient(180deg, rgba(33, 20, 38, 0.94), rgba(13, 13, 18, 0.92)),
+    radial-gradient(circle at top, rgba(243, 114, 33, 0.16), transparent 60%);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.32),
+    0 0 24px rgba(243, 114, 33, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.page-transition-loader__ring {
+  inset: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(243, 114, 33, 0.92);
+  border-right-color: rgba(123, 63, 152, 0.7);
+}
+
+.page-transition-loader__pulse {
+  inset: 1.35rem;
+  background: radial-gradient(circle, rgba(243, 114, 33, 0.24), rgba(243, 114, 33, 0));
+  filter: blur(8px);
+}
+
+.page-transition-loader__logo-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 4.6rem;
+  aspect-ratio: 1;
+  margin-top: 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.35rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+.page-transition-loader__logo {
+  width: 68%;
+  height: auto;
+  object-fit: contain;
+}
+
+.page-transition-loader__label {
+  position: relative;
+  z-index: 1;
+  margin: 0.95rem 0 0;
+  color: rgba(255, 247, 238, 0.74);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 @supports (overflow: clip) {
@@ -109,6 +371,103 @@ textarea {
   .custom-cursor {
     display: none;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-intro__veil,
+  .brand-intro__grid,
+  .brand-intro__orb,
+  .brand-intro__halo,
+  .brand-intro__ring,
+  .page-transition-loader__ring,
+  .page-transition-loader__pulse {
+    animation: none !important;
+  }
+}
+
+.floating-whatsapp-button {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  width: 62px;
+  height: 62px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #f7fff8;
+  background:
+    linear-gradient(145deg, rgba(37, 211, 102, 0.95), rgba(19, 141, 75, 0.96)),
+    rgba(14, 86, 49, 0.96);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.26),
+    0 0 24px rgba(37, 211, 102, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    width 220ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease;
+}
+
+.floating-whatsapp-button:hover,
+.floating-whatsapp-button:focus-visible {
+  width: 156px;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 24px 54px rgba(0, 0, 0, 0.3),
+    0 0 28px rgba(37, 211, 102, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  filter: saturate(1.06);
+}
+
+.floating-whatsapp-button__icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #25d366;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.floating-whatsapp-button__icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.floating-whatsapp-button__label {
+  font-size: 0.96rem;
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateX(6px);
+  transition:
+    max-width 220ms ease,
+    opacity 180ms ease,
+    transform 220ms ease;
+}
+
+.floating-whatsapp-button:hover .floating-whatsapp-button__label,
+.floating-whatsapp-button:focus-visible .floating-whatsapp-button__label {
+  max-width: 80px;
+  margin-left: 10px;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 button,
@@ -7323,9 +7682,17 @@ img {
   }
 
   .floating-badge {
-    max-width: 108px;
-    min-height: 24px;
-    padding: 5px 9px;
+    max-width: 96px;
+    min-height: 22px;
+    padding: 4px 7px;
+    border-radius: 999px;
+  }
+
+  .floating-badge strong {
+    font-size: 0.54rem;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    white-space: nowrap;
   }
 
   .hero-image-wrap {
@@ -7345,7 +7712,9 @@ img {
 
   .badge-right {
     display: inline-flex;
-    top: 154px;
+    max-width: 122px;
+    padding-inline: 8px;
+    top: 196px;
     right: calc(50% - 154px);
   }
 
@@ -7832,14 +8201,16 @@ img {
   }
 
   .floating-badge {
-    max-width: 94px;
-    min-height: 22px;
-    padding: 4px 7px;
+    max-width: 86px;
+    min-height: 20px;
+    padding: 3px 6px;
   }
 
   .floating-badge strong {
-    font-size: 0.55rem;
-    letter-spacing: 0.04em;
+    font-size: 0.5rem;
+    letter-spacing: 0.03em;
+    line-height: 1.02;
+    white-space: nowrap;
   }
 
   .badge-top {
@@ -7849,7 +8220,9 @@ img {
   }
 
   .badge-right {
-    top: 142px;
+    max-width: 108px;
+    padding-inline: 7px;
+    top: 180px;
     right: calc(50% - 136px);
   }
 
@@ -7947,5 +8320,32 @@ img {
   .contact-form select,
   .contact-form textarea {
     width: 100%;
+  }
+
+  .floating-whatsapp-button {
+    right: 14px;
+    bottom: 14px;
+    width: 56px;
+    height: 56px;
+    padding: 9px;
+  }
+
+  .floating-whatsapp-button:hover,
+  .floating-whatsapp-button:focus-visible {
+    width: 142px;
+  }
+
+  .floating-whatsapp-button__icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .floating-whatsapp-button__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .floating-whatsapp-button__label {
+    font-size: 0.88rem;
   }
 }
