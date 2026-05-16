@@ -8927,7 +8927,7 @@ img {
   }
 
   .hero-image-wrap {
-    top: 24px;
+    top: 4px;
     right: auto;
     bottom: auto;
     left: 50%;
@@ -8957,7 +8957,7 @@ img {
   }
 
   .badge-top {
-    top: 58px;
+    top: 13px;
     left: calc(50% - 156px);
     transform: translateX(-50%);
   }
@@ -9231,7 +9231,7 @@ img {
   }
 
   .hero-image-wrap {
-    top: 20px;
+    top: 2px;
     width: min(calc(100% - 48px), 268px);
     max-width: 268px;
   }
@@ -9335,7 +9335,7 @@ img {
   }
 
   .hero-image-wrap {
-    top: 16px;
+    top: 0;
     width: min(calc(100% - 44px), 244px);
     max-width: 244px;
   }
