@@ -8807,6 +8807,11 @@ img {
 }
 
 @media (max-width: 920px) {
+  p {
+    font-family: var(--font-heading-clean);
+    font-weight: 400;
+  }
+
   .section,
   .portfolio-page .section {
     width: min(100%, calc(100% - 22px));
