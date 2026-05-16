@@ -8,7 +8,8 @@ export default function PortfolioMorePage() {
         <div className="section-heading">
           <p className="pill">Complete Portfolio</p>
           <h2>
-            More <span>Creative Projects</span>
+            <span className="heading-line-primary">MORE</span>
+            <span className="heading-line-accent">CREATIVE PROJECTS</span>
           </h2>
           <p>
             Browse a larger collection of design, editing, photography, and

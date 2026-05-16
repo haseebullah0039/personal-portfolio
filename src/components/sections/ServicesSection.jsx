@@ -38,7 +38,8 @@ export default function ServicesSection() {
       <div className="section-heading">
         <p className="pill">Services</p>
         <h2>
-          Premium Creative <span>Services</span>
+          <span className="heading-line-primary">PREMIUM CREATIVE</span>
+          <span className="heading-line-accent">SERVICES</span>
         </h2>
         <p>
           Complete visual support for brands, creators, and businesses through

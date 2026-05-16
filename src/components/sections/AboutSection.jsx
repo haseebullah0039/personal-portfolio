@@ -3,12 +3,15 @@ import aboutImage from "@/assets/about.webp";
 import { skillBars } from "@/data/portfolio";
 
 export default function AboutSection() {
+  const emailAddress = "info@haseebullahdesigns.com";
+
   return (
     <section id="about" className="section about-section">
       <div className="section-heading">
         <p className="pill">About Me</p>
-        <h2>
-          Creating Visual Content That <span>Connects</span>
+        <h2 className="about-heading-title">
+          <span className="heading-line-primary">CREATING VISUAL CONTENT</span>
+          <span className="heading-line-accent">THAT CONNECTS</span>
         </h2>
         <p>
           A multi-disciplinary creative focused on design, editing, photography,
@@ -31,7 +34,7 @@ export default function AboutSection() {
               Years Experience
             </div>
           </div>
-          <div className="mini-card email-card">haseebullah03168778804@gmail.com</div>
+          <div className="mini-card email-card">{emailAddress}</div>
           <div className="mini-card location-card">Thana Batkhela, Malakand, Pakistan</div>
         </div>
 
@@ -57,7 +60,7 @@ export default function AboutSection() {
           <div className="button-row">
             <a
               className="ghost-btn"
-              href="mailto:haseebullah03168778804@gmail.com?subject=Profile%20Request"
+              href={`mailto:${emailAddress}?subject=Profile%20Request`}
             >
               Request Profile
             </a>

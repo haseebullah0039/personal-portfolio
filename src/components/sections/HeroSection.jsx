@@ -23,7 +23,7 @@ const heroHighlights = [
 
 export default function HeroSection() {
   return (
-    <section className="hero section">
+    <section id="home" className="hero section">
       <div className="hero-copy">
         <p className="intro">
           <span aria-hidden="true">&#128075;</span>

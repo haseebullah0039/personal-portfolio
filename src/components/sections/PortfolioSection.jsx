@@ -52,7 +52,8 @@ export default function PortfolioSection() {
           </span>
         </div>
         <h2>
-          Featured <span>Creative Work</span>
+          <span className="heading-line-primary">FEATURED</span>
+          <span className="heading-line-accent">CREATIVE WORK</span>
         </h2>
         <p>
           Explore selected design, editing, photography, and videography work

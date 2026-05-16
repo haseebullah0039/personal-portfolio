@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.webp";
 
-function getCurrentHash() {
-  return typeof window === "undefined" ? "#home" : window.location.hash || "#home";
-}
-
-export default function Navbar() {
+export default function Navbar({
+  activeHash = "#home",
+  onNavigate = null
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState(getCurrentHash);
   const closeMenu = () => setIsMenuOpen(false);
 
   useEffect(() => {
@@ -18,21 +16,6 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return undefined;
-    }
-
-    const updateActiveHash = () => {
-      setActiveHash(getCurrentHash());
-    };
-
-    window.addEventListener("hashchange", updateActiveHash);
-    updateActiveHash();
-
-    return () => window.removeEventListener("hashchange", updateActiveHash);
-  }, []);
-
   const isActive = (hash) => {
     if (hash === "#portfolio") {
       return activeHash.startsWith("#portfolio") || activeHash.startsWith("#case-study-");
@@ -41,9 +24,20 @@ export default function Navbar() {
     return activeHash === hash;
   };
 
+  const handleNavigation = (event, hash) => {
+    closeMenu();
+
+    if (!onNavigate) {
+      return;
+    }
+
+    event.preventDefault();
+    onNavigate(hash);
+  };
+
   return (
     <header className="site-header">
-      <a className="brand" href="#home" aria-label="Haseeb Ullah home" onClick={closeMenu}>
+      <a className="brand" href="#home" aria-label="Haseeb Ullah home" onClick={(event) => handleNavigation(event, "#home")}>
         <span className="brand-logo-frame">
           <img
             className="brand-logo"
@@ -89,13 +83,13 @@ export default function Navbar() {
         className={`nav-links ${isMenuOpen ? "is-open" : ""}`}
         aria-label="Primary navigation"
       >
-        <a className={isActive("#home") ? "is-active" : ""} href="#home" onClick={closeMenu}>Home</a>
-        <a className={isActive("#about") ? "is-active" : ""} href="#about" onClick={closeMenu}>About</a>
-        <a className={isActive("#services") ? "is-active" : ""} href="#services" onClick={closeMenu}>Services</a>
-        <a className={isActive("#portfolio") ? "is-active" : ""} href="#portfolio" onClick={closeMenu}>Portfolio</a>
-        <a className={`mobile-contact-link ${isActive("#contact") ? "is-active" : ""}`} href="#contact" onClick={closeMenu}>Contact</a>
+        <a className={isActive("#home") ? "is-active" : ""} href="#home" onClick={(event) => handleNavigation(event, "#home")}>Home</a>
+        <a className={isActive("#about") ? "is-active" : ""} href="#about" onClick={(event) => handleNavigation(event, "#about")}>About</a>
+        <a className={isActive("#services") ? "is-active" : ""} href="#services" onClick={(event) => handleNavigation(event, "#services")}>Services</a>
+        <a className={isActive("#portfolio") ? "is-active" : ""} href="#portfolio" onClick={(event) => handleNavigation(event, "#portfolio")}>Portfolio</a>
+        <a className={isActive("#contact") ? "is-active" : ""} href="#contact" onClick={(event) => handleNavigation(event, "#contact")}>Contact</a>
       </nav>
-      <a className={`nav-cta ${isActive("#contact") ? "is-active" : ""}`} href="#contact" onClick={closeMenu}>Start a Project</a>
+      <a className={`nav-cta ${isActive("#contact") ? "is-active" : ""}`} href="#contact" onClick={(event) => handleNavigation(event, "#contact")}>Start a Project</a>
     </header>
   );
 }

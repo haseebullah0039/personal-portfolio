@@ -1,24 +1,25 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "haseeb-ullah-portfolio",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 4173 --strictPort",
+    "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 4173 --strictPort",
-    "lint": "eslint ."
+    "preview": "vite preview"
   },
   "dependencies": {
-    "autoprefixer": "^10.5.0",
-    "framer-motion": "^12.38.0",
-    "postcss": "^8.5.14",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "tailwindcss": "^3.4.17"
+    "framer-motion": "^11.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "eslint": "^10.3.0",
-    "sharp": "^0.34.5",
-    "vite": "^7.2.7"
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.4"
   }
 }

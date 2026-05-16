@@ -15,7 +15,8 @@ export default function CaseStudyPage({ slug }) {
           <div className="section-heading">
             <p className="pill">Case Study</p>
             <h2>
-              Project <span>Not Found</span>
+              <span className="heading-line-primary">PROJECT</span>
+              <span className="heading-line-accent">NOT FOUND</span>
             </h2>
             <p>
               The selected case study could not be found. Please return to the

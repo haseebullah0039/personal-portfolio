@@ -32,7 +32,8 @@ export default function TestimonialsSection() {
       <div className="section-heading">
         <p className="pill">Testimonials</p>
         <h2>
-          What Clients <span>Say About Me</span>
+          <span className="heading-line-primary">WHAT CLIENTS</span>
+          <span className="heading-line-accent">SAY ABOUT ME</span>
         </h2>
         <p>Real feedback from clients who trusted me with design, video, photo, and content projects.</p>
       </div>
@@ -119,13 +120,6 @@ export default function TestimonialsSection() {
         <div className="trusted-marquee">
           {trustCards.map((card) => (
             <article key={card.name}>
-              <h4>{card.name}</h4>
-              <p>{card.accent}</p>
-              <small>{card.note}</small>
-            </article>
-          ))}
-          {trustCards.map((card) => (
-            <article key={`${card.name}-duplicate`} aria-hidden="true">
               <h4>{card.name}</h4>
               <p>{card.accent}</p>
               <small>{card.note}</small>

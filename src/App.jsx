@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import BrandIntroLoader from "@/components/BrandIntroLoader";
 import CursorFollower from "@/components/CursorFollower";
 import Footer from "@/components/Footer";
@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import PageTransitionLoader from "@/components/PageTransitionLoader";
 import AboutSection from "@/components/sections/AboutSection";
 import CaseStudyPage from "@/components/sections/CaseStudyPage";
+import CertificateViewerPage from "@/components/sections/CertificateViewerPage";
 import CertificatesSection from "@/components/sections/CertificatesSection";
 import ContactSection from "@/components/sections/ContactSection";
 import HeroSection from "@/components/sections/HeroSection";
@@ -17,11 +18,24 @@ import ServicesSection from "@/components/sections/ServicesSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ToolsMarqueeSection from "@/components/sections/ToolsMarqueeSection";
 
+const HOME_SECTION_HASHES = ["#home", "#about", "#services", "#portfolio", "#contact"];
+const CERTIFICATE_SCROLL_KEY = "certificate-return-scroll";
+const ROUTE_RETURN_KEY = "route-return-state";
+const SCROLL_END_DEBOUNCE_MS = 140;
+const SCROLL_STATE_PERSIST_DEBOUNCE_MS = 120;
+
 function getCurrentHash() {
   return typeof window === "undefined" ? "" : window.location.hash;
 }
 
 function getPageState(hash) {
+  if (hash.startsWith("#certificate-")) {
+    return {
+      page: "certificate",
+      slug: hash.replace("#certificate-", "")
+    };
+  }
+
   if (hash.startsWith("#case-study-")) {
     return {
       page: "case-study",
@@ -51,16 +65,238 @@ function shouldShowPageLoader(hash) {
     return true;
   }
 
-  return ["#home", "#about", "#services", "#portfolio", "#contact"].includes(hash);
+  if (hash.startsWith("#certificate-")) {
+    return true;
+  }
+ 
+  return false;
+}
+
+function isPortfolioHash(hash) {
+  return hash === "#portfolio" || hash.startsWith("#portfolio-");
+}
+
+function isHomeNavigationHash(hash) {
+  return HOME_SECTION_HASHES.includes(hash) || hash === "#services" || isPortfolioHash(hash);
+}
+
+function readRouteReturnState() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    const stored = window.sessionStorage.getItem(ROUTE_RETURN_KEY);
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeRouteReturnState(value) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.sessionStorage.setItem(ROUTE_RETURN_KEY, JSON.stringify(value));
+}
+
+function clearRouteReturnState() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.sessionStorage.removeItem(ROUTE_RETURN_KEY);
+}
+
+function getScrollTargetHash(hash) {
+  if (isPortfolioHash(hash)) {
+    return "#portfolio";
+  }
+
+  return hash;
+}
+
+function getNavbarOffset() {
+  if (typeof document === "undefined") {
+    return 104;
+  }
+
+  const header = document.querySelector(".site-header");
+  return header ? Math.ceil(header.getBoundingClientRect().height + 16) : 104;
+}
+
+function scrollToHash(hash, behavior = "smooth") {
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    return;
+  }
+
+  const targetHash = getScrollTargetHash(hash);
+  if (targetHash === "#home" || !targetHash) {
+    window.scrollTo({ top: 0, behavior });
+    return;
+  }
+
+  const target = document.querySelector(targetHash);
+  if (target) {
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - getNavbarOffset();
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior
+    });
+  }
 }
 
 export default function App() {
   const [pageState, setPageState] = useState(() => getPageState(getCurrentHash()));
+  const [activeSectionHash, setActiveSectionHash] = useState("#home");
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const [isPageTransitionVisible, setIsPageTransitionVisible] = useState(false);
   const currentHashRef = useRef(getCurrentHash());
+  const currentPageRef = useRef(getPageState(getCurrentHash()).page);
   const hasInitializedRef = useRef(false);
+  const manualScrollHashRef = useRef(null);
+  const scrollPersistFrameRef = useRef(null);
+  const scrollPersistTimeoutRef = useRef(null);
+  const scrollEndTimerRef = useRef(null);
   const transitionTimerRef = useRef(null);
+
+  const updateHistoryState = useCallback((partialState = {}, url = null) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const nextUrl = url ?? (window.location.hash || "#home");
+    const nextState = {
+      ...(window.history.state ?? {}),
+      ...partialState
+    };
+
+    window.history.replaceState(nextState, "", nextUrl);
+  }, []);
+
+  const syncPageFromLocation = useCallback((nextHash, {
+    navigationType = "hashchange",
+    state = null
+  } = {}) => {
+    const resolvedHash = nextHash || "#home";
+    const previousPage = currentPageRef.current;
+    const nextPageState = getPageState(resolvedHash);
+
+    if (previousPage === "home" && nextPageState.page !== "home") {
+      writeRouteReturnState({
+        hash: currentHashRef.current || activeSectionHash || "#home",
+        scrollY: window.scrollY
+      });
+    }
+
+    if (
+      hasInitializedRef.current
+      && resolvedHash !== currentHashRef.current
+      && shouldShowPageLoader(resolvedHash)
+    ) {
+      window.clearTimeout(transitionTimerRef.current);
+      setIsPageTransitionVisible(true);
+      transitionTimerRef.current = window.setTimeout(() => {
+        setIsPageTransitionVisible(false);
+      }, resolvedHash.startsWith("#case-study-") ? 420 : 280);
+    }
+
+    currentHashRef.current = resolvedHash;
+    currentPageRef.current = nextPageState.page;
+    setPageState(nextPageState);
+
+    if (nextPageState.page === "portfolio" || nextPageState.page === "case-study") {
+      setActiveSectionHash("#portfolio");
+    } else if (nextPageState.page === "certificate") {
+      setActiveSectionHash("#certificates");
+    }
+
+    window.requestAnimationFrame(() => {
+      if (nextPageState.page === "portfolio" || nextPageState.page === "case-study" || nextPageState.page === "certificate") {
+        window.scrollTo({ top: 0, behavior: "auto" });
+        return;
+      }
+
+      const savedCertificateScroll = window.sessionStorage.getItem(CERTIFICATE_SCROLL_KEY);
+      if (resolvedHash === "#certificates" && savedCertificateScroll) {
+        window.sessionStorage.removeItem(CERTIFICATE_SCROLL_KEY);
+        window.scrollTo({ top: Number(savedCertificateScroll), behavior: "auto" });
+        return;
+      }
+
+      if (navigationType === "popstate" && typeof state?.scrollY === "number") {
+        clearRouteReturnState();
+        window.scrollTo({ top: state.scrollY, behavior: "auto" });
+        return;
+      }
+
+      const savedRouteReturn = readRouteReturnState();
+      if (
+        previousPage !== "home"
+        && nextPageState.page === "home"
+        && savedRouteReturn
+        && typeof savedRouteReturn.scrollY === "number"
+      ) {
+        clearRouteReturnState();
+        updateHistoryState({ scrollY: savedRouteReturn.scrollY }, savedRouteReturn.hash || resolvedHash);
+        currentHashRef.current = savedRouteReturn.hash || resolvedHash;
+        window.scrollTo({ top: savedRouteReturn.scrollY, behavior: "auto" });
+        return;
+      }
+
+      if (manualScrollHashRef.current === resolvedHash) {
+        scrollToHash(resolvedHash, "smooth");
+        return;
+      }
+
+      if (navigationType === "initial") {
+        if (resolvedHash && resolvedHash !== "#home") {
+          scrollToHash(resolvedHash, "auto");
+        }
+
+        return;
+      }
+
+      if (isHomeNavigationHash(resolvedHash)) {
+        scrollToHash(resolvedHash, "auto");
+      }
+    });
+
+    hasInitializedRef.current = true;
+  }, [activeSectionHash, updateHistoryState]);
+
+  const navigateToHash = useCallback((hash) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const nextHash = hash || "#home";
+    const shouldReplace = currentHashRef.current === nextHash && pageState.page === "home";
+    const historyMethod = shouldReplace ? "replaceState" : "pushState";
+    const immediateActiveHash = getScrollTargetHash(nextHash);
+
+    if (isHomeNavigationHash(nextHash)) {
+      setActiveSectionHash(immediateActiveHash);
+    } else if (getPageState(nextHash).page === "portfolio" || getPageState(nextHash).page === "case-study") {
+      setActiveSectionHash("#portfolio");
+    }
+
+    manualScrollHashRef.current = nextHash;
+    window.history[historyMethod](
+      {
+        ...(window.history.state ?? {}),
+        scrollY: window.scrollY
+      },
+      "",
+      nextHash
+    );
+
+    syncPageFromLocation(nextHash, {
+      navigationType: "programmatic",
+      state: window.history.state
+    });
+  }, [pageState.page, syncPageFromLocation]);
 
   useEffect(() => {
     if (typeof window === "undefined" || typeof document === "undefined") {
@@ -70,90 +306,224 @@ export default function App() {
     const introTimer = window.setTimeout(() => {
       setIsIntroVisible(false);
       document.body.classList.remove("intro-active");
-    }, 3600);
+    }, 1800);
 
     document.body.classList.add("intro-active");
+    window.history.scrollRestoration = "manual";
 
-    const handleHashChange = () => {
-      const nextHash = window.location.hash || "#home";
-      const nextState = getPageState(nextHash);
+    updateHistoryState({
+      scrollY: window.scrollY
+    }, window.location.hash || "#home");
 
-      if (
-        hasInitializedRef.current
-        && nextHash !== currentHashRef.current
-        && shouldShowPageLoader(nextHash)
-      ) {
-        window.clearTimeout(transitionTimerRef.current);
-        setIsPageTransitionVisible(true);
-        transitionTimerRef.current = window.setTimeout(() => {
-          setIsPageTransitionVisible(false);
-        }, nextHash.startsWith("#case-study-") ? 1200 : 900);
-      }
-
-      currentHashRef.current = nextHash;
-      setPageState(nextState);
-
-      window.requestAnimationFrame(() => {
-        const hash = window.location.hash;
-
-        if (hash.startsWith("#case-study-")) {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          return;
-        }
-
-        const scrollHash = hash.startsWith("#portfolio-") && hash !== "#portfolio-more"
-          ? "#portfolio"
-          : hash;
-        const target = scrollHash ? document.querySelector(scrollHash) : null;
-
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      });
-
-      hasInitializedRef.current = true;
+    const persistScrollPosition = () => {
+      window.clearTimeout(scrollPersistTimeoutRef.current);
+      scrollPersistTimeoutRef.current = window.setTimeout(() => {
+        window.cancelAnimationFrame(scrollPersistFrameRef.current);
+        scrollPersistFrameRef.current = window.requestAnimationFrame(() => {
+          updateHistoryState({ scrollY: window.scrollY });
+        });
+      }, SCROLL_STATE_PERSIST_DEBOUNCE_MS);
     };
 
+    const handleHashChange = () => {
+      syncPageFromLocation(window.location.hash || "#home", {
+        navigationType: "hashchange",
+        state: window.history.state
+      });
+    };
+
+    const handlePopState = (event) => {
+      syncPageFromLocation(window.location.hash || "#home", {
+        navigationType: "popstate",
+        state: event.state
+      });
+    };
+
+    window.addEventListener("scroll", persistScrollPosition, { passive: true });
     window.addEventListener("hashchange", handleHashChange);
-    handleHashChange();
+    window.addEventListener("popstate", handlePopState);
+
+    syncPageFromLocation(window.location.hash || "#home", {
+      navigationType: "initial",
+      state: window.history.state
+    });
 
     return () => {
       window.clearTimeout(introTimer);
+      window.clearTimeout(scrollPersistTimeoutRef.current);
+      window.clearTimeout(scrollEndTimerRef.current);
       window.clearTimeout(transitionTimerRef.current);
+      window.cancelAnimationFrame(scrollPersistFrameRef.current);
       document.body.classList.remove("intro-active");
+      window.history.scrollRestoration = "auto";
+      window.removeEventListener("scroll", persistScrollPosition);
       window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("popstate", handlePopState);
     };
-  }, []);
+  }, [syncPageFromLocation, updateHistoryState]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return undefined;
+    }
+
+    document.body.classList.toggle("navbar-visible", pageState.page !== "certificate");
+
+    return () => {
+      document.body.classList.remove("navbar-visible");
+    };
+  }, [pageState.page]);
+
+  useEffect(() => {
+    if (pageState.page !== "home" || typeof window === "undefined" || typeof document === "undefined") {
+      return undefined;
+    }
+
+    const trackedSections = HOME_SECTION_HASHES
+      .map((hash) => {
+        const element = document.querySelector(hash);
+        return element ? { hash, element } : null;
+      })
+      .filter(Boolean);
+
+    if (trackedSections.length === 0) {
+      return undefined;
+    }
+
+    const syncObservedSection = (nextHash) => {
+      if (manualScrollHashRef.current) {
+        setActiveSectionHash(getScrollTargetHash(manualScrollHashRef.current));
+        return;
+      }
+
+      const observedHash = nextHash || "#home";
+      setActiveSectionHash(observedHash);
+
+      const currentHash = window.location.hash || "#home";
+      const nextUrl = isPortfolioHash(currentHash) && observedHash === "#portfolio"
+        ? currentHash
+        : observedHash;
+
+      if (nextUrl !== currentHash) {
+        updateHistoryState({ scrollY: window.scrollY }, nextUrl);
+        currentHashRef.current = nextUrl;
+      } else {
+        updateHistoryState({ scrollY: window.scrollY });
+      }
+    };
+
+    const getBestVisibleHash = () => {
+      const viewportMarker = getNavbarOffset() + window.innerHeight * 0.28;
+      let bestHash = "#home";
+      let bestDistance = Number.POSITIVE_INFINITY;
+
+      trackedSections.forEach(({ hash, element }) => {
+        const rect = element.getBoundingClientRect();
+        const distance = Math.abs(rect.top - viewportMarker);
+
+        if (rect.bottom > getNavbarOffset() && distance < bestDistance) {
+          bestHash = hash;
+          bestDistance = distance;
+        }
+      });
+
+      return bestHash;
+    };
+
+    const syncFromLayout = () => {
+      window.requestAnimationFrame(() => {
+        syncObservedSection(getBestVisibleHash());
+      });
+    };
+
+    const handleScroll = () => {
+      if (!manualScrollHashRef.current) {
+        return;
+      }
+
+      window.clearTimeout(scrollEndTimerRef.current);
+      scrollEndTimerRef.current = window.setTimeout(() => {
+        manualScrollHashRef.current = null;
+        syncFromLayout();
+      }, SCROLL_END_DEBOUNCE_MS);
+    };
+
+    const observer = new IntersectionObserver(
+      () => {
+        syncFromLayout();
+      },
+      {
+        root: null,
+        threshold: [0.2, 0.35, 0.55],
+        rootMargin: `-${getNavbarOffset()}px 0px -45% 0px`
+      }
+    );
+
+    trackedSections.forEach(({ element }) => {
+      observer.observe(element);
+    });
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", syncFromLayout);
+    syncFromLayout();
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(scrollEndTimerRef.current);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", syncFromLayout);
+    };
+  }, [pageState.page, updateHistoryState]);
+
+  const navbarActiveHash = pageState.page === "portfolio" || pageState.page === "case-study"
+    ? "#portfolio"
+    : activeSectionHash;
 
   return (
     <>
       <BrandIntroLoader isVisible={isIntroVisible} />
       <PageTransitionLoader isVisible={isPageTransitionVisible} />
-      <Navbar />
-      <CursorFollower />
+      {pageState.page === "certificate" ? null : (
+        <Navbar activeHash={navbarActiveHash} onNavigate={navigateToHash} />
+      )}
+      {pageState.page === "certificate" ? null : <CursorFollower />}
       <AnimatePresence mode="wait">
         <motion.div
           key={`${pageState.page}-${pageState.slug ?? "root"}`}
           className="page-shell"
-          initial={{ opacity: 0, filter: "blur(14px)", scale: 0.985 }}
-          animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-          exit={{ opacity: 0, filter: "blur(10px)", scale: 0.992 }}
-          transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 8 }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         >
-          {pageState.page === "case-study" ? (
+          {pageState.page === "certificate" ? (
+            <CertificateViewerPage
+              slug={pageState.slug}
+              onClose={() => {
+                if (typeof window !== "undefined") {
+                  window.location.hash = "#certificates";
+                }
+              }}
+            />
+          ) : pageState.page === "case-study" ? (
             <CaseStudyPage slug={pageState.slug} />
           ) : pageState.page === "portfolio" ? (
             <PortfolioMorePage />
           ) : (
-            <main id="home">
+            <main>
               <HeroSection />
               <ToolsMarqueeSection />
               <AboutSection />
               <ServicesSection />
               <PortfolioSection />
-              <CertificatesSection />
+              <CertificatesSection
+                onOpenCertificate={(certificate) => {
+                  if (typeof window !== "undefined") {
+                    window.sessionStorage.setItem(CERTIFICATE_SCROLL_KEY, String(window.scrollY));
+                    window.location.hash = `#certificate-${certificate.slug}`;
+                  }
+                }}
+              />
               <TestimonialsSection />
               <ContactSection />
             </main>
@@ -161,8 +531,8 @@ export default function App() {
         </motion.div>
       </AnimatePresence>
 
-      <Footer />
-      <FloatingWhatsAppButton />
+      {pageState.page === "certificate" ? null : <Footer />}
+      {pageState.page === "certificate" ? null : <FloatingWhatsAppButton />}
     </>
   );
 }

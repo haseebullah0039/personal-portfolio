@@ -1,10 +1,17 @@
 export default function ContactSection() {
+  const emailAddress = "info@haseebullahdesigns.com";
+  const phoneNumber = "+92 3461365547";
+  const whatsappNumber = "+923461365547";
+  const locationLabel = "Thana Batkhela, Malakand, Pakistan";
+  const mapLink = "https://www.google.com/maps/search/?api=1&query=Thana%20Batkhela%2C%20Malakand%2C%20Pakistan";
+
   return (
     <section id="contact" className="section contact-section">
       <div className="section-heading">
         <p className="pill">Get In Touch</p>
         <h2>
-          Let&apos;s Work <span>Together</span>
+          <span className="heading-line-primary">LET&apos;S WORK</span>
+          <span className="heading-line-accent">TOGETHER</span>
         </h2>
         <p>
           Available for graphic design, video editing, photography, and
@@ -15,76 +22,70 @@ export default function ContactSection() {
       <div className="contact-grid">
         <form
           className="contact-form"
-          action="mailto:haseebullah03168778804@gmail.com"
+          action={`mailto:${emailAddress}`}
           method="post"
           encType="text/plain"
         >
           <label>
-            Your Name
+            Name
             <input name="name" placeholder="John Doe" required />
           </label>
           <label>
-            Email Address
+            Email
             <input name="email" placeholder="john@example.com" type="email" required />
           </label>
           <label>
-            Phone Number
-            <input name="phone" placeholder="+92 300 1234567" />
+            Phone (WhatsApp)
+            <input name="phone" placeholder={phoneNumber} type="tel" />
           </label>
           <label>
             Subject
             <input name="subject" placeholder="Creative project inquiry" required />
           </label>
-          <label>
-            Project Budget
-            <select name="budget" defaultValue="">
-              <option value="" disabled>Select your budget</option>
-              <option>$100 - $500</option>
-              <option>$500 - $1,500</option>
-              <option>$1,500+</option>
-            </select>
-          </label>
           <label className="message-field">
-            Your Message
+            Message
             <textarea
               name="message"
               placeholder="Tell me about your design, editing, photography, or videography project."
               required
             />
           </label>
-          <button className="primary-btn" type="submit">Start a Project</button>
+          <button className="primary-btn" type="submit">Send Inquiry</button>
         </form>
 
         <aside className="contact-cards">
           <article>
-            <b>Email Me</b>
-            <span>haseebullah03168778804@gmail.com</span>
-            <a href="mailto:haseebullah03168778804@gmail.com">Send Email</a>
+            <b>Email</b>
+            <span>{emailAddress}</span>
+            <a href={`mailto:${emailAddress}`}>Send Email</a>
           </article>
           <article>
-            <b>Call Me</b>
-            <span>+92 300 1234567</span>
-            <a href="tel:+923001234567">Make a Call</a>
-          </article>
-          <article>
-            <b>Visit Me</b>
-            <span>Thana Batkhela, Malakand, Pakistan</span>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Thana%20Batkhela%20Malakand%20Pakistan"
-              target="_blank"
-              rel="noreferrer"
-            >
-              View on Map
+            <b>Phone (WhatsApp)</b>
+            <span>{phoneNumber}</span>
+            <a href={`https://wa.me/${whatsappNumber.replace("+", "")}`} target="_blank" rel="noreferrer">
+              Message on WhatsApp
             </a>
           </article>
           <article>
-            <b>Follow Me</b>
-            <span>LinkedIn / Behance / Dribbble / Instagram</span>
-            <a href="#portfolio-more">View Portfolio</a>
+            <b>Location</b>
+            <span>{locationLabel}</span>
+            <a href={mapLink} target="_blank" rel="noreferrer">
+              View on Map
+            </a>
           </article>
-          <article className="available">
-            <b>Available for Work</b>
-            <span>Accepting design, editing, photography, and videography projects</span>
+          <article className="contact-social-card">
+            <b>Follow Me</b>
+            <span>Professional updates, recent work, and visual content highlights.</span>
+            <div className="contact-social-links">
+              <a href="https://www.linkedin.com/in/haseebullahgraphicdesigner/" target="_blank" rel="noreferrer">
+                LinkedIn
+                <small>View Profile</small>
+              </a>
+              <a href="https://www.instagram.com/haseebullahdesigns/" target="_blank" rel="noreferrer">
+                Instagram
+                <small>View Profile</small>
+              </a>
+            </div>
           </article>
         </aside>
       </div>

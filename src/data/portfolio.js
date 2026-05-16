@@ -11,60 +11,11 @@ import brandIdentityDesignPackages from "@/assets/brand-identity-design-packages
 import aboutImage from "@/assets/about.webp";
 import heroProfileImage from "@/assets/hero-profile.webp";
 import profilePicture from "@/assets/profile-picture.webp";
-
-function createCertificateImage({ title, issuer, accentA, accentB, code }) {
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
-      <defs>
-        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${accentA}" />
-          <stop offset="100%" stop-color="${accentB}" />
-        </linearGradient>
-        <linearGradient id="paper" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#fff9f0" />
-          <stop offset="100%" stop-color="#f0dfca" />
-        </linearGradient>
-        <radialGradient id="halo" cx="84%" cy="16%" r="60%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.88)" />
-          <stop offset="100%" stop-color="rgba(255,255,255,0)" />
-        </radialGradient>
-        <radialGradient id="corner" cx="10%" cy="12%" r="48%">
-          <stop offset="0%" stop-color="rgba(243,114,33,0.24)" />
-          <stop offset="100%" stop-color="rgba(243,114,33,0)" />
-        </radialGradient>
-      </defs>
-      <rect width="1200" height="900" rx="44" fill="#140c18"/>
-      <rect x="28" y="28" width="1144" height="844" rx="36" fill="url(#bg)" opacity="0.3"/>
-      <rect x="58" y="58" width="1084" height="784" rx="30" fill="url(#paper)"/>
-      <rect x="58" y="58" width="1084" height="784" rx="30" fill="url(#halo)" opacity="0.9"/>
-      <rect x="58" y="58" width="1084" height="784" rx="30" fill="url(#corner)" opacity="1"/>
-      <rect x="84" y="84" width="1032" height="732" rx="24" fill="none" stroke="rgba(78,44,55,0.18)" stroke-width="2"/>
-      <path d="M126 148h182" stroke="${accentA}" stroke-width="8" stroke-linecap="round"/>
-      <text x="126" y="126" fill="#9b4e26" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="8">CERTIFIED CREATIVE</text>
-      <text x="126" y="220" fill="#2d1d1f" font-family="Georgia, Times New Roman, serif" font-size="74" font-weight="700">${title}</text>
-      <text x="126" y="282" fill="#715d59" font-family="Segoe UI, Arial, sans-serif" font-size="28">Awarded to recognize strong creative execution, presentation quality, and modern digital craft.</text>
-      <text x="126" y="372" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6">ISSUED BY</text>
-      <text x="126" y="414" fill="#2d1d1f" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700">${issuer}</text>
-      <rect x="126" y="498" width="398" height="164" rx="28" fill="#fff5e8" stroke="rgba(243,114,33,0.32)" stroke-width="2"/>
-      <text x="158" y="552" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="4">CREDENTIAL ID</text>
-      <text x="158" y="612" fill="#2d1d1f" font-family="Consolas, monospace" font-size="38" font-weight="700">${code}</text>
-      <text x="158" y="644" fill="#9b4e26" font-family="Segoe UI, Arial, sans-serif" font-size="18">Verified portfolio training record</text>
-      <circle cx="916" cy="336" r="122" fill="rgba(243,114,33,0.08)" stroke="rgba(243,114,33,0.24)" stroke-width="2"/>
-      <circle cx="916" cy="336" r="92" fill="none" stroke="${accentA}" stroke-opacity="0.48" stroke-width="3"/>
-      <circle cx="916" cy="336" r="70" fill="#fffaf2" stroke="rgba(45,29,31,0.08)" stroke-width="4"/>
-      <path d="M875 336l28 28 58-66" fill="none" stroke="${accentA}" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="852" y="470" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="4">CERTIFIED</text>
-      <path d="M788 594c56-46 125-62 206-48" fill="none" stroke="rgba(45,29,31,0.14)" stroke-width="2"/>
-      <text x="770" y="654" fill="#2d1d1f" font-family="'Brush Script MT', cursive" font-size="58">Haseeb Ullah</text>
-      <text x="772" y="686" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="18" letter-spacing="4">CREATIVE PORTFOLIO DIRECTOR</text>
-      <text x="126" y="754" fill="#715d59" font-family="Segoe UI, Arial, sans-serif" font-size="22">Date of recognition</text>
-      <text x="126" y="788" fill="#2d1d1f" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">${code.split("-")[1]}</text>
-      <text x="850" y="788" fill="#8d694f" font-family="Segoe UI, Arial, sans-serif" font-size="22">Creative Portfolio Certification</text>
-    </svg>
-  `;
-
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-}
+import certificateVideography from "@/assets/certificate-videography.png";
+import certificatePhotography from "@/assets/certificate-photography.png";
+import certificateGraphicDesign from "@/assets/certificate-graphic-design.png";
+import certificateVideoEditing from "@/assets/certificate-video-editing.png";
+import certificateInformationTechnology from "@/assets/certificate-information-technology.png";
 
 function createAvatar(name, accentA, accentB) {
   const initials = name
@@ -506,52 +457,39 @@ export const allProjects = [
 
 export const certificates = [
   {
-    title: "Graphic Design Mastery",
-    issuer: "Adobe Creative Training",
-    date: "March 2025",
-    image: createCertificateImage({
-      title: "Graphic Design Mastery",
-      issuer: "Adobe Creative Training",
-      accentA: "#f37221",
-      accentB: "#6f2d46",
-      code: "GD-2025-014"
-    })
+    slug: "graphic-design-training-qualification",
+    title: "Graphic Design Training Qualification",
+    issuer: "University of Engineering & Technology Peshawar",
+    date: "2025",
+    image: certificateGraphicDesign
   },
   {
-    title: "Advanced Video Editing",
-    issuer: "Motion Academy",
-    date: "January 2025",
-    image: createCertificateImage({
-      title: "Advanced Video Editing",
-      issuer: "Motion Academy",
-      accentA: "#f37221",
-      accentB: "#3b1f3b",
-      code: "VE-2025-027"
-    })
+    slug: "adobe-premiere-pro-video-editing",
+    title: "Adobe Premiere Pro Professional Video Editing",
+    issuer: "Adobe",
+    date: "23 June 2022",
+    image: certificateVideoEditing
   },
   {
-    title: "Commercial Product Photography",
-    issuer: "Creative Visual Institute",
-    date: "November 2024",
-    image: createCertificateImage({
-      title: "Commercial Product Photography",
-      issuer: "Creative Visual Institute",
-      accentA: "#d35b1c",
-      accentB: "#2b415d",
-      code: "PH-2024-093"
-    })
+    slug: "professional-photography",
+    title: "Professional Photography",
+    issuer: "Professional Creative Academy",
+    date: "11 April 2024",
+    image: certificatePhotography
   },
   {
-    title: "Brand Story Videography",
-    issuer: "Cinematic Skills Lab",
-    date: "September 2024",
-    image: createCertificateImage({
-      title: "Brand Story Videography",
-      issuer: "Cinematic Skills Lab",
-      accentA: "#f37221",
-      accentB: "#51284d",
-      code: "VG-2024-051"
-    })
+    slug: "advanced-videography",
+    title: "Advanced Videography",
+    issuer: "International Creative Media Institute",
+    date: "25 May 2025",
+    image: certificateVideography
+  },
+  {
+    slug: "diploma-in-information-technology",
+    title: "Diploma in Information Technology",
+    issuer: "Khyber Pakhtunkhwa Board of Technical & Commerce Education",
+    date: "25 July 2025",
+    image: certificateInformationTechnology
   }
 ];
 

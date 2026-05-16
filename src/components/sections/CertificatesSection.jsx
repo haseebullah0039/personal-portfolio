@@ -7,8 +7,7 @@ const certificateHighlights = [
   { value: "4", label: "Creative disciplines covered" }
 ];
 
-export default function CertificatesSection() {
-  const [activeCertificate, setActiveCertificate] = useState(null);
+export default function CertificatesSection({ onOpenCertificate }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
   const isMobileCarousel = cardsPerView === 1;
@@ -37,28 +36,6 @@ export default function CertificatesSection() {
 
     return () => window.removeEventListener("resize", syncCardsPerView);
   }, []);
-
-  useEffect(() => {
-    if (!activeCertificate || typeof document === "undefined") {
-      return undefined;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setActiveCertificate(null);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [activeCertificate]);
 
   useEffect(() => {
     setActiveIndex((current) => Math.min(current, Math.max(0, certificates.length - cardsPerView)));
@@ -94,7 +71,8 @@ export default function CertificatesSection() {
         <div className="section-heading certificate-heading">
           <p className="pill">Certificates</p>
           <h2>
-            Creative <span>Credentials</span>
+            <span className="heading-line-primary">CREATIVE</span>
+            <span className="heading-line-accent">CREDENTIALS</span>
           </h2>
           <p>
             Verified training across design, editing, photography, and videography that supports
@@ -145,7 +123,7 @@ export default function CertificatesSection() {
                 <button
                   type="button"
                   className="certificate-card-button"
-                  onClick={() => setActiveCertificate(certificate)}
+                  onClick={() => onOpenCertificate(certificate)}
                 >
                   <div className="certificate-thumb">
                     <img src={certificate.image} alt={certificate.title} loading="lazy" decoding="async" />
@@ -163,34 +141,6 @@ export default function CertificatesSection() {
         </div>
       </div>
 
-      {activeCertificate ? (
-        <div className="certificate-lightbox" role="dialog" aria-modal="true" aria-labelledby="certificate-title">
-          <button
-            className="certificate-lightbox-backdrop"
-            type="button"
-            aria-label="Close certificate preview"
-            onClick={() => setActiveCertificate(null)}
-          />
-          <div className="certificate-lightbox-shell">
-            <button
-              className="certificate-lightbox-close"
-              type="button"
-              aria-label="Close certificate preview"
-              onClick={() => setActiveCertificate(null)}
-            >
-              <span />
-              <span />
-            </button>
-            <div className="certificate-lightbox-header">
-              <h3 id="certificate-title">{activeCertificate.title}</h3>
-              <p>{activeCertificate.issuer} {"\u2022"} {activeCertificate.date}</p>
-            </div>
-            <div className="certificate-lightbox-media">
-              <img src={activeCertificate.image} alt={activeCertificate.title} />
-            </div>
-          </div>
-        </div>
-      ) : null}
       <div className="section-flow-line" aria-hidden="true" />
     </section>
   );

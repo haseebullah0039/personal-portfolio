@@ -1,4 +1,7 @@
 export default function Footer() {
+  const emailAddress = "info@haseebullahdesigns.com";
+  const phoneNumber = "+92 3461365547";
+
   return (
     <footer className="footer">
       <div className="footer-brand">
@@ -32,8 +35,8 @@ export default function Footer() {
       </div>
       <div>
         <h4>Get In Touch</h4>
-        <p>haseebullah03168778804@gmail.com</p>
-        <p>+92 300 1234567</p>
+        <p>{emailAddress}</p>
+        <p>{phoneNumber}</p>
         <p>Thana Batkhela, Malakand, Pakistan</p>
       </div>
     </footer>
