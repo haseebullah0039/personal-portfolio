@@ -3,19 +3,45 @@ import videoEditingImage from "@/assets/service-video-editing-3d.webp";
 import photographyImage from "@/assets/service-photography-3d.webp";
 import videographyImage from "@/assets/service-videography-3d.webp";
 import alAnsarAbayaLogo from "@/assets/al-ansar-abaya-logo.webp";
-import alAnsarAbayaShowcase01 from "@/assets/al-ansar-abaya-showcase-01.png";
-import alAnsarAbayaShowcase02 from "@/assets/al-ansar-abaya-showcase-02.png";
-import alAnsarAbayaShowcase03 from "@/assets/al-ansar-abaya-showcase-03.png";
-import alAnsarAbayaShowcase04 from "@/assets/al-ansar-abaya-showcase-04.png";
-import brandIdentityDesignPackages from "@/assets/brand-identity-design-packages.webp";
+import alAnsarAbayaShowcase01 from "@/assets/al-ansar-abaya-showcase-01.webp";
+import alAnsarAbayaShowcase02 from "@/assets/al-ansar-abaya-showcase-02.webp";
+import alAnsarAbayaShowcase03 from "@/assets/al-ansar-abaya-showcase-03.webp";
+import alAnsarAbayaShowcase04 from "@/assets/al-ansar-abaya-showcase-04.webp";
+import amazonEbcGig01 from "@/assets/amazon-ebc-gig-01.webp";
+import amazonEbc01 from "@/assets/amazon-ebc-01.webp";
+import amazonEbc02 from "@/assets/amazon-ebc-02.webp";
+import amazonEbc03 from "@/assets/amazon-ebc-03.webp";
+import amazonEbc04 from "@/assets/amazon-ebc-04.webp";
+import amazonEbc05 from "@/assets/amazon-ebc-05.webp";
 import aboutImage from "@/assets/about.webp";
 import heroProfileImage from "@/assets/hero-profile.webp";
 import profilePicture from "@/assets/profile-picture.webp";
-import certificateVideography from "@/assets/certificate-videography.png";
-import certificatePhotography from "@/assets/certificate-photography.png";
-import certificateGraphicDesign from "@/assets/certificate-graphic-design.png";
-import certificateVideoEditing from "@/assets/certificate-video-editing.png";
-import certificateInformationTechnology from "@/assets/certificate-information-technology.png";
+import krspozzFastFood01 from "@/assets/krspozz-fast-food-01.webp";
+import krspozzFastFood02 from "@/assets/krspozz-fast-food-02.webp";
+import krspozzFastFood03 from "@/assets/krspozz-fast-food-03.webp";
+import krspozzFastFood04 from "@/assets/krspozz-fast-food-04.webp";
+import krspozzFastFood05 from "@/assets/krspozz-fast-food-05.webp";
+import pasbanConstruction01 from "@/assets/pasban-construction-01.webp";
+import pasbanConstruction02 from "@/assets/pasban-construction-02.webp";
+import pasbanConstruction03 from "@/assets/pasban-construction-03.webp";
+import pasbanConstruction04 from "@/assets/pasban-construction-04.webp";
+import pasbanConstruction05 from "@/assets/pasban-construction-05.webp";
+import pasbanConstruction06 from "@/assets/pasban-construction-06.webp";
+import pasbanConstruction07 from "@/assets/pasban-construction-07.webp";
+import pasbanConstruction08 from "@/assets/pasban-construction-08.webp";
+import pasbanConstruction09 from "@/assets/pasban-construction-09.webp";
+import raazinaAvantus01 from "@/assets/raazina-avantus-01.webp";
+import raazinaAvantus03 from "@/assets/raazina-avantus-03.webp";
+import raazinaBluDeRaazina03 from "@/assets/raazina-blu-de-raazina-03.webp";
+import raazinaBluDeRaazina05 from "@/assets/raazina-blu-de-raazina-05.webp";
+import raazinaNomade02 from "@/assets/raazina-nomade-02.webp";
+import raazinaNomade03 from "@/assets/raazina-nomade-03.webp";
+import cinematicShortsRaazinaVideo from "@/assets/cinematic-shorts-raazina.webm";
+import certificateVideography from "@/assets/certificate-videography.webp";
+import certificatePhotography from "@/assets/certificate-photography.webp";
+import certificateGraphicDesign from "@/assets/certificate-graphic-design.webp";
+import certificateVideoEditing from "@/assets/certificate-video-editing.webp";
+import certificateInformationTechnology from "@/assets/certificate-information-technology.webp";
 
 function createAvatar(name, accentA, accentB) {
   const initials = name
@@ -183,139 +209,330 @@ export const projects = [
     }
   }),
   buildProject({
-    slug: "brand-identity-design-packages",
-    title: "Brand Identity Design Packages",
+    slug: "krspozz-fast-food-social-campaign",
+    title: "Krspozz Fast Food Social Campaign",
     category: "Graphic Design",
-    typeLabel: "Brand Identity",
-    year: "2026",
-    accent: "Brand Identity",
+    typeLabel: "Social Media Campaign",
+    year: "2025",
+    accent: "Fast Food Campaign",
     featured: true,
-    image: brandIdentityDesignPackages,
-    gallery: [brandIdentityDesignPackages],
-    description: "A full pricing and package presentation for Digital Hujra that clearly explains starter, standard, and premium brand identity offers in one polished visual.",
-    summary: "Designed as a conversion-focused brand services poster that helps clients instantly understand package options, value, and positioning.",
-    purpose: "Present brand identity packages in a way that feels premium, trustworthy, and easy to scan for potential clients.",
-    problemStatement: "Digital Hujra needed a single sales visual that could explain multiple service tiers clearly without feeling crowded or generic.",
-    finalSolution: "The final poster organizes pricing, deliverables, and package differentiation into a neon-styled premium layout that is instantly scannable and highly promotional.",
-    process: [
-      "Structured the package tiers to create a clear visual hierarchy from headline to pricing, features, and call-to-action buttons.",
-      "Used a neon-inspired dark theme to make the service categories feel modern, bold, and highly visible on social platforms.",
-      "Balanced detail and readability so the full package sheet stays understandable without sacrificing visual appeal."
+    image: krspozzFastFood01,
+    gallery: [
+      krspozzFastFood01,
+      krspozzFastFood02,
+      krspozzFastFood03,
+      krspozzFastFood04,
+      krspozzFastFood05
     ],
-    tools: ["Adobe Photoshop", "Adobe Illustrator", "Layout Design", "Brand Communication"],
-    client: "Digital Hujra",
-    deliverables: ["Package pricing poster", "Service tier layout", "Promotional design asset"],
-    metrics: ["Full offer visibility", "Clear service comparison", "Client-friendly visual hierarchy"],
+    description: "A high-impact fast food social media campaign for Krspozz built around craveable product focus, bold offer headlines, and an energetic red-black brand look.",
+    summary: "Designed as a promotional content series that helps Krspozz feel louder, fresher, and more memorable across food marketing posts.",
+    purpose: "Create a strong set of social visuals that spotlight fries, burgers, combo meals, and delivery while keeping the brand identity consistent and instantly recognizable.",
+    problemStatement: "Krspozz needed a coordinated post series that could promote multiple menu items without each design feeling disconnected or repetitive.",
+    finalSolution: "The final campaign uses one clear visual system with fiery contrast, oversized type, premium food cutouts, and repeated brand cues so every post feels part of the same fast food promotion family.",
+    process: [
+      "Built each layout around a single hero product so the message stays immediate and visually appetizing while scrolling.",
+      "Used bold headline hierarchy, red-orange highlights, and deep black contrast to match the fast food category and increase attention.",
+      "Kept logo placement, promotional rhythm, and call-to-action styling consistent across all five creatives so the campaign feels unified."
+    ],
+    tools: ["Adobe Photoshop", "Social Media Design", "Food Advertising", "Campaign Art Direction"],
+    client: "Krspozz Fast Food",
+    deliverables: ["5 campaign post designs", "Menu promotion visuals", "Offer-led social creatives"],
+    metrics: ["Strong food visibility", "Consistent campaign identity", "Scroll-stopping promotional layout"],
     layout: "wide",
     colorPalette: [
-      { name: "Signal Blue", hex: "#149dff", use: "Headlines, icons, and visual guidance" },
-      { name: "Neon Orange", hex: "#ff9c13", use: "CTA emphasis and premium tier highlight" },
-      { name: "Midnight Navy", hex: "#07142a", use: "Main background and contrast base" }
+      { name: "Flame Red", hex: "#f32612", use: "Main campaign energy, CTA strips, and brand heat" },
+      { name: "Golden Crisp", hex: "#ffbf1f", use: "Food emphasis, highlights, and offer accents" },
+      { name: "Charcoal Black", hex: "#090909", use: "Background depth and high contrast framing" }
     ],
     typography: [
-      { label: "Display", family: "Bold Modern Sans", detail: "Large pricing and offer hierarchy built for fast scanning." },
-      { label: "Support", family: "Readable UI Sans", detail: "Clean package details and comparison points." }
+      { label: "Display", family: "Bold Condensed Sans", detail: "Used for oversized campaign headlines that feel urgent and highly readable." },
+      { label: "Support", family: "Heavy Promo Sans", detail: "Supports taglines, offers, and CTA elements with a fast-food advertising tone." }
     ],
     beforeAfter: {
-      before: "Package information felt difficult to compare quickly, which reduced clarity for first-time clients evaluating services.",
-      after: "The new layout turns service tiers into an eye-catching, premium comparison sheet that explains the offer in seconds."
+      before: "The brand needed multiple promo posts for different menu messages, but without a unified system the campaign risked feeling visually inconsistent.",
+      after: "The finished set gives Krspozz a sharp, repeatable campaign style where every post feels branded, appetizing, and built to sell quickly."
     },
-    mockups: [brandIdentityDesignPackages],
+    mockups: [
+      krspozzFastFood02,
+      krspozzFastFood03,
+      krspozzFastFood04,
+      krspozzFastFood05
+    ],
     testimonial: {
-      quote: "The package design made our services look far more premium and helped clients understand the value of each tier immediately.",
-      name: "Tariq Ahmad",
-      company: "Digital Hujra",
+      quote: "The campaign visuals made our food offers look more professional, more tempting, and much more ready for promotion on social media.",
+      name: "Krspozz Team",
+      company: "Krspozz Fast Food",
       rating: 5,
-      avatar: createAvatar("Tariq Ahmad", "#149dff", "#ff9c13")
+      avatar: createAvatar("Krspozz Team", "#f32612", "#ffbf1f")
     }
   }),
   buildProject({
-    slug: "product-photography-set",
-    title: "Product Photography Set",
-    category: "Photography",
-    year: "2025",
-    accent: "Photography",
-    image: photographyImage,
-    gallery: [photographyImage, aboutImage, profilePicture],
-    description: "A polished commercial product set with careful lighting, clean staging, and close-up detail frames built for marketing use.",
-    summary: "Created to help product listings and social promotions feel premium, trustworthy, and conversion-ready.",
-    purpose: "Capture products with enough clarity and atmosphere to support online store listings, paid campaigns, and launch assets.",
-    process: [
-      "Planned shot lists for hero angles, texture close-ups, and contextual lifestyle framing.",
-      "Used clean light control and post-production refinement to preserve material detail and color consistency.",
-      "Delivered a flexible image set covering catalog use, social crops, and promotional banners."
-    ],
-    tools: ["Studio Lighting", "Adobe Lightroom", "Retouching", "Shot Planning"],
-    client: "Consumer Product Brand",
-    deliverables: ["Hero product shots", "Detail photography", "Lifestyle crops"],
-    metrics: ["Multiple aspect ratios", "Commercial-ready retouching", "Consistent visual tone"],
-    layout: "standard"
-  }),
-  buildProject({
-    slug: "brand-promo-film",
-    title: "Brand Promo Video",
-    category: "Videography",
-    year: "2025",
-    accent: "Film",
-    image: videographyImage,
-    gallery: [videographyImage, heroProfileImage, aboutImage],
-    description: "A cinematic promo piece combining product motion, atmospheric framing, and clean narrative structure for brand storytelling.",
-    summary: "Developed as a hero video asset that could introduce the brand with clarity, texture, and a premium visual rhythm.",
-    purpose: "Showcase the brand through movement, lighting, and detail-led shots that feel confident and high value.",
-    process: [
-      "Built a scene plan around product reveal moments, ambient detail shots, and brand-value messaging beats.",
-      "Captured footage with smooth camera motion and lighting setups designed for a modern premium look.",
-      "Finished the edit with color shaping and pacing refinements for web, social, and pitch-ready delivery."
-    ],
-    tools: ["Direction", "Camera Operation", "Color Finishing", "Storyboarding"],
-    client: "Lifestyle and Product Brand",
-    deliverables: ["Promo film", "Social cutdowns", "Thumbnail stills"],
-    metrics: ["Story-driven structure", "Cross-channel exports", "Cinematic brand presentation"],
-    layout: "tall"
-  }),
-  buildProject({
-    slug: "campaign-visual-kit",
-    title: "Campaign Visual Kit",
+    slug: "pasban-construction-branding-kit",
+    title: "Pasban Construction Branding Kit",
     category: "Graphic Design",
+    typeLabel: "Branding Kit",
     year: "2025",
-    accent: "Campaign",
-    image: graphicDesignImage,
-    gallery: [graphicDesignImage, alAnsarAbayaLogo, aboutImage, heroProfileImage],
-    description: "A launch-ready campaign toolkit with promotional layouts, social variations, and repeatable creative templates.",
-    summary: "Designed for brands that need fast campaign rollout without sacrificing visual consistency or polish.",
-    purpose: "Create a flexible set of marketing assets that support repeated promotions while keeping the brand presentation cohesive.",
-    process: [
-      "Defined core campaign modules for offer-led posts, carousel storytelling, and supporting print-style assets.",
-      "Balanced bold messaging with premium spacing so the visuals feel energetic without looking crowded.",
-      "Prepared reusable structures for future campaigns to reduce production time."
+    accent: "Construction Branding",
+    image: pasbanConstruction01,
+    gallery: [
+      pasbanConstruction01,
+      pasbanConstruction02,
+      pasbanConstruction03,
+      pasbanConstruction04,
+      pasbanConstruction05,
+      pasbanConstruction06,
+      pasbanConstruction07,
+      pasbanConstruction08,
+      pasbanConstruction09
     ],
-    tools: ["Layout Design", "Campaign Systems", "Adobe Photoshop", "Art Direction"],
-    client: "Promotion-Focused Brand Campaign",
-    deliverables: ["Static ads", "Carousel layouts", "Flyer concept"],
-    metrics: ["Repeatable design system", "Fast adaptation", "Consistent campaign voice"],
-    layout: "wide"
+    description: "A complete branding kit for Pasban Construction Peshawar, combining logo usage, promotional posts, stationery, and corporate collateral into one consistent identity system.",
+    summary: "Built to give Pasban Construction a polished, trustworthy visual language that feels premium, dependable, and ready for client-facing construction marketing.",
+    purpose: "Create a unified brand system that works across social media, company presentation pieces, stationery, and day-to-day business communication.",
+    problemStatement: "Pasban Construction needed more than a logo. The brand required a complete visual kit that could communicate trust, professionalism, and construction expertise across multiple touchpoints.",
+    finalSolution: "The final kit uses a strong navy-and-gold identity, structured layouts, architectural imagery, and a shield-based symbol system to present Pasban as a modern and reliable construction brand.",
+    process: [
+      "Developed the brand around a shield-and-structure logo concept to visually express protection, reliability, and built-environment expertise.",
+      "Extended the identity into promotional graphics, service posts, invoice design, letterhead, business cards, and company profile materials for full brand consistency.",
+      "Used a clean editorial layout with construction photography, gold highlights, and structured spacing so the brand feels both premium and practical."
+    ],
+    tools: ["Adobe Illustrator", "Adobe Photoshop", "Brand Identity", "Corporate Design"],
+    client: "Pasban Construction Peshawar",
+    deliverables: [
+      "Primary logo system",
+      "Social media post set",
+      "Company profile cover",
+      "Invoice layout",
+      "Letterhead design",
+      "Business card design"
+    ],
+    metrics: ["Multi-format brand consistency", "Professional construction positioning", "Stronger client-facing presentation"],
+    layout: "wide",
+    colorPalette: [
+      { name: "Navy Blue", hex: "#0A1D3D", use: "Primary brand base and trust signal" },
+      { name: "Gold", hex: "#D4AF37", use: "Premium accent, dividers, and emphasis details" },
+      { name: "Charcoal", hex: "#111111", use: "Text support, contrast, and secondary grounding" },
+      { name: "White", hex: "#FFFFFF", use: "Clean background and presentation balance" }
+    ],
+    typography: [
+      { label: "Heading", family: "Cinzel Bold", detail: "Used for a formal, established construction identity with premium presence." },
+      { label: "Body", family: "Montserrat", detail: "Supports readable business information, layouts, and supporting copy across the kit." }
+    ],
+    beforeAfter: {
+      before: "The business needed a broader identity system that could look credible across company documents, social promotions, and client presentation materials.",
+      after: "The completed branding kit gives Pasban Construction a cohesive visual language that looks dependable, premium, and ready for professional use."
+    },
+    mockups: [
+      pasbanConstruction02,
+      pasbanConstruction03,
+      pasbanConstruction04,
+      pasbanConstruction05,
+      pasbanConstruction06,
+      pasbanConstruction07,
+      pasbanConstruction08,
+      pasbanConstruction09
+    ],
+    testimonial: {
+      quote: "The branding kit gave our construction business a far more professional image and made every client-facing design feel consistent and trustworthy.",
+      name: "Ihsan Ullah",
+      company: "Pasban Construction Peshawar",
+      rating: 5,
+      avatar: createAvatar("Ihsan Ullah", "#0A1D3D", "#D4AF37")
+    }
   }),
   buildProject({
-    slug: "creator-content-package",
-    title: "Creator Content Package",
-    category: "Video Editing",
-    year: "2025",
-    accent: "Creator",
-    image: heroProfileImage,
-    gallery: [heroProfileImage, videoEditingImage, profilePicture],
-    description: "A short-form creator package focused on hooks, captions, pacing, and a recognizable editorial style across episodes.",
-    summary: "Built for creators who need polished recurring content that still feels personal, fast, and platform-native.",
-    purpose: "Shape a repeatable edit language that supports growth, retention, and stronger brand recognition.",
-    process: [
-      "Defined intro rhythm, caption behavior, and motion patterns that could repeat consistently across uploads.",
-      "Refined clip selection and transitions for clearer momentum and stronger audience retention.",
-      "Delivered reusable styling directions to keep future videos cohesive."
+    slug: "raazina-essence-perfume-photoshoot",
+    title: "Raazina Essence Perfume Product Photoshoot",
+    category: "Photography",
+    typeLabel: "Product Photography",
+    year: "2026",
+    accent: "Perfume Shoot",
+    featured: true,
+    image: raazinaBluDeRaazina03,
+    gallery: [
+      raazinaBluDeRaazina03,
+      raazinaBluDeRaazina05,
+      raazinaAvantus01,
+      raazinaAvantus03,
+      raazinaNomade02,
+      raazinaNomade03
     ],
-    tools: ["Premiere Pro", "Template Styling", "Caption Design", "Retention Editing"],
-    client: "Personal Brand Creator",
-    deliverables: ["Recurring reel edits", "Caption style system", "Short-form exports"],
-    metrics: ["Repeatable format", "Platform-ready visuals", "Brand consistency"],
-    layout: "standard"
+    description: "A premium perfume product photoshoot for Raazina Essence, crafted to present Blu de Raazina, Raazina Aventus, and Raazina Nomade with luxurious lighting, elegant props, and high-end commercial styling.",
+    summary: "This shoot was designed to give Raazina Essence a polished visual campaign where each fragrance feels premium, gift-worthy, and ready for social media, e-commerce, and promotional use.",
+    purpose: "Create a cohesive product photography series that highlights the bottle, packaging, and brand identity while giving each fragrance variant its own mood and visual story.",
+    problemStatement: "Raazina Essence needed more than plain product pictures. The brand required luxury-focused visuals that could make the perfumes feel refined, memorable, and visually competitive across online promotions and customer-facing content.",
+    finalSolution: "The final photoshoot combines warm cinematic lighting, glossy black packaging, carefully styled surfaces, and nature-inspired scenes to give the fragrance line a sophisticated, high-value presentation across multiple campaign-ready compositions.",
+    process: [
+      "Planned separate visual moods for Blu de Raazina, Avantus, and Nomade so each scent could feel distinct while still staying inside one consistent Raazina Essence brand language.",
+      "Built every frame around premium product visibility by balancing bottle placement, packaging scale, reflections, and supporting props like marble plinths, roses, stone textures, and golden fabric.",
+      "Refined the final images with commercial retouching and tonal control so the black bottles stayed crisp, the gold highlights felt rich, and the full set looked unified across portfolio and marketing use."
+    ],
+    tools: ["Adobe Photoshop", "Product Photography", "Lighting Direction", "Photo Retouching"],
+    client: "Raazina Essence",
+    deliverables: [
+      "Hero product images",
+      "Variant-specific styled compositions",
+      "Packaging and bottle showcase visuals",
+      "Campaign-ready product mockups"
+    ],
+    metrics: ["Luxury visual positioning", "Consistent multi-variant presentation", "High-end social and e-commerce readiness"],
+    layout: "tall",
+    colorPalette: [
+      { name: "Perfume Black", hex: "#0D0C0C", use: "Bottle finish, packaging depth, and premium contrast" },
+      { name: "Luxe Gold", hex: "#D6A23C", use: "Warm glow, reflective styling, and upscale atmosphere" },
+      { name: "Soft Ivory", hex: "#F5E9D2", use: "Label balance, floral props, and clean highlight support" }
+    ],
+    typography: [
+      { label: "Brand Display", family: "Elegant Serif", detail: "Used to reinforce the premium fragrance identity and ceremonial product feel." },
+      { label: "Support", family: "Clean Modern Sans", detail: "Keeps packaging details and promotional copy easy to read beside rich visual styling." }
+    ],
+    beforeAfter: {
+      before: "The fragrance line needed more elevated visuals to make the packaging and perfume bottles feel premium enough for modern social media promotion and product presentation.",
+      after: "The finished shoot gives Raazina Essence a luxury-forward image library that feels cinematic, cohesive, and strong enough for portfolio, campaign, and product marketing use."
+    },
+    mockups: [
+      raazinaBluDeRaazina05,
+      raazinaAvantus03,
+      raazinaNomade03,
+      raazinaAvantus01,
+      raazinaNomade02
+    ],
+    testimonial: {
+      quote: "The final photos made our perfumes look premium, elegant, and much more ready for marketing. Every variant feels beautifully presented and true to the Raazina Essence brand.",
+      name: "Raazina Essence Team",
+      company: "Raazina Essence",
+      rating: 5,
+      avatar: createAvatar("Raazina Essence", "#D6A23C", "#0D0C0C")
+    }
+  }),
+  buildProject({
+    slug: "cinematic-shorts-video-editing",
+    title: "Cinematic Shorts Video Edit",
+    category: "Video Editing",
+    typeLabel: "Cinematic Shorts",
+    year: "2026",
+    accent: "Short-Form Film",
+    featured: true,
+    image: {
+      type: "video",
+      src: cinematicShortsRaazinaVideo,
+      poster: raazinaBluDeRaazina05,
+      alt: "Cinematic shorts video preview"
+    },
+    gallery: [
+      {
+        type: "video",
+        src: cinematicShortsRaazinaVideo,
+        poster: raazinaBluDeRaazina05,
+        alt: "Cinematic shorts video final export"
+      }
+    ],
+    description: "A cinematic shorts edit built around premium perfume visuals, smooth pacing, and luxury-focused motion to create a polished short-form video for modern social media presentation.",
+    summary: "This project turns product visuals into a short-form cinematic piece that feels elegant, immersive, and platform-ready for reels, ads, and brand storytelling.",
+    purpose: "Create a visually rich short video that combines atmosphere, product focus, and editorial pacing so the brand can present its fragrances with more emotion and premium appeal.",
+    problemStatement: "The brand needed more than static visuals alone. It required a cinematic short-form edit that could quickly capture attention, communicate luxury, and make the perfume line feel more alive on social media and promotional platforms.",
+    finalSolution: "The final edit uses controlled pacing, smooth transitions, glow-rich highlights, and perfume-focused composition to transform the source footage into a refined cinematic short that feels premium, modern, and campaign-ready.",
+    process: [
+      "Selected the strongest visual moments from the perfume footage and organized them into a short sequence that builds mood quickly without losing product clarity.",
+      "Shaped the pacing with smooth cuts, cinematic timing, and visual flow so the short feels elegant and engaging from the first seconds to the closing frame.",
+      "Finished the piece with color polish, contrast balancing, and a luxury-oriented tone so the final export feels cohesive, polished, and suitable for social promotion."
+    ],
+    tools: ["Adobe Premiere Pro", "Cinematic Editing", "Color Grading", "Short-Form Content"],
+    client: "Raazina Essence",
+    deliverables: ["Cinematic shorts edit", "Social-ready vertical export", "Luxury product promo sequence"],
+    metrics: ["Premium visual storytelling", "Short-form viewer engagement", "High-end social media presentation"],
+    layout: "wide",
+    colorPalette: [
+      { name: "Midnight Black", hex: "#0F0B0B", use: "Scene depth, contrast, and premium cinematic grounding" },
+      { name: "Golden Amber", hex: "#D99A2B", use: "Highlight glow, warmth, and luxury tone shaping" },
+      { name: "Soft Cream", hex: "#F6E7CA", use: "Balance for reflections, labels, and refined visual separation" }
+    ],
+    typography: [
+      { label: "Title Style", family: "Cinematic Serif", detail: "Supports a premium and elegant tone for short-form luxury storytelling." },
+      { label: "Support", family: "Modern Sans", detail: "Keeps captions and promotional messaging clean and readable in motion formats." }
+    ],
+    beforeAfter: {
+      before: "The product visuals needed a stronger motion-led presentation to feel more dynamic and emotionally engaging in short-form marketing spaces.",
+      after: "The completed edit gives the fragrance brand a cinematic short that feels polished, luxurious, and ready to capture attention across reels and promotional feeds."
+    },
+    mockups: [
+      {
+        type: "video",
+        src: cinematicShortsRaazinaVideo,
+        poster: raazinaBluDeRaazina05,
+        alt: "Cinematic shorts video showcase"
+      }
+    ],
+    testimonial: {
+      quote: "The video gave our perfume visuals a much more premium feel. It looks cinematic, smooth, and perfectly suited for social media promotion.",
+      name: "Raazina Essence Team",
+      company: "Raazina Essence",
+      rating: 5,
+      avatar: createAvatar("Raazina Essence", "#D99A2B", "#0F0B0B")
+    }
+  }),
+  buildProject({
+    slug: "amazon-ebc-listing-design",
+    title: "Amazon EBC Listing Images Design",
+    category: "Graphic Design",
+    typeLabel: "Amazon EBC Design",
+    year: "2026",
+    accent: "E-commerce Listing",
+    featured: true,
+    image: amazonEbcGig01,
+    gallery: [
+      amazonEbc01,
+      amazonEbc02,
+      amazonEbc03,
+      amazonEbc04,
+      amazonEbc05
+    ],
+    description: "A full Amazon EBC and listing image design project for a mineral mud shower gel, focused on product benefits, lifestyle presentation, ingredient clarity, and conversion-ready visual hierarchy.",
+    summary: "This project was created to help an Amazon product listing feel cleaner, more premium, and easier to understand through branded EBC visuals that explain benefits quickly and support purchase confidence.",
+    purpose: "Design a cohesive set of Amazon listing and enhanced brand content images that present the product clearly, communicate key benefits fast, and make the listing visually stronger in a competitive skincare category.",
+    problemStatement: "The product needed more persuasive listing visuals than simple catalog images. It required premium Amazon EBC graphics that could explain ingredients, demonstrate use, highlight benefits, and create stronger trust for shoppers scanning the page quickly.",
+    finalSolution: "The final listing system combines a bright spa-inspired visual style, clean typography, product-focused compositions, ingredient callouts, and lifestyle scenes to create a polished Amazon EBC set that is informative, soft, and conversion-oriented.",
+    process: [
+      "Built the image sequence around the way Amazon shoppers process information by starting with a strong hero visual, then moving into benefits, usage context, ingredient highlights, and feature explanation panels.",
+      "Used a soft skincare-inspired palette, spacious layouts, and clean iconography so each image feels premium while still staying easy to scan on both desktop and mobile Amazon views.",
+      "Balanced product visibility with educational messaging by pairing the bottle with callouts, spa props, and lifestyle imagery that support trust, comfort, and product understanding."
+    ],
+    tools: ["Adobe Photoshop", "Amazon EBC Design", "Listing Image Design", "E-commerce Branding"],
+    client: "Amazon Skincare Product Listing",
+    deliverables: [
+      "Amazon hero gig visual",
+      "5 enhanced brand content images",
+      "Benefits-focused listing graphics",
+      "Lifestyle and ingredient explanation panels"
+    ],
+    metrics: ["Clear shopper communication", "Premium Amazon-ready presentation", "Stronger product trust and readability"],
+    layout: "standard",
+    colorPalette: [
+      { name: "Clean Ivory", hex: "#F5F1E8", use: "Main listing background and soft skincare atmosphere" },
+      { name: "Mineral Gold", hex: "#D8B56A", use: "Product label accent and premium warmth" },
+      { name: "Botanical Green", hex: "#0D7A42", use: "Benefit icons, ingredient signals, and natural product cues" }
+    ],
+    typography: [
+      { label: "Headline", family: "Elegant Serif", detail: "Used to give the Amazon listing a refined beauty and wellness feel in major image headings." },
+      { label: "Support", family: "Modern Sans", detail: "Keeps benefits, feature labels, and EBC copy easy to scan inside marketplace layouts." }
+    ],
+    beforeAfter: {
+      before: "The listing needed more informative and premium visuals to help shoppers understand the product benefits, ingredients, and use case at a glance.",
+      after: "The finished Amazon EBC set gives the product a softer, more trustworthy, and more conversion-ready presentation with clearer benefit storytelling."
+    },
+    mockups: [
+      amazonEbcGig01,
+      amazonEbc03,
+      amazonEbc05,
+      amazonEbc04,
+      amazonEbc02
+    ],
+    testimonial: {
+      quote: "The listing images gave our product a far more professional Amazon presence. The benefits are clearer, the visuals feel premium, and the full set looks much more market-ready.",
+      name: "Amazon Listing Client",
+      company: "Amazon Skincare Product Listing",
+      rating: 5,
+      avatar: createAvatar("Amazon Listing Client", "#D8B56A", "#0D7A42")
+    }
   })
 ];
 

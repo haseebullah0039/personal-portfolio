@@ -37,6 +37,19 @@ function formatMetric(value) {
   return String(value);
 }
 
+function getMediaItem(item) {
+  if (typeof item === "string") {
+    return { type: "image", src: item };
+  }
+
+  return {
+    type: item?.type ?? "image",
+    src: item?.src ?? "",
+    poster: item?.poster,
+    alt: item?.alt
+  };
+}
+
 export default function PortfolioGallery({
   projects,
   enableHashSync = false,
@@ -181,6 +194,7 @@ export default function PortfolioGallery({
           const likes = savedReactions?.likes ?? stats.likes;
           const views = stats.views + (savedReactions?.views ?? 0);
           const isLiked = savedReactions?.liked ?? false;
+          const coverMedia = getMediaItem(project.image);
 
           return (
             <article className="project-card" key={project.slug}>
@@ -193,13 +207,26 @@ export default function PortfolioGallery({
                 onKeyDown={(event) => handleProjectCardKeyDown(event, project)}
               >
                 <div className="project-image">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    decoding="async"
-                    sizes="(max-width: 700px) 100vw, (max-width: 1180px) 50vw, 33vw"
-                  />
+                  {coverMedia.type === "video" ? (
+                    <video
+                      src={coverMedia.src}
+                      poster={coverMedia.poster}
+                      aria-label={coverMedia.alt ?? project.title}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <img
+                      src={coverMedia.src}
+                      alt={coverMedia.alt ?? project.title}
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 700px) 100vw, (max-width: 1180px) 50vw, 33vw"
+                    />
+                  )}
                   <div className="project-overlay">
                     <div className="project-overlay-bar">
                       <div className="project-overlay-copy">

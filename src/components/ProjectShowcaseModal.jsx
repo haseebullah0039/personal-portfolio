@@ -18,6 +18,19 @@ const surfaceThemes = {
 
 const easing = [0.22, 1, 0.36, 1];
 
+function getMediaItem(item) {
+  if (typeof item === "string") {
+    return { type: "image", src: item };
+  }
+
+  return {
+    type: item?.type ?? "image",
+    src: item?.src ?? "",
+    poster: item?.poster,
+    alt: item?.alt
+  };
+}
+
 function createAvatarDataUri(name, accentA = "#f59e0b", accentB = "#7c3aed") {
   const initials = name
     .split(" ")
@@ -180,7 +193,7 @@ function GalleryControlButton({ direction, onClick, theme, label }) {
 }
 
 function LightboxGallery({
-  activeImage,
+  activeMedia,
   activeIndex,
   totalImages,
   theme,
@@ -224,16 +237,33 @@ function LightboxGallery({
         </button>
 
         <figure className="relative m-0 flex h-full w-full max-w-[min(1600px,100vw)] items-center justify-center overflow-hidden">
-          <motion.img
-            key={`lightbox-${activeIndex}`}
-            src={activeImage}
-            alt="Portfolio image preview"
-            className="max-h-[calc(100vh-3rem)] w-auto max-w-full select-none object-contain md:max-h-[calc(100vh-4rem)]"
-            initial={{ opacity: 0, scale: 0.985 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.985 }}
-            transition={{ duration: 0.35, ease: easing }}
-          />
+          {activeMedia.type === "video" ? (
+            <motion.video
+              key={`lightbox-${activeIndex}`}
+              src={activeMedia.src}
+              poster={activeMedia.poster}
+              className="max-h-[calc(100vh-3rem)] w-auto max-w-full select-none object-contain md:max-h-[calc(100vh-4rem)]"
+              initial={{ opacity: 0, scale: 0.985 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.985 }}
+              transition={{ duration: 0.35, ease: easing }}
+              autoPlay
+              controls
+              loop
+              playsInline
+            />
+          ) : (
+            <motion.img
+              key={`lightbox-${activeIndex}`}
+              src={activeMedia.src}
+              alt={activeMedia.alt ?? "Portfolio image preview"}
+              className="max-h-[calc(100vh-3rem)] w-auto max-w-full select-none object-contain md:max-h-[calc(100vh-4rem)]"
+              initial={{ opacity: 0, scale: 0.985 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.985 }}
+              transition={{ duration: 0.35, ease: easing }}
+            />
+          )}
         </figure>
 
         {totalImages > 1 ? (
@@ -254,7 +284,11 @@ export default function ProjectShowcaseModal({
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const shellRef = useRef(null);
-  const activeImage = project?.gallery?.[activeSlide] ?? project?.image;
+  const galleryItems = useMemo(
+    () => (project?.gallery ?? []).map(getMediaItem),
+    [project]
+  );
+  const activeMedia = galleryItems[activeSlide] ?? getMediaItem(project?.image);
   const activeTheme = surfaceThemes.dark;
   const { scrollYProgress } = useScroll({ container: shellRef });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -70]);
@@ -269,8 +303,8 @@ export default function ProjectShowcaseModal({
   const beforeAfter = useMemo(() => (project ? getBeforeAfter(project) : null), [project]);
   const mockups = useMemo(() => (project ? getMockups(project) : []), [project]);
   const testimonial = useMemo(() => (project ? getTestimonial(project) : null), [project]);
-  const goToNextSlide = () => setActiveSlide((index) => (index + 1) % project.gallery.length);
-  const goToPreviousSlide = () => setActiveSlide((index) => (index - 1 + project.gallery.length) % project.gallery.length);
+  const goToNextSlide = () => setActiveSlide((index) => (index + 1) % galleryItems.length);
+  const goToPreviousSlide = () => setActiveSlide((index) => (index - 1 + galleryItems.length) % galleryItems.length);
 
   useEffect(() => {
     setActiveSlide(0);
@@ -309,11 +343,11 @@ export default function ProjectShowcaseModal({
         }
       }
 
-      if (isPreviewOpen && event.key === "ArrowRight" && project.gallery.length > 1) {
+      if (isPreviewOpen && event.key === "ArrowRight" && galleryItems.length > 1) {
         goToNextSlide();
       }
 
-      if (isPreviewOpen && event.key === "ArrowLeft" && project.gallery.length > 1) {
+      if (isPreviewOpen && event.key === "ArrowLeft" && galleryItems.length > 1) {
         goToPreviousSlide();
       }
 
@@ -326,7 +360,7 @@ export default function ProjectShowcaseModal({
       window.addEventListener;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [goToNextSlide, goToPreviousSlide, isPreviewOpen, onClose, project, isPageView]);
+  }, [galleryItems.length, goToNextSlide, goToPreviousSlide, isPreviewOpen, onClose, project, isPageView]);
 
   if (!project) {
     return null;
@@ -435,14 +469,30 @@ export default function ProjectShowcaseModal({
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.35, ease: easing }}
                 >
-                  <motion.img
-                    src={activeImage}
-                    alt={`${project.title} hero showcase`}
-                    className="h-full w-full object-contain p-4 md:p-6"
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.7, ease: easing }}
-                  />
+                  {activeMedia.type === "video" ? (
+                    <motion.video
+                      src={activeMedia.src}
+                      poster={activeMedia.poster}
+                      className="h-full w-full object-contain p-4 md:p-6"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.7, ease: easing }}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <motion.img
+                      src={activeMedia.src}
+                      alt={activeMedia.alt ?? `${project.title} hero showcase`}
+                      className="h-full w-full object-contain p-4 md:p-6"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.7, ease: easing }}
+                    />
+                  )}
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent p-5 text-left text-white">
                     <span className="inline-flex rounded-full border border-white/16 bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.24em] backdrop-blur-xl">
                       View image
@@ -467,7 +517,7 @@ export default function ProjectShowcaseModal({
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
-                  {project.gallery.map((image, index) => (
+                  {galleryItems.map((media, index) => (
                     <motion.button
                       type="button"
                       key={`${project.slug}-gallery-${index}`}
@@ -483,12 +533,26 @@ export default function ProjectShowcaseModal({
                       transition={{ duration: 0.6, ease: easing, delay: index * 0.06 }}
                     >
                       <div className={`relative h-full min-h-[240px] ${activeTheme.imagePanel}`}>
-                        <motion.img
-                          src={image}
-                          alt={`${project.title} gallery ${index + 1}`}
-                          className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.04]"
-                          loading="lazy"
-                        />
+                        {media.type === "video" ? (
+                          <motion.video
+                            src={media.src}
+                            poster={media.poster}
+                            aria-label={media.alt ?? `${project.title} gallery ${index + 1}`}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.04]"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
+                          />
+                        ) : (
+                          <motion.img
+                            src={media.src}
+                            alt={media.alt ?? `${project.title} gallery ${index + 1}`}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.04]"
+                            loading="lazy"
+                          />
+                        )}
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </div>
                     </motion.button>
@@ -609,13 +673,16 @@ export default function ProjectShowcaseModal({
                 </div>
               </div>
               <div className="grid gap-4 md:grid-cols-3">
-                {mockups.map((image, index) => (
+                {mockups.map((item, index) => {
+                  const media = getMediaItem(item);
+
+                  return (
                   <motion.button
                     type="button"
                     key={`${project.slug}-mockup-${index}`}
                     className={`group relative overflow-hidden rounded-[1.5rem] border ${activeTheme.panel} ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                     onClick={() => {
-                      const galleryIndex = project.gallery.indexOf(image);
+                      const galleryIndex = project.gallery.indexOf(item);
                       setActiveSlide(galleryIndex >= 0 ? galleryIndex : 0);
                       setIsPreviewOpen(true);
                     }}
@@ -623,15 +690,30 @@ export default function ProjectShowcaseModal({
                     transition={{ duration: 0.35, ease: easing }}
                   >
                     <div className={`h-full min-h-[240px] ${activeTheme.imagePanel}`}>
-                      <img
-                        src={image}
-                        alt={`${project.title} mockup ${index + 1}`}
-                        className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.03]"
-                        loading="lazy"
-                      />
+                      {media.type === "video" ? (
+                        <video
+                          src={media.src}
+                          poster={media.poster}
+                          aria-label={media.alt ?? `${project.title} mockup ${index + 1}`}
+                          className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.03]"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                        />
+                      ) : (
+                        <img
+                          src={media.src}
+                          alt={media.alt ?? `${project.title} mockup ${index + 1}`}
+                          className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.03]"
+                          loading="lazy"
+                        />
+                      )}
                     </div>
                   </motion.button>
-                ))}
+                  );
+                })}
               </div>
             </section>
           </Reveal>
@@ -697,9 +779,9 @@ export default function ProjectShowcaseModal({
       <AnimatePresence>
         {isPreviewOpen ? (
           <LightboxGallery
-            activeImage={activeImage}
+            activeMedia={activeMedia}
             activeIndex={activeSlide}
-            totalImages={project.gallery.length}
+            totalImages={galleryItems.length}
             theme={activeTheme}
             onClose={() => setIsPreviewOpen(false)}
             onNext={goToNextSlide}
