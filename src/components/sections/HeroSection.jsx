@@ -4,11 +4,11 @@ import profilePicture from "@/assets/hero-portrait-haseeb.webp";
 
 const heroHighlights = [
   {
-    title: "Top Ranking",
+    title: "100% Success Rate",
     position: "top"
   },
   {
-    title: "100% Successful Rate",
+    title: "Top Rating",
     position: "right"
   },
   {
