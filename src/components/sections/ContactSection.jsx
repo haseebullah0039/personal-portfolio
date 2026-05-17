@@ -77,12 +77,12 @@ export default function ContactSection() {
             <b>Follow Me</b>
             <span>Professional updates, recent work, and visual content highlights.</span>
             <div className="contact-social-links">
-              <a href="https://www.linkedin.com/in/haseebullahgraphicdesigner/" target="_blank" rel="noreferrer">
+              <a href="https://www.linkedin.com/in/haseeb-ullah-640531253/" target="_blank" rel="noreferrer">
                 LinkedIn
                 <small>View Profile</small>
               </a>
-              <a href="https://www.instagram.com/haseebullahdesigns/" target="_blank" rel="noreferrer">
-                Instagram
+              <a href="https://www.behance.net/haseebullahgraphicx" target="_blank" rel="noreferrer">
+                Behance
                 <small>View Profile</small>
               </a>
             </div>

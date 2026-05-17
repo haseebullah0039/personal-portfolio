@@ -1,8 +1,8 @@
 const socialProfiles = {
   facebook: "",
-  linkedin: "https://www.linkedin.com/in/haseebullahgraphicdesigner/",
+  linkedin: "https://www.linkedin.com/in/haseeb-ullah-640531253/",
   x: "",
-  instagram: "https://www.instagram.com/haseebullahdesigns/",
+  behance: "https://www.behance.net/haseebullahgraphicx",
   tiktok: ""
 };
 
@@ -22,9 +22,9 @@ const socialIcons = {
       <path d="M17.18 3H20l-6.16 7.04L21 21h-5.64l-4.42-6.7L5.07 21H2.25l6.59-7.53L2 3h5.78l4 6.12Zm-.99 16.24h1.56L6.93 4.68H5.26Z" />
     </svg>
   ),
-  instagram: (
+  behance: (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.8A2.7 2.7 0 0 0 4.8 7.5v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7Zm9.45 1.35a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1ZM12 7.35A4.65 4.65 0 1 1 7.35 12 4.65 4.65 0 0 1 12 7.35Zm0 1.8A2.85 2.85 0 1 0 14.85 12 2.85 2.85 0 0 0 12 9.15Z" />
+      <path d="M4.16 5.84h5.08c2.46 0 4.02 1.2 4.02 3.16 0 1.24-.58 2.1-1.72 2.58 1.5.42 2.26 1.44 2.26 3.02 0 2.26-1.72 3.56-4.36 3.56H4.16V5.84Zm4.74 4.9c1.02 0 1.62-.46 1.62-1.28 0-.8-.58-1.22-1.64-1.22H6.9v2.5h2Zm.22 4.98c1.2 0 1.88-.54 1.88-1.5 0-.92-.66-1.42-1.9-1.42H6.9v2.92h2.22Zm7.12-8.94h4.78v1.46h-4.78V6.78Zm2.5 11.62c-2.72 0-4.48-1.78-4.48-4.54 0-2.74 1.78-4.58 4.4-4.58 2.72 0 4.3 1.96 4.12 5.12h-5.86c.16 1.16.78 1.76 1.86 1.76.76 0 1.24-.26 1.54-.82h2.28c-.5 1.9-1.9 3.06-3.86 3.06Zm1.42-5.56c-.08-1-.62-1.56-1.54-1.56-.94 0-1.5.54-1.68 1.56h3.22Z" />
     </svg>
   ),
   tiktok: (
@@ -52,7 +52,7 @@ export default function Footer() {
     { name: "Facebook", key: "facebook", href: socialProfiles.facebook },
     { name: "LinkedIn", key: "linkedin", href: socialProfiles.linkedin },
     { name: "X", key: "x", href: socialProfiles.x },
-    { name: "Instagram", key: "instagram", href: socialProfiles.instagram },
+    { name: "Behance", key: "behance", href: socialProfiles.behance },
     { name: "TikTok", key: "tiktok", href: socialProfiles.tiktok }
   ];
 

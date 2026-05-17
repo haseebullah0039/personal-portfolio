@@ -13,8 +13,17 @@ import amazonEbc02 from "@/assets/amazon-ebc-02.webp";
 import amazonEbc03 from "@/assets/amazon-ebc-03.webp";
 import amazonEbc04 from "@/assets/amazon-ebc-04.webp";
 import amazonEbc05 from "@/assets/amazon-ebc-05.webp";
+import brandIdentityDesignPackages from "@/assets/brand-identity-design-packages.webp";
+import digitalHujraBrochure01 from "@/assets/digital-hujra-brochure-01.webp";
+import digitalPrintBrandDesignPackages from "@/assets/digital-print-brand-design-packages.png";
+import ecommerceWebsitePackages from "@/assets/e-commerce-website-packages.png";
 import aboutImage from "@/assets/about.webp";
 import heroProfileImage from "@/assets/hero-profile.webp";
+import hujraRestaurantMenuBreads from "@/assets/hujra-restaurant-menu-breads.png";
+import hujraRestaurantMenuDrinks from "@/assets/hujra-restaurant-menu-drinks.png";
+import hujraRestaurantMenuMain from "@/assets/hujra-restaurant-menu-main.png";
+import hujraRestaurantMenuPeshawariTikka from "@/assets/hujra-restaurant-menu-peshawari-tikka.png";
+import hujraRestaurantMenuRiceBiryani from "@/assets/hujra-restaurant-menu-rice-biryani.png";
 import profilePicture from "@/assets/profile-picture.webp";
 import krspozzFastFood01 from "@/assets/krspozz-fast-food-01.webp";
 import krspozzFastFood02 from "@/assets/krspozz-fast-food-02.webp";
@@ -36,6 +45,9 @@ import raazinaBluDeRaazina03 from "@/assets/raazina-blu-de-raazina-03.webp";
 import raazinaBluDeRaazina05 from "@/assets/raazina-blu-de-raazina-05.webp";
 import raazinaNomade02 from "@/assets/raazina-nomade-02.webp";
 import raazinaNomade03 from "@/assets/raazina-nomade-03.webp";
+import posSystemPackages from "@/assets/pos-system-packages.png";
+import productPhotographyPackages from "@/assets/product-photography-packages.png";
+import socialMediaManagementPackages from "@/assets/social-media-management-packages.png";
 import cinematicShortsRaazinaVideo from "@/assets/cinematic-shorts-raazina.webm";
 import certificateVideography from "@/assets/certificate-videography.webp";
 import certificatePhotography from "@/assets/certificate-photography.webp";
@@ -176,7 +188,7 @@ export const projects = [
       "Refined the composition so the logo remains clear across signage, packaging, profile images, and promotional layouts."
     ],
     tools: ["Adobe Illustrator", "Adobe Photoshop", "Logo Design", "Brand Identity"],
-    client: "Al Ansar Abaya Store",
+    client: "Ansar",
     deliverables: ["Primary logo", "Monogram mark", "Retail-ready brand asset", "Social profile visual"],
     metrics: ["Luxury-inspired visual tone", "High logo clarity", "Built for multi-platform branding"],
     layout: "standard",
@@ -235,7 +247,7 @@ export const projects = [
       "Kept logo placement, promotional rhythm, and call-to-action styling consistent across all five creatives so the campaign feels unified."
     ],
     tools: ["Adobe Photoshop", "Social Media Design", "Food Advertising", "Campaign Art Direction"],
-    client: "Krspozz Fast Food",
+    client: "Amjad Ali",
     deliverables: ["5 campaign post designs", "Menu promotion visuals", "Offer-led social creatives"],
     metrics: ["Strong food visibility", "Consistent campaign identity", "Scroll-stopping promotional layout"],
     layout: "wide",
@@ -539,70 +551,182 @@ export const projects = [
 export const allProjects = [
   ...projects,
   buildProject({
-    slug: "restaurant-menu-campaign",
-    title: "Restaurant Menu Campaign",
+    slug: "digital-hujra-brochure-design",
+    title: "Digital Hujra Brochure Design",
     category: "Graphic Design",
-    year: "2025",
-    accent: "Menu",
-    image: alAnsarAbayaLogo,
-    gallery: [alAnsarAbayaLogo, graphicDesignImage, aboutImage],
-    description: "A menu-centered campaign system designed to make pricing, featured dishes, and promotional offers easy to scan and visually appealing.",
-    summary: "Focused on turning menu communication into a branded campaign experience instead of a plain information layout.",
-    purpose: "Help restaurant promotions stand out with a cleaner visual hierarchy and stronger appetite appeal.",
+    typeLabel: "Brochure Design",
+    year: "2026",
+    accent: "Corporate Brochure",
+    image: digitalHujraBrochure01,
+    gallery: [digitalHujraBrochure01],
+    description: "A bold tri-fold brochure design for Digital Hujra, created to present services, business value, and contact information in a polished print-ready marketing format.",
+    summary: "This brochure was designed as a complete offline promotional piece that helps Digital Hujra explain its digital services with stronger structure, better clarity, and a more professional visual identity.",
+    purpose: "Create a brochure that introduces the business, highlights core services, builds trust through key selling points, and gives potential clients one clear promotional piece they can read and keep.",
+    problemStatement: "Digital Hujra needed a brochure that could represent the business professionally in meetings, local promotions, and client presentations. The design had to communicate multiple services clearly without looking crowded or outdated.",
+    finalSolution: "The final brochure uses a blue-orange brand palette, structured panel layout, strong service blocks, trust-building benefit sections, and a clear contact area to give Digital Hujra a modern, business-ready print asset.",
     process: [
-      "Structured menu information for fast readability on social and print-inspired layouts.",
-      "Used high-contrast warm accents and spacing rhythm to keep the content inviting and legible.",
-      "Extended the design language across supporting promotional pieces."
+      "Organized the brochure across distinct panels so the front cover, service overview, company introduction, and value proposition each had a clear place in the reading flow.",
+      "Used bold headings, contrast-rich shapes, and service cards to make each offering easy to scan while keeping the overall look energetic and professional.",
+      "Balanced visual storytelling with practical brochure content by combining mockups, office imagery, icons, and contact details into one cohesive marketing layout."
     ],
-    tools: ["Menu Design", "Typography", "Offer Messaging"],
-    client: "Restaurant Promotion Campaign",
-    deliverables: ["Menu post", "Offer graphic", "Campaign support art"],
-    metrics: ["Readable on mobile", "Offer-first structure", "Premium food presentation"],
-    layout: "tall"
+    tools: ["Adobe Photoshop", "Brochure Design", "Print Layout", "Brand Presentation"],
+    client: "Osama Ghaffar",
+    deliverables: ["Tri-fold brochure design", "Service showcase layout", "Print-ready marketing brochure"],
+    metrics: ["Clear service communication", "Professional business presentation", "Stronger print marketing identity"],
+    layout: "tall",
+    colorPalette: [
+      { name: "Deep Corporate Blue", hex: "#0D2B67", use: "Primary brochure base, headings, and brand structure" },
+      { name: "Signal Orange", hex: "#F59A1B", use: "Accent bars, highlights, and call-to-action emphasis" },
+      { name: "Clean White", hex: "#F7F7F7", use: "Readability, panel balance, and contrast support" }
+    ],
+    typography: [
+      { label: "Headline", family: "Bold Geometric Sans", detail: "Used for strong section titles that stay readable across brochure panels." },
+      { label: "Support", family: "Clean Corporate Sans", detail: "Supports service descriptions, contact details, and smaller brochure content with clarity." }
+    ],
+    beforeAfter: {
+      before: "The business needed a more structured and visually convincing brochure to present its services professionally in print and local marketing contexts.",
+      after: "The finished brochure gives Digital Hujra a stronger offline marketing piece that feels modern, informative, and ready for business promotion."
+    },
+    mockups: [digitalHujraBrochure01],
+    testimonial: {
+      quote: "The brochure made our business presentation look much more polished and professional. It explains our services clearly and gives clients a better first impression.",
+      name: "Digital Hujra Team",
+      company: "Digital Hujra",
+      rating: 5,
+      avatar: createAvatar("Digital Hujra", "#0D2B67", "#F59A1B")
+    }
   }),
   buildProject({
-    slug: "fashion-reel-series",
-    title: "Fashion Reel Series",
-    category: "Video Editing",
-    year: "2025",
-    accent: "Reels",
-    image: videoEditingImage,
-    gallery: [videoEditingImage, heroProfileImage, aboutImage],
-    description: "A stylish reel sequence with beat-led cuts, polish, and movement tuned for fashion and lifestyle presentation.",
-    summary: "Designed to make short-form fashion content feel sharper, more editorial, and easier to binge.",
-    purpose: "Create a social-ready reel format that highlights styling, motion, and product detail with minimal friction.",
-    process: [
-      "Matched edit cadence to music and body movement for a more fashion-led rhythm.",
-      "Applied punchy cut timing and clean title overlays to keep the content elevated.",
-      "Packaged consistent exports for recurring campaign use."
+    slug: "brand-identity-design-packages",
+    title: "Digital Hujra Packages Design Series",
+    category: "Graphic Design",
+    typeLabel: "Package Design Series",
+    year: "2026",
+    accent: "Service Packages",
+    image: brandIdentityDesignPackages,
+    gallery: [
+      brandIdentityDesignPackages,
+      digitalPrintBrandDesignPackages,
+      ecommerceWebsitePackages,
+      posSystemPackages,
+      productPhotographyPackages,
+      socialMediaManagementPackages
     ],
-    tools: ["Beat Editing", "Color Polish", "Social Formatting"],
-    client: "Fashion Content Creator",
-    deliverables: ["Reel series", "Vertical exports", "Motion styling"],
-    metrics: ["Editorial feel", "Repeatable series format", "Fast social delivery"],
-    layout: "standard"
+    description: "A six-poster package design series for Digital Hujra created to present service pricing, package tiers, and core benefits in a bold, consistent, high-contrast sales format.",
+    summary: "This package set was built to help Digital Hujra explain multiple service offers clearly while keeping every poster inside one recognizable visual system.",
+    purpose: "Design a complete package presentation for branding, print, e-commerce, POS, photography, and social media services so potential clients can compare options quickly and trust the offer instantly.",
+    problemStatement: "Digital Hujra needed more structured service posters that could communicate pricing, package differences, and business value without feeling crowded or visually inconsistent from one service to the next.",
+    finalSolution: "The final series uses one shared neon-tech direction with deep navy backgrounds, blue-orange contrast, glowing iconography, and tier-based pricing cards so each service looks distinct while still belonging to the same campaign family.",
+    process: [
+      "Built a repeatable poster framework around a clear top hierarchy, central service headline, and three-card pricing layout so every package stays easy to scan.",
+      "Tailored the supporting illustrations, feature lists, and CTA emphasis for each service category while preserving consistent spacing, color rhythm, and branding cues.",
+      "Refined the full set into a cohesive sales-ready collection that works for portfolio presentation, social posting, and direct client pitching."
+    ],
+    tools: ["Adobe Photoshop", "Package Design", "Offer Design", "Marketing Visual Systems"],
+    client: "Osama Ghaffar",
+    deliverables: [
+      "Brand identity package poster",
+      "Digital print and brand design package poster",
+      "E-commerce website package poster",
+      "POS system package poster",
+      "Product photography package poster",
+      "Social media management package poster"
+    ],
+    metrics: ["Clear package comparison", "Consistent sales-focused design system", "Stronger service presentation"],
+    layout: "wide",
+    colorPalette: [
+      { name: "Electric Blue", hex: "#1697ff", use: "Primary highlights, icons, and tier headings" },
+      { name: "Vibrant Orange", hex: "#ff9f1a", use: "Premium card emphasis, pricing contrast, and CTA focus" },
+      { name: "Midnight Navy", hex: "#07142a", use: "Background depth and campaign consistency" }
+    ],
+    typography: [
+      { label: "Headline", family: "Bold Display Sans", detail: "Used for loud service headlines and price hierarchy across the package set." },
+      { label: "Support", family: "Clean UI Sans", detail: "Keeps package features, best-for notes, and CTA copy readable inside dense layouts." }
+    ],
+    beforeAfter: {
+      before: "The service offers needed a more polished and consistent visual format so clients could understand pricing and package tiers faster.",
+      after: "The finished package series gives Digital Hujra a stronger sales presentation with clearer comparisons, sharper branding, and a much more professional offer deck."
+    },
+    mockups: [
+      brandIdentityDesignPackages,
+      digitalPrintBrandDesignPackages,
+      ecommerceWebsitePackages,
+      posSystemPackages,
+      productPhotographyPackages,
+      socialMediaManagementPackages
+    ],
+    testimonial: {
+      quote: "This package series made our services look more structured, more professional, and much easier for clients to understand at a glance.",
+      name: "Digital Hujra Team",
+      company: "Digital Hujra",
+      rating: 5,
+      avatar: createAvatar("Digital Hujra", "#1697ff", "#ff9f1a")
+    }
   }),
   buildProject({
-    slug: "lifestyle-brand-shoot",
-    title: "Lifestyle Brand Shoot",
-    category: "Photography",
-    year: "2025",
-    accent: "Lifestyle",
-    image: aboutImage,
-    gallery: [aboutImage, photographyImage, heroProfileImage],
-    description: "Lifestyle-led photography built around brand mood, natural storytelling, and commercial cleanliness.",
-    summary: "Created to bridge the gap between polished campaign visuals and authentic, usable everyday brand imagery.",
-    purpose: "Capture a brand personality that feels warm, modern, and versatile across marketing channels.",
-    process: [
-      "Planned framing around real use moments and supporting textures rather than isolated product-only shots.",
-      "Balanced natural atmosphere with commercial discipline in composition and color cleanup.",
-      "Delivered a broad mix of hero, portrait, and supporting images for campaign flexibility."
+    slug: "hujra-restaurant-menu-design",
+    title: "Hujra Restaurant Menu Design Series",
+    category: "Graphic Design",
+    typeLabel: "Restaurant Menu Design",
+    year: "2026",
+    accent: "Food Menu Design",
+    image: hujraRestaurantMenuMain,
+    gallery: [
+      hujraRestaurantMenuMain,
+      hujraRestaurantMenuBreads,
+      hujraRestaurantMenuRiceBiryani,
+      hujraRestaurantMenuPeshawariTikka,
+      hujraRestaurantMenuDrinks
     ],
-    tools: ["Art Direction", "Lifestyle Photography", "Color Correction"],
-    client: "Lifestyle Brand",
-    deliverables: ["Brand photos", "Web crops", "Campaign stills"],
-    metrics: ["Multi-use imagery", "Natural premium mood", "Consistent color treatment"],
-    layout: "wide"
+    description: "A premium menu design series for Hujra Restaurant, created to showcase traditional dishes with strong category hierarchy, rich food presentation, and a warm heritage-inspired visual identity.",
+    summary: "This project was designed to give Hujra Restaurant a complete menu system that feels authentic, appetizing, and visually memorable while helping customers scan categories and prices quickly.",
+    purpose: "Build a menu design set that introduces the restaurant brand, organizes major food categories clearly, and turns core dishes like tikka, biryani, breads, and drinks into attractive sales-focused visuals.",
+    problemStatement: "Hujra Restaurant needed a more refined menu presentation that could communicate traditional flavor, restaurant identity, and pricing clearly without feeling generic or cluttered. The menu had to feel premium while still being easy to read for everyday customers.",
+    finalSolution: "The final menu series combines dark textured backgrounds, warm gold detailing, category-based layouts, bold serif headlines, and large appetizing food visuals to create a menu system that feels traditional, premium, and highly readable across both single-category posters and the complete main menu composition.",
+    process: [
+      "Built the main menu around clearly separated food categories so customers can understand the restaurant offering at a glance while still feeling the full Hujra brand atmosphere.",
+      "Designed dedicated category posters for breads, rice and biryani, Peshawari tikka, and drinks, using consistent decorative framing, logo treatment, and pricing alignment to keep the full set visually unified.",
+      "Used rich food imagery, warm contrast, and traditional visual cues to make the menu feel more premium and culturally rooted while maintaining strong readability for names, prices, and contact details."
+    ],
+    tools: ["Adobe Photoshop", "Menu Design", "Food Advertising", "Print-Ready Layout"],
+    client: "Hujra Restaurant",
+    deliverables: [
+      "Main restaurant menu poster",
+      "Breads category menu",
+      "Rice and biryani menu",
+      "Peshawari tikka menu",
+      "Drinks menu"
+    ],
+    metrics: ["Clear category organization", "Stronger restaurant branding", "More appetizing menu presentation"],
+    layout: "wide",
+    colorPalette: [
+      { name: "Heritage Gold", hex: "#dca12c", use: "Headlines, borders, prices, and premium detail accents" },
+      { name: "Smoky Charcoal", hex: "#12100d", use: "Main background depth and restaurant atmosphere" },
+      { name: "Warm Copper", hex: "#9e5d23", use: "Food warmth, supporting accents, and richness in presentation" },
+      { name: "Cool Aqua", hex: "#6ed4ff", use: "Drinks category highlights and contrast accents" }
+    ],
+    typography: [
+      { label: "Headline", family: "Classic Display Serif", detail: "Used for large menu category titles to create a traditional, premium restaurant feel." },
+      { label: "Support", family: "Readable Editorial Serif", detail: "Keeps food names, prices, and location details clear while preserving the elegant menu tone." }
+    ],
+    beforeAfter: {
+      before: "The restaurant needed a menu presentation that could feel more premium, more organized, and more aligned with its traditional dining identity.",
+      after: "The completed menu series gives Hujra Restaurant a stronger branded presentation where categories are easier to browse and each dish feels more appealing and professionally showcased."
+    },
+    mockups: [
+      hujraRestaurantMenuMain,
+      hujraRestaurantMenuBreads,
+      hujraRestaurantMenuRiceBiryani,
+      hujraRestaurantMenuPeshawariTikka,
+      hujraRestaurantMenuDrinks
+    ],
+    testimonial: {
+      quote: "The new menu designs made our restaurant look much more premium and organized. Customers can now understand our categories more easily, and the food presentation feels far more attractive.",
+      name: "Hujra Restaurant Team",
+      company: "Hujra Restaurant",
+      rating: 5,
+      avatar: createAvatar("Hujra Restaurant", "#dca12c", "#12100d")
+    }
   }),
   buildProject({
     slug: "product-launch-film",
@@ -731,104 +855,16 @@ export const reviewMetrics = [
   { label: "Client Satisfaction", value: 97 }
 ];
 
-export const testimonials = [
-  {
-    name: "Ayesha Khan",
-    role: "Founder, Bloom & Co",
-    text: "The branding work felt polished from the first concept. Every visual looked premium, and the final kit made our launch feel genuinely professional.",
-    avatar: createAvatar("Ayesha Khan", "#f37221", "#6f2d46")
-  },
-  {
-    name: "Usman Tariq",
-    role: "Marketing Lead, Novara",
-    text: "Fast turnaround, sharp design thinking, and a calm process. Haseeb translated our campaign ideas into visuals that looked far more expensive than expected.",
-    avatar: createAvatar("Usman Tariq", "#f37221", "#3b1f3b")
-  },
-  {
-    name: "Sana Malik",
-    role: "Content Creator",
-    text: "The edit pacing was excellent. Hooks, captions, and sound all felt deliberate, and the content performed better because it finally looked cohesive.",
-    avatar: createAvatar("Sana Malik", "#ef7f2d", "#47214a")
-  },
-  {
-    name: "Bilal Rauf",
-    role: "E-commerce Owner",
-    text: "The product images immediately elevated our listings. Clean detail shots, premium lighting, and consistent color made the whole catalog look stronger.",
-    avatar: createAvatar("Bilal Rauf", "#f37221", "#2b415d")
-  },
-  {
-    name: "Hina Arshad",
-    role: "Brand Strategist",
-    text: "One of the best creative collaborators I have worked with. Thoughtful, responsive, and very good at keeping the output aligned with strategy.",
-    avatar: createAvatar("Hina Arshad", "#f37221", "#5e2940")
-  },
-  {
-    name: "Adeel Abbas",
-    role: "Restaurant Owner",
-    text: "Our campaign posts finally looked organized and appetizing. The system was easy to reuse and made our promotions feel more consistent week after week.",
-    avatar: createAvatar("Adeel Abbas", "#f37221", "#4a2738")
-  },
-  {
-    name: "Maham Ali",
-    role: "Social Media Manager",
-    text: "Strong communication and even stronger design instincts. Files were delivered cleanly, and the visuals fit our audience perfectly.",
-    avatar: createAvatar("Maham Ali", "#f37221", "#304760")
-  },
-  {
-    name: "Talha Saeed",
-    role: "Founder, T-Supply",
-    text: "The promo video felt cinematic without losing the product message. It gave us a hero asset we could use across multiple campaign touchpoints.",
-    avatar: createAvatar("Talha Saeed", "#f37221", "#51284d")
-  },
-  {
-    name: "Iqra Noor",
-    role: "Beauty Creator",
-    text: "My content now feels like a real brand. The editing style is smooth, premium, and consistent enough that followers instantly recognize it.",
-    avatar: createAvatar("Iqra Noor", "#f37221", "#6a2f52")
-  },
-  {
-    name: "Hamza Fareed",
-    role: "Startup Co-Founder",
-    text: "Designs were not just attractive. They were useful, clear, and built with the audience in mind. That balance is difficult to find.",
-    avatar: createAvatar("Hamza Fareed", "#f37221", "#3b1f3b")
-  },
-  {
-    name: "Nimra Shah",
-    role: "Campaign Manager",
-    text: "Reliable, tasteful, and detail-oriented. Even under a tight deadline the final presentation looked refined and agency-level.",
-    avatar: createAvatar("Nimra Shah", "#f37221", "#5c3440")
-  },
-  {
-    name: "Farhan Ahmed",
-    role: "Amazon Seller",
-    text: "The photography and listing visuals made our product feel much more trustworthy. We noticed stronger confidence in the presentation immediately.",
-    avatar: createAvatar("Farhan Ahmed", "#f37221", "#2f465a")
-  },
-  {
-    name: "Sara Javed",
-    role: "Creative Producer",
-    text: "Smooth delivery, sharp eye for composition, and a premium finish across both static and motion work. Easy to recommend.",
-    avatar: createAvatar("Sara Javed", "#f37221", "#6f2d46")
-  },
-  {
-    name: "Danish Irfan",
-    role: "Agency Partner",
-    text: "The turnaround was efficient and the files were production-ready. Strong visual judgment and no unnecessary revision cycles.",
-    avatar: createAvatar("Danish Irfan", "#f37221", "#40456b")
-  },
-  {
-    name: "Komal Yousaf",
-    role: "Founder, K Atelier",
-    text: "A very tasteful sense of layout and motion. The final campaign assets felt premium, modern, and aligned with our audience from day one.",
-    avatar: createAvatar("Komal Yousaf", "#f37221", "#593047")
-  },
-  {
-    name: "Zeeshan Riaz",
-    role: "Product Marketer",
-    text: "The creative process was smooth and well organized. We had clarity on direction early, and the final assets were strong across every format.",
-    avatar: createAvatar("Zeeshan Riaz", "#f37221", "#33445f")
-  }
-];
+export const testimonials = allProjects
+  .filter((project) => project.testimonial)
+  .map((project) => ({
+    name: project.testimonial.name,
+    role: project.testimonial.company,
+    text: project.testimonial.quote,
+    rating: project.testimonial.rating ?? 5,
+    avatar: project.testimonial.avatar,
+    projectTitle: project.title
+  }));
 
 export const trustCards = [
   { name: "Fiverr", note: "Top Rated", accent: "Marketplace Success" },

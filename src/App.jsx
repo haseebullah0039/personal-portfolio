@@ -5,7 +5,6 @@ import CursorFollower from "@/components/CursorFollower";
 import Footer from "@/components/Footer";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import Navbar from "@/components/Navbar";
-import PageTransitionLoader from "@/components/PageTransitionLoader";
 import AboutSection from "@/components/sections/AboutSection";
 import CaseStudyPage from "@/components/sections/CaseStudyPage";
 import CertificateViewerPage from "@/components/sections/CertificateViewerPage";
@@ -54,22 +53,6 @@ function getPageState(hash) {
     page: "home",
     slug: null
   };
-}
-
-function shouldShowPageLoader(hash) {
-  if (!hash) {
-    return false;
-  }
-
-  if (hash === "#portfolio-more" || hash.startsWith("#case-study-")) {
-    return true;
-  }
-
-  if (hash.startsWith("#certificate-")) {
-    return true;
-  }
- 
-  return false;
 }
 
 function isPortfolioHash(hash) {
@@ -151,7 +134,6 @@ export default function App() {
   const [pageState, setPageState] = useState(() => getPageState(getCurrentHash()));
   const [activeSectionHash, setActiveSectionHash] = useState("#home");
   const [isIntroVisible, setIsIntroVisible] = useState(true);
-  const [isPageTransitionVisible, setIsPageTransitionVisible] = useState(false);
   const currentHashRef = useRef(getCurrentHash());
   const currentPageRef = useRef(getPageState(getCurrentHash()).page);
   const hasInitializedRef = useRef(false);
@@ -159,7 +141,6 @@ export default function App() {
   const scrollPersistFrameRef = useRef(null);
   const scrollPersistTimeoutRef = useRef(null);
   const scrollEndTimerRef = useRef(null);
-  const transitionTimerRef = useRef(null);
 
   const updateHistoryState = useCallback((partialState = {}, url = null) => {
     if (typeof window === "undefined") {
@@ -188,18 +169,6 @@ export default function App() {
         hash: currentHashRef.current || activeSectionHash || "#home",
         scrollY: window.scrollY
       });
-    }
-
-    if (
-      hasInitializedRef.current
-      && resolvedHash !== currentHashRef.current
-      && shouldShowPageLoader(resolvedHash)
-    ) {
-      window.clearTimeout(transitionTimerRef.current);
-      setIsPageTransitionVisible(true);
-      transitionTimerRef.current = window.setTimeout(() => {
-        setIsPageTransitionVisible(false);
-      }, resolvedHash.startsWith("#case-study-") ? 420 : 280);
     }
 
     currentHashRef.current = resolvedHash;
@@ -352,7 +321,6 @@ export default function App() {
       window.clearTimeout(introTimer);
       window.clearTimeout(scrollPersistTimeoutRef.current);
       window.clearTimeout(scrollEndTimerRef.current);
-      window.clearTimeout(transitionTimerRef.current);
       window.cancelAnimationFrame(scrollPersistFrameRef.current);
       document.body.classList.remove("intro-active");
       window.history.scrollRestoration = "auto";
@@ -482,7 +450,6 @@ export default function App() {
   return (
     <>
       <BrandIntroLoader isVisible={isIntroVisible} />
-      <PageTransitionLoader isVisible={isPageTransitionVisible} />
       {pageState.page === "certificate" ? null : (
         <Navbar activeHash={navbarActiveHash} onNavigate={navigateToHash} />
       )}

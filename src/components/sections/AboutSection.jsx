@@ -4,6 +4,7 @@ import { skillBars } from "@/data/portfolio";
 
 export default function AboutSection() {
   const emailAddress = "info@haseebullahdesigns.com";
+  const cvDownloadPath = "/Haseeb-Ullah-CV.pdf";
 
   return (
     <section id="about" className="section about-section">
@@ -60,9 +61,10 @@ export default function AboutSection() {
           <div className="button-row">
             <a
               className="ghost-btn"
-              href={`mailto:${emailAddress}?subject=Profile%20Request`}
+              href={cvDownloadPath}
+              download="Haseeb-Ullah-CV.pdf"
             >
-              Request Profile
+              Download CV
             </a>
             <a className="primary-btn" href="#contact">Hire Me</a>
           </div>
