@@ -1,27 +1,65 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import BrandIntroLoader from "@/components/BrandIntroLoader";
-import CursorFollower from "@/components/CursorFollower";
+import DeferredSection from "@/components/DeferredSection";
 import Footer from "@/components/Footer";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import Navbar from "@/components/Navbar";
-import AboutSection from "@/components/sections/AboutSection";
-import CaseStudyPage from "@/components/sections/CaseStudyPage";
-import CertificateViewerPage from "@/components/sections/CertificateViewerPage";
-import CertificatesSection from "@/components/sections/CertificatesSection";
-import ContactSection from "@/components/sections/ContactSection";
 import HeroSection from "@/components/sections/HeroSection";
-import PortfolioMorePage from "@/components/sections/PortfolioMorePage";
-import PortfolioSection from "@/components/sections/PortfolioSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ToolsMarqueeSection from "@/components/sections/ToolsMarqueeSection";
+
+const CursorFollower = lazy(() => import("@/components/CursorFollower"));
+const CaseStudyPage = lazy(() => import("@/components/sections/CaseStudyPage"));
+const CertificateViewerPage = lazy(() => import("@/components/sections/CertificateViewerPage"));
+const PortfolioMorePage = lazy(() => import("@/components/sections/PortfolioMorePage"));
 
 const HOME_SECTION_HASHES = ["#home", "#about", "#services", "#portfolio", "#contact"];
 const CERTIFICATE_SCROLL_KEY = "certificate-return-scroll";
 const ROUTE_RETURN_KEY = "route-return-state";
 const SCROLL_END_DEBOUNCE_MS = 140;
 const SCROLL_STATE_PERSIST_DEBOUNCE_MS = 120;
+const ROUTE_FALLBACK = <main className="page-shell" aria-busy="true" />;
+
+const deferredHomeSections = [
+  {
+    sectionId: "about",
+    loader: () => import("@/components/sections/AboutSection"),
+    minHeight: 920
+  },
+  {
+    sectionId: "services",
+    loader: () => import("@/components/sections/ServicesSection"),
+    minHeight: 940
+  },
+  {
+    sectionId: "portfolio",
+    loader: () => import("@/components/sections/PortfolioSection"),
+    minHeight: 1460
+  },
+  {
+    sectionId: "certificates",
+    loader: () => import("@/components/sections/CertificatesSection"),
+    minHeight: 1120,
+    componentProps: {
+      onOpenCertificate: (certificate) => {
+        if (typeof window !== "undefined") {
+          window.sessionStorage.setItem(CERTIFICATE_SCROLL_KEY, String(window.scrollY));
+          window.location.hash = `#certificate-${certificate.slug}`;
+        }
+      }
+    }
+  },
+  {
+    sectionId: null,
+    loader: () => import("@/components/sections/TestimonialsSection"),
+    minHeight: 860
+  },
+  {
+    sectionId: "contact",
+    loader: () => import("@/components/sections/ContactSection"),
+    minHeight: 860
+  }
+];
 
 function getCurrentHash() {
   return typeof window === "undefined" ? "" : window.location.hash;
@@ -134,6 +172,7 @@ export default function App() {
   const [pageState, setPageState] = useState(() => getPageState(getCurrentHash()));
   const [activeSectionHash, setActiveSectionHash] = useState("#home");
   const [isIntroVisible, setIsIntroVisible] = useState(true);
+  const [showCursorFollower, setShowCursorFollower] = useState(false);
   const currentHashRef = useRef(getCurrentHash());
   const currentPageRef = useRef(getPageState(getCurrentHash()).page);
   const hasInitializedRef = useRef(false);
@@ -343,6 +382,35 @@ export default function App() {
   }, [pageState.page]);
 
   useEffect(() => {
+    if (typeof window === "undefined" || pageState.page === "certificate") {
+      return undefined;
+    }
+
+    const enableCursor = () => {
+      setShowCursorFollower(true);
+    };
+
+    let idleTimerId = null;
+    let idleCallbackId = null;
+
+    if ("requestIdleCallback" in window) {
+      idleCallbackId = window.requestIdleCallback(enableCursor, { timeout: 1400 });
+    } else {
+      idleTimerId = window.setTimeout(enableCursor, 900);
+    }
+
+    return () => {
+      if (idleCallbackId !== null && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleCallbackId);
+      }
+
+      if (idleTimerId !== null) {
+        window.clearTimeout(idleTimerId);
+      }
+    };
+  }, [pageState.page]);
+
+  useEffect(() => {
     if (pageState.page !== "home" || typeof window === "undefined" || typeof document === "undefined") {
       return undefined;
     }
@@ -453,7 +521,11 @@ export default function App() {
       {pageState.page === "certificate" ? null : (
         <Navbar activeHash={navbarActiveHash} onNavigate={navigateToHash} />
       )}
-      {pageState.page === "certificate" ? null : <CursorFollower />}
+      {pageState.page === "certificate" || !showCursorFollower ? null : (
+        <Suspense fallback={null}>
+          <CursorFollower />
+        </Suspense>
+      )}
       <AnimatePresence mode="wait">
         <motion.div
           key={`${pageState.page}-${pageState.slug ?? "root"}`}
@@ -464,35 +536,37 @@ export default function App() {
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         >
           {pageState.page === "certificate" ? (
-            <CertificateViewerPage
-              slug={pageState.slug}
-              onClose={() => {
-                if (typeof window !== "undefined") {
-                  window.location.hash = "#certificates";
-                }
-              }}
-            />
+            <Suspense fallback={ROUTE_FALLBACK}>
+              <CertificateViewerPage
+                slug={pageState.slug}
+                onClose={() => {
+                  if (typeof window !== "undefined") {
+                    window.location.hash = "#certificates";
+                  }
+                }}
+              />
+            </Suspense>
           ) : pageState.page === "case-study" ? (
-            <CaseStudyPage slug={pageState.slug} />
+            <Suspense fallback={ROUTE_FALLBACK}>
+              <CaseStudyPage slug={pageState.slug} />
+            </Suspense>
           ) : pageState.page === "portfolio" ? (
-            <PortfolioMorePage />
+            <Suspense fallback={ROUTE_FALLBACK}>
+              <PortfolioMorePage />
+            </Suspense>
           ) : (
             <main>
               <HeroSection />
               <ToolsMarqueeSection />
-              <AboutSection />
-              <ServicesSection />
-              <PortfolioSection />
-              <CertificatesSection
-                onOpenCertificate={(certificate) => {
-                  if (typeof window !== "undefined") {
-                    window.sessionStorage.setItem(CERTIFICATE_SCROLL_KEY, String(window.scrollY));
-                    window.location.hash = `#certificate-${certificate.slug}`;
-                  }
-                }}
-              />
-              <TestimonialsSection />
-              <ContactSection />
+              {deferredHomeSections.map((section, index) => (
+                <DeferredSection
+                  key={section.sectionId ?? `deferred-${index}`}
+                  loader={section.loader}
+                  sectionId={section.sectionId}
+                  minHeight={section.minHeight}
+                  componentProps={section.componentProps}
+                />
+              ))}
             </main>
           )}
         </motion.div>

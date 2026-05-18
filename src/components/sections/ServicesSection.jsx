@@ -32,9 +32,9 @@ function ServiceGlyph({ type }) {
   );
 }
 
-export default function ServicesSection() {
+export default function ServicesSection({ sectionId = "services" }) {
   return (
-    <section id="services" className="section">
+    <section id={sectionId ?? undefined} className="section">
       <div className="section-heading">
         <p className="pill">Services</p>
         <h2>

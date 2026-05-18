@@ -35,9 +35,9 @@ function StatIcon({ type }) {
   );
 }
 
-export default function PortfolioSection() {
+export default function PortfolioSection({ sectionId = "portfolio" }) {
   return (
-    <section id="portfolio" className="section portfolio-section">
+    <section id={sectionId ?? undefined} className="section portfolio-section">
       <div className="section-heading">
         <div className="portfolio-title">
           <img

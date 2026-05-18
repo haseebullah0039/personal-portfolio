@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 
 export default function CursorFollower() {
   const cursorRef = useRef(null);
+  const frameRef = useRef(null);
+  const pointerRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -11,9 +13,21 @@ export default function CursorFollower() {
 
     const interactiveSelector = "a, button, input, select, textarea, [role='button']";
 
-    const moveCursor = (event) => {
-      cursor.style.translate = `${event.clientX}px ${event.clientY}px`;
+    const paintCursor = () => {
+      frameRef.current = null;
+      cursor.style.translate = `${pointerRef.current.x}px ${pointerRef.current.y}px`;
       cursor.classList.add("is-visible");
+    };
+
+    const moveCursor = (event) => {
+      pointerRef.current = {
+        x: event.clientX,
+        y: event.clientY
+      };
+
+      if (frameRef.current === null) {
+        frameRef.current = window.requestAnimationFrame(paintCursor);
+      }
     };
 
     const setActive = (event) => {
@@ -34,6 +48,10 @@ export default function CursorFollower() {
     document.addEventListener("pointerleave", hideCursor);
 
     return () => {
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+
       window.removeEventListener("pointermove", moveCursor);
       document.removeEventListener("pointerover", setActive);
       document.removeEventListener("pointerout", setActive);

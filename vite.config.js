@@ -12,4 +12,29 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) {
+              return 'motion-vendor';
+            }
+
+            if (id.includes('react')) {
+              return 'react-vendor';
+            }
+
+            return 'vendor';
+          }
+
+          if (id.includes("/src/data/portfolio") || id.includes("\\src\\data\\portfolio")) {
+            return 'portfolio-data';
+          }
+
+          return undefined;
+        },
+      },
+    },
+  },
 });

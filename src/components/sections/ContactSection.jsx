@@ -1,4 +1,4 @@
-export default function ContactSection() {
+export default function ContactSection({ sectionId = "contact" }) {
   const emailAddress = "info@haseebullahdesigns.com";
   const phoneNumber = "+92 3461365547";
   const whatsappNumber = "+923461365547";
@@ -6,7 +6,7 @@ export default function ContactSection() {
   const mapLink = "https://www.google.com/maps/search/?api=1&query=Thana%20Batkhela%2C%20Malakand%2C%20Pakistan";
 
   return (
-    <section id="contact" className="section contact-section">
+    <section id={sectionId ?? undefined} className="section contact-section">
       <div className="section-heading">
         <p className="pill">Get In Touch</p>
         <h2>

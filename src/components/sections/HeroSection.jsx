@@ -92,6 +92,9 @@ export default function HeroSection() {
             alt="Haseeb Ullah creative professional"
             width={760}
             height={760}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
         </figure>
       </div>

@@ -7,7 +7,7 @@ const certificateHighlights = [
   { value: "4", label: "Creative disciplines covered" }
 ];
 
-export default function CertificatesSection({ onOpenCertificate }) {
+export default function CertificatesSection({ onOpenCertificate, sectionId = "certificates" }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
   const isMobileCarousel = cardsPerView === 1;
@@ -28,7 +28,7 @@ export default function CertificatesSection({ onOpenCertificate }) {
         return;
       }
 
-      setCardsPerView(2);
+      setCardsPerView(3);
     };
 
     syncCardsPerView();
@@ -66,7 +66,7 @@ export default function CertificatesSection({ onOpenCertificate }) {
   };
 
   return (
-    <section id="certificates" className="section certificates-section">
+    <section id={sectionId ?? undefined} className="section certificates-section">
       <div className="certificate-showcase">
         <div className="section-heading certificate-heading">
           <p className="pill">Certificates</p>

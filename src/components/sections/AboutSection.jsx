@@ -2,12 +2,12 @@ import SkillBar from "@/components/SkillBar";
 import aboutImage from "@/assets/about.webp";
 import { skillBars } from "@/data/portfolio";
 
-export default function AboutSection() {
+export default function AboutSection({ sectionId = "about" }) {
   const emailAddress = "info@haseebullahdesigns.com";
   const cvDownloadPath = "/Haseeb-Ullah-CV.pdf";
 
   return (
-    <section id="about" className="section about-section">
+    <section id={sectionId ?? undefined} className="section about-section">
       <div className="section-heading">
         <p className="pill">About Me</p>
         <h2 className="about-heading-title">
