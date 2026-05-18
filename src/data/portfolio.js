@@ -16,6 +16,16 @@ import amazonEbc05 from "@/assets/amazon-ebc-05.webp";
 import brandIdentityDesignPackages from "@/assets/brand-identity-design-packages.webp";
 import digitalHujraBrochure01 from "@/assets/digital-hujra-brochure-01.webp";
 import digitalPrintBrandDesignPackages from "@/assets/digital-print-brand-design-packages.png";
+import salamDentistD1 from "@/assets/D1.png";
+import salamDentistD2 from "@/assets/D2.png";
+import salamDentistD3 from "@/assets/D3.png";
+import salamDentistD4 from "@/assets/D4.png";
+import salamDentistD5 from "@/assets/D5.png";
+import salamDentistD6 from "@/assets/D6.png";
+import salamDentistD7 from "@/assets/D7.png";
+import salamDentistD8 from "@/assets/D8.png";
+import salamDentistD9 from "@/assets/D9.png";
+import salamDentistD10 from "@/assets/D10.png";
 import ecommerceWebsitePackages from "@/assets/e-commerce-website-packages.png";
 import aboutImage from "@/assets/about.webp";
 import heroProfileImage from "@/assets/hero-profile.webp";
@@ -729,70 +739,79 @@ export const allProjects = [
     }
   }),
   buildProject({
-    slug: "product-launch-film",
-    title: "Product Launch Film",
-    category: "Videography",
-    year: "2025",
-    accent: "Launch",
-    image: heroProfileImage,
-    gallery: [heroProfileImage, videographyImage, profilePicture],
-    description: "A launch film focused on premium reveal pacing, feature storytelling, and cinematic detail shots.",
-    summary: "Built to support a launch moment with visuals that feel premium enough for teasers, web banners, and ads.",
-    purpose: "Generate anticipation and trust by presenting product features through motion-led storytelling.",
-    process: [
-      "Mapped the product story from teaser to reveal to ensure the strongest visuals landed at the right moments.",
-      "Used movement, angle changes, and lighting accents to increase perceived quality.",
-      "Prepared short and long deliverables so the same production could power multiple launch touchpoints."
-    ],
-    tools: ["Shot Design", "Cinematic Capture", "Editing", "Color Finish"],
-    client: "Product Launch Campaign",
-    deliverables: ["Hero launch film", "Short teasers", "Campaign stills"],
-    metrics: ["Launch-ready master", "Social teaser set", "Premium reveal structure"],
-    layout: "tall"
-  }),
-  buildProject({
-    slug: "business-social-kit",
-    title: "Business Social Kit",
+    slug: "salam-dentist-full-branding-kit",
+    title: "Salam Dentist Full Branding Kit",
     category: "Graphic Design",
-    year: "2025",
-    accent: "Social",
-    image: graphicDesignImage,
-    gallery: [graphicDesignImage, aboutImage, alAnsarAbayaLogo],
-    description: "A repeatable social design toolkit that helps brands publish faster while preserving a premium identity.",
-    summary: "Ideal for businesses that need a dependable content system for announcements, promos, and everyday brand communication.",
-    purpose: "Reduce inconsistency across posts while keeping social design expressive, clean, and adaptable.",
-    process: [
-      "Built modular layouts for testimonials, launches, offers, and simple educational posts.",
-      "Defined spacing, accent, and typography rules that keep day-to-day content on-brand.",
-      "Prepared assets for quick content refreshes without full redesign work."
+    typeLabel: "Full Branding Kit",
+    year: "2026",
+    accent: "Healthcare Branding",
+    image: salamDentistD1,
+    gallery: [
+      salamDentistD1,
+      salamDentistD2,
+      salamDentistD3,
+      salamDentistD4,
+      salamDentistD5,
+      salamDentistD6,
+      salamDentistD7,
+      salamDentistD8,
+      salamDentistD9,
+      salamDentistD10
     ],
-    tools: ["Template Systems", "Branding", "Social Content Design"],
-    client: "Service and Local Businesses",
-    deliverables: ["Template kit", "Post variations", "Campaign layouts"],
-    metrics: ["Faster content production", "Visual consistency", "Scalable brand system"],
-    layout: "wide"
-  }),
-  buildProject({
-    slug: "youtube-editing-package",
-    title: "YouTube Editing Package",
-    category: "Video Editing",
-    year: "2025",
-    accent: "YouTube",
-    image: profilePicture,
-    gallery: [profilePicture, videoEditingImage, heroProfileImage],
-    description: "A long-form edit package with pacing cleanup, structured storytelling, captions, and audio polish for stronger watchability.",
-    summary: "Designed for creators and businesses who want professional, repeatable long-form content without losing personality.",
-    purpose: "Make longer videos feel smoother and more engaging from intro to close while maintaining brand voice.",
+    description: "A complete branding kit for Salam Dentist built around a calm teal-and-navy healthcare identity for promotions, patient communication, stationery, and service presentation.",
+    summary: "This branding project creates a full visual system for Salam Dentist, combining logo design, marketing creatives, clinic collateral, and reusable branded layouts into one cohesive identity.",
+    purpose: "Develop a recognizable dental brand that feels clean, trustworthy, and patient-friendly while staying practical across social media, print materials, appointment communication, and clinic marketing.",
+    problemStatement: "Salam Dentist needed more than a logo. The clinic required a complete identity system that could present services clearly, build trust quickly, and keep every patient touchpoint visually consistent from promotional posts to printed clinic materials.",
+    finalSolution: "The final branding kit uses a polished tooth-inspired logo, soft healthcare whitespace, a teal-and-navy color system, clear typography, and consistent curved layout styling to create a modern dental brand that works smoothly across digital and print formats.",
     process: [
-      "Trimmed pacing dead space and reorganized narrative beats to increase clarity.",
-      "Added supporting titles, jump-cut rhythm, and cleanup for a more watchable final edit.",
-      "Delivered a repeatable workflow that can scale across an ongoing content calendar."
+      "Started with the logo foundation and core brand board so the identity had clear rules for icon use, horizontal and stacked lockups, color application, and typography choices.",
+      "Expanded the system into patient-facing promotional graphics including the main service poster, appointment reminder, smile-care education post, whitening offer, and service catalogue so the clinic could communicate clearly across multiple formats.",
+      "Completed the branding kit with practical business assets like stationery, business cards, and icon-based service graphics, giving Salam Dentist a full set of materials for real-world clinic operations and marketing."
     ],
-    tools: ["Long-form Editing", "Audio Cleanup", "Story Structure"],
-    client: "YouTube Creator and Brand Channels",
-    deliverables: ["Episode edits", "Thumbnail stills", "Highlight snippets"],
-    metrics: ["Cleaner pacing", "Improved clarity", "Scalable production workflow"],
-    layout: "standard"
+    tools: ["Adobe Photoshop", "Adobe Illustrator", "Brand Identity Design", "Social Media Design"],
+    client: "Salam Dentist",
+    deliverables: [
+      "Primary promotional cover design",
+      "Appointment reminder template",
+      "Teeth whitening promotional creative",
+      "Healthy smile educational post",
+      "Services poster layout",
+      "Service catalogue design",
+      "Stationery branding mockup",
+      "Custom dental icon set",
+      "Business card design",
+      "Brand identity presentation board"
+    ],
+    metrics: ["10 complete branded visuals", "Consistent healthcare identity system", "Built for print and digital brand use"],
+    layout: "tall",
+    colorPalette: [
+      { name: "Medical Teal", hex: "#00AFAF", use: "Primary logo tone, CTA highlights, and service graphic emphasis" },
+      { name: "Deep Navy", hex: "#0B1F33", use: "Main headings, trust-building contrast, and brand structure" },
+      { name: "Soft Mint", hex: "#DFF8F6", use: "Gentle healthcare background support and secondary panels" },
+      { name: "Clean White", hex: "#FFFFFF", use: "Whitespace, readability, and premium clinical clarity" }
+    ],
+    typography: [
+      { label: "Headline", family: "Poppins Bold", detail: "Used for major promotional headlines, service titles, and strong brand hierarchy." },
+      { label: "Support", family: "Inter Regular", detail: "Supports patient-facing information, brand copy, and clean readable clinic communication." }
+    ],
+    beforeAfter: {
+      before: "The clinic needed a stronger and more complete visual identity that could make its services look professional, unified, and easy for patients to trust.",
+      after: "The finished branding kit gives Salam Dentist a polished healthcare presence with reusable visuals that feel modern, friendly, and ready for both marketing and day-to-day clinic communication."
+    },
+    mockups: [
+      salamDentistD7,
+      salamDentistD9,
+      salamDentistD5,
+      salamDentistD6,
+      salamDentistD10
+    ],
+    testimonial: {
+      quote: "This branding kit gave Salam Dentist a professional and cohesive identity. Every piece feels connected, modern, and ready to use across the clinic and promotional channels.",
+      name: "Salam Dentist Team",
+      company: "Salam Dentist",
+      rating: 5,
+      avatar: createAvatar("Salam Dentist", "#00AFAF", "#0B1F33")
+    }
   })
 ];
 
